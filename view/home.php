@@ -4,23 +4,28 @@ $categories = $result['data']['categories'];
 // var_dump($categories);die('ici');
 ?>
 
-<h1>BIENVENUE SUR LE FORUM</h1>
+<h1>Welcome to our vibrant community forum!</h1>
 
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ut nemo quia voluptas numquam, itaque ipsa soluta ratione eum temporibus aliquid, facere rerum in laborum debitis labore aliquam ullam cumque.</p>
+<p>Dive into discussions on art, wildlife, travel, science, music, and food. Share your passions, exchange ideas, and connect with fellow enthusiasts. Start exploring now!</p>
 
-<h2>liste catégories</h2>
+<h2>Categories</h2>
 
-<?php
-foreach($categories as $category){
+<section class="category__buttons">
+    <div class="category__buttons-container">
+        <?php
 
-    ?>
-    <p><a href="index.php?ctrl=forum&action=findTopicsByCategoryId&id=<?=$category->getId()?>"><?=$category->getTitle()?></a></p>
-    <?php
-}
+            foreach($categories as $category){
 
-?>
+                ?>
+                <p><a class="category__button" href="index.php?ctrl=forum&action=findTopicsByCategoryId&id=<?=$category->getId()?>"><?=$category->getTitle()?></a></p>
+                <?php
+            }
+
+        ?>
+    </div>
+</section>
 <p>
-    <a href="/security/login.html">Se connecter</a>
+    <a href="/security/login.html">Sign In</a>
     <span>&nbsp;-&nbsp;</span>
-    <a href="/security/register.html">S'inscrire</a>
+    <a href="/security/register.php">Sign Up</a>
 </p>

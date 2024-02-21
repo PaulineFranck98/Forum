@@ -34,7 +34,7 @@
         // Get the value of username
         public function getUsername(){
 
-            return $this->title;
+            return $this->username;
 
         }
 
@@ -86,3 +86,5 @@
 
 
     }
+
+    

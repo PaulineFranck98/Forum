@@ -1,15 +1,22 @@
 <?php
 
 $topics = $result['data']['topics'];
-// $posts = $result['data']['posts'];
-// var_dump($posts);
 
-foreach ($topics as $topic) {
-    ?>
-    <p><a href="index.php?ctrl=forum&action=findAllPostsByTopicId&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></p>
+?>
+
+<h1>Topics</h1>
+
+<section class="category__buttons">
+
+    <div class="category__buttons-container">
+        
+        <?php foreach ($topics as $topic): ?>
+                
+                <p><a class="category__button" href="index.php?ctrl=forum&action=findAllPostsByTopicId&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></p>
+            
+        <?php endforeach ?>
+
+    </div>
     
-    <?php
-    // var_dump($topics); die();
-   
+</section>
 
-}

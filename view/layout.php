@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
     <title>FORUM</title>
 </head>
@@ -19,11 +22,11 @@
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="/">Accueil</a>
+                        <a href="/">Home</a>
                         <?php
                         // if(App\Session::isAdmin()){
                             ?>
-                            <a href="index.php?ctrl=home&action=users">Voir la liste des gens</a>
+                            <a href="index.php?ctrl=home&action=users">Users</a>
                           
                             <?php
                         // }
@@ -35,14 +38,14 @@
                         // if(App\Session::getUser()){
                             ?>
                             <!-- <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a> -->
-                            <a href="/security/logout.html">Déconnexion</a>
+                            <a href="/security/logout.html">Log Out</a>
                             <?php
                         // }
                         // else{
                             ?>
-                            <a href="./view/security/login.php">Connexion</a>
-                            <a href="/security/register.html">Inscription</a>
-                            <a href="index.php?ctrl=home&action=listCategories">la liste des topics</a>
+                            <a href="./view/security/login.php">Sign In</a>
+                            <a href="/security/register.html">Sign Up</a>
+                            <a href="index.php?ctrl=home&action=listCategories">Topics</a>
                             <!-- <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a> -->
                         <?php
                         // }
@@ -58,7 +61,7 @@
             </main>
         </div>
         <footer>
-            <p>&copy; 2020 - Forum CDA - <a href="/home/forumRules.html">Règlement du forum</a> - <a href="">Mentions légales</a></p>
+            <p>&copy; 2020 - Forum CDA - <a href="/home/forumRules.html">Forum Rules</a> - <a href="">Legal Notice</a></p>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>
