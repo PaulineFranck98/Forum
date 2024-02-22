@@ -45,7 +45,7 @@
                             ?>
                             <a href="./view/security/login.php">Sign In</a>
                             <a href="/security/register.html">Sign Up</a>
-                            <a href="index.php?ctrl=home&action=listCategories">Topics</a>
+                            <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
                             <!-- <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a> -->
                         <?php
                         // }

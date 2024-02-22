@@ -5,7 +5,7 @@
 }
 
 #wrapper{
-  width: 75%;
+  width: 70%;
   margin:0 auto;
   font-family: "Montserrat", sans-serif;
   line-height: 1.6;
@@ -35,6 +35,9 @@ nav a{
   padding:0.7rem;
 }
 
+p{
+  margin-top: 1rem;
+}
   /* ========================================================= 
 CATEGORY BUTTONS
 ============================================================
@@ -56,7 +59,7 @@ CATEGORY BUTTONS
 
 .category__button{
   width:100%;
-  background: hsl(242, 91%, 69%, 18%);
+  background: #6d68f82e;
   color: #6f6af8;
   display: inline-block;
   padding: 0.5rem 1rem;
@@ -82,6 +85,40 @@ CATEGORY BUTTONS
   color: white;
 
 }
+
+.btn.sm{
+  padding:0.3rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.btn.danger{
+  background: #ff0000b8;
+}
+
+.topic__post-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0 auto;
+}
+
+.topic__post{
+    width:100%;
+    background: #6d68f82e;
+    color: #6f6af8;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-align: justify;
+    
+}
+
+.topic__post > div{
+  display: flex;
+  justify-content: space-between;
+  color : #6f6af8b9;
+}
+
 
     /* 
 ========================================================= 
@@ -115,10 +152,31 @@ form{
 
 }
 
-input{
+input, textarea, select{
   padding: 0.8rem 1.4rem;
   background-color: #1e1e66;
   border-radius: 0.5rem;
   color : white;
+  resize: none;
 }
 
+
+table{
+  width: 100%;
+  text-align: left;
+  background-color: #1d0b81ba;
+  border-radius: 9px;
+}
+
+table th{
+  background: #1e1e66;
+  padding: 0.8rem;
+  color: white;
+}
+
+table td{
+  padding:0.8rem;
+  border-bottom: 1px solid rgba(242,242,254,0.7);
+  color: white;
+ 
+}

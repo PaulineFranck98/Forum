@@ -12,21 +12,21 @@
     
     class ForumController extends AbstractController implements ControllerInterface{
 
-        // public function finAllTopics(){
+        public function findAllTopics(){
           
 
-        //    $topicManager = new TopicManager();
+           $topicManager = new TopicManager();
 
-        //    $topics = $topicManager->findAll(["creationdate", "DESC"]);
+           $topics = $topicManager->findAll(["creationdate", "DESC"]);
 
-        //     return [
-        //         "view" => VIEW_DIR."forum/listTopics.php",
-        //         "data" => [
-        //             "topics" => $topics
-        //         ]
-        //     ];
+            return [
+                "view" => VIEW_DIR."forum/listTopics.php",
+                "data" => [
+                    "topics" => $topics
+                ]
+            ];
         
-        // }
+        }
 
 
         /*************************************Topic*************** */
