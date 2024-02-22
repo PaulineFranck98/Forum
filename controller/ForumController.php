@@ -8,10 +8,11 @@
     use Model\Managers\TopicManager;
     use Model\Managers\PostManager;
     use Model\Managers\CategoryManager;
+    use Model\Managers\UserManager;
     
     class ForumController extends AbstractController implements ControllerInterface{
 
-        // public function index(){
+        // public function finAllTopics(){
           
 
         //    $topicManager = new TopicManager();
@@ -42,11 +43,10 @@
                         "topics" => $topics
                         ]
                     ];
-
- 
-            
-            //topic manager avec sa methode specifique 
         }
+
+
+         /*************************************Post*************** */
 
         public function findAllPostsByTopicId($id)
         {   
