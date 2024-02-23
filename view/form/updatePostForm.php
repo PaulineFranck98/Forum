@@ -6,7 +6,7 @@
 
         <form action="" method="POST">
 
-            <textarea  rows="10" placeholder="Text">Text Content</textarea>
+            <textarea  rows="10" name="textcontent" placeholder="Text">Text Content</textarea>
 
             <select>
 

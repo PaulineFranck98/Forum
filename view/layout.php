@@ -22,11 +22,12 @@
             <header>
                 <nav>
                     <div id="nav-left">
-                        <a href="/">Home</a>
+                        <a href="/forum/">Home</a>
                         <?php
                         // if(App\Session::isAdmin()){
                             ?>
                             <a href="index.php?ctrl=home&action=users">Users</a>
+                            <a href="index.php?ctrl=forum&action=addCategoryForm">Add Category</a>
                           
                             <?php
                         // }
@@ -38,15 +39,14 @@
                         // if(App\Session::getUser()){
                             ?>
                             <!-- <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a> -->
-                            <a href="/security/logout.html">Log Out</a>
+                            <a href="/security/logout.php">Log Out</a>
                             <?php
                         // }
                         // else{
                             ?>
                             <a href="./view/security/login.php">Sign In</a>
-                            <a href="/security/register.html">Sign Up</a>
+                            <a href="/security/register.php">Sign Up</a>
                             <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
-                            <!-- <a href="index.php?ctrl=forum&action=listTopics">la liste des topics</a> -->
                         <?php
                         // }
                    

@@ -6,14 +6,24 @@
         public function index(){}
         
         public function redirectTo($ctrl = null, $action = null, $id = null){
-
+            // // $url = "index.php";
+            // if($ctrl != "home"){
+            //     $url = $ctrl ? "/".$ctrl : "";
+            //     $url.= $action ? "/".$action : "";
+            //     $url.= $id ? "/".$id : "";
+            //     // $url.= ".php";
+            // }
+            // else $url = "/forum/";
+            // header("Location: $url");
+            // die();
+            
+            $url = "index.php?";
             if($ctrl != "home"){
-                $url = $ctrl ? "/".$ctrl : "";
-                $url.= $action ? "/".$action : "";
-                $url.= $id ? "/".$id : "";
-                $url.= ".html";
-            }
-            else $url = "/";
+                $url .= $ctrl ? "ctrl=".$ctrl : "";
+                $url.= $action ? "&action=".$action : "";
+                $url.= $id ? "&id=".$id : "";
+
+            }else $url = "/forum/";
             header("Location: $url");
             die();
 
