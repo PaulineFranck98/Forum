@@ -22,7 +22,7 @@
             //faire requete avec select     
 
             $sql = "SELECT *
-                    FROM topic t 
+                    FROM ".$this->tableName." t 
                     WHERE t.category_id = :id";
 
             $data = [
@@ -34,6 +34,21 @@
                 $this->className
             );
         
+        }
+
+        public function update($topicId, $title){
+
+            $sql = "UPDATE ".$this->tableName." t
+                    SET t.title = :title
+                    WHERE t.id_topic = :id";
+
+            $data = [
+                'title' => $title,
+                'id' => $topicId
+            ];
+
+            DAO::update($sql, $data);
+            
         }
 
 

@@ -17,7 +17,20 @@
 
         }
 
-      
+        public function update($categoryId, $title){
+
+            $sql = "UPDATE ".$this->tableName." c
+                    SET c.title = :title
+                    WHERE c.id_category = :id";
+
+            $data = [
+                'title' => $title,
+                'id' => $categoryId
+            ];
+
+            DAO::update($sql, $data);
+            
+        }
        
 
     }

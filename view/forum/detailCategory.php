@@ -5,9 +5,10 @@ $category = $result['data']['category'];
 
 ?>
 
-<h1>Topics</h1>
+<h1><?=$category->getTitle()?></h1>
 
 <a href="index.php?ctrl=forum&action=addTopicForm&id=<?=$category->getId()?>">Add Topic</a>
+<a href="index.php?ctrl=forum&action=updateCategoryForm&id=<?=$category->getId()?>">Edit Category</a>
 
 <section class="category__buttons">
 

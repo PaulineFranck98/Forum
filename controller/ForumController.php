@@ -113,6 +113,48 @@
 
         }
 
+        
+        public function updateCategoryForm($categoryId){
+        
+            $categoryManager = new CategoryManager();
+
+            $category = $categoryManager->findOneById($categoryId);
+
+
+            return [
+
+                "view" => VIEW_DIR."form/updateCategoryForm.php",
+                "data" => [
+                    "category" => $category
+                ]
+    
+            ];
+
+
+        }
+
+        public function updateCategory($categoryId){
+            
+
+            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+            $categoryManager = new CategoryManager();
+                $data = [
+                'title' => $title,
+                'id_category' => $categoryId
+            ];
+
+            $categoryManager->update($categoryId, $title); 
+
+            Session::addFlash('success', 'Category has been updated successfully');
+            
+            $this->redirectTo('forum', 'findTopicsByCategoryId', $categoryId);
+
+
+
+        }
+
+
         public function addTopicForm($categoryId){
 
            
@@ -137,6 +179,8 @@
 
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+            $textContent = filter_input(INPUT_POST, 'textcontent', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
             $topicManager = new TopicManager();   
             $categoryManager = new CategoryManager();
             $category = $categoryManager->findOneById($id);
@@ -154,9 +198,19 @@
                     'user_id' => 1
                 ];
 
-                // var_dump($data); die();
-                $topicManager->add($data);
+            
+                $topicId = $topicManager->add($data);
 
+                $dataMessage = [
+                    'textcontent' => $textContent,
+                    'creationdate' => $creationDateFormated,
+                    'user_id' => 1,
+                    'topic_id' => $topicId,
+                ];
+
+                $postManager = new PostManager();
+
+                $postManager->add($dataMessage);
                 Session::addFlash('success', 'Topic has been added successfully');
                 $this->redirectTo('forum', 'findTopicsByCategoryId', $id);
             }
@@ -170,6 +224,47 @@
                     "category" => $category
                 ]
             ];
+
+
+        }
+
+        public function updateTopicForm($topicId){
+        
+            $topicManager = new TopicManager();
+
+            $topic = $topicManager->findOneById($topicId);
+
+
+            return [
+
+                "view" => VIEW_DIR."form/updateTopicForm.php",
+                "data" => [
+                    "topic" => $topic
+                ]
+    
+            ];
+
+
+        }
+
+        public function updateTopic($topicId){
+            
+
+            $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            
+            var_dump($title);
+            $topicManager = new topicManager();
+                $data = [
+                'title' => $title,
+                'id_topic' => $topicId
+            ];
+
+            $topicManager->update($topicId, $title); 
+
+            Session::addFlash('success', 'Topic has been updated successfully');
+            
+            $this->redirectTo('forum', 'findAllPostsByTopicId', $topicId);
+
 
 
         }

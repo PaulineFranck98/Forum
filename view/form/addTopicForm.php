@@ -14,6 +14,8 @@ $category = $result['data']['category'];
         <form action="index.php?ctrl=forum&action=addTopicByCategory&id=<?=$category->getId()?>" method="POST">
 
             <input type="text" name="title" placeholder="Title">
+
+            <textarea  rows="10" name="textcontent" placeholder="Text">Text Content</textarea>
             
             <button type="submit" class="btn">Add Topic</button>
             

@@ -6,9 +6,10 @@ $topic = $result['data']['topic'];
 
 ?>
 
-<h1>Posts</h1>
+<h1><?=$topic->getTitle()?></h1>
 
-<a href="index.php?ctrl=forum&action=addPostForm&id=<?=$topic>getId()?>">Add Post</a>
+<a href="index.php?ctrl=forum&action=addPostForm&id=<?=$topic->getId()?>">Add Post</a>
+<a href="index.php?ctrl=forum&action=updateTopicForm&id=<?=$topic->getId()?>">Edit Topic</a>
 
 <section class="category__buttons">
 
