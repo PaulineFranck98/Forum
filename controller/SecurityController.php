@@ -122,7 +122,7 @@
 
         // public function logout(){
 
-        //     Session::unSetUser($userExisting);
+        //     Session::unsetUser($userExisting);
         // }
          
     }
