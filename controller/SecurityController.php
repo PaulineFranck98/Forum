@@ -180,9 +180,9 @@
 
         // OK dans forum controller : get the id of the user in session 
         // OK quand je poste, je récupère l'id en session : actuellement en dur (id user = 1) mais dois récupérer l'id_user en session 
-
+        // ajouter heures + min dans forum et formatteeddate
         // si user en session différent de celui qui a posté alors ne peut pas éditer ni supprimer le post / ni bloquer (closed) le topic : si topic bloqué : ne peux plus répondre au topic : pas de post
-        // créer compte admin : JSON [ADMIN_ROLE]
+        // créer compte admin : JSON [ADMIN_ROLE] : bouton à cliquer pour bloquer 
 
 
         // ban un user 
