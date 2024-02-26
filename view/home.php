@@ -25,7 +25,7 @@ $categories = $result['data']['categories'];
     </div>
 </section>
 <p>
-    <a href="/security/login.html">Sign In</a>
+    <a href="index.php?ctrl=security&action=loginForm">Sign In</a>
     <span>&nbsp;-&nbsp;</span>
-    <a href="/security/register.php">Sign Up</a>
+    <a href="index.php?ctrl=security&action=registerForm">Sign Up</a>
 </p>

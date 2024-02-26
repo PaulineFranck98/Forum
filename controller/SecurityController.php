@@ -26,10 +26,11 @@
 
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $createPassword = filter_input(INPUT_POST, 'createPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $repeatPassword = filter_input(INPUT_POST, 'repeatPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $repeatPassword = filter_input(INPUT_POST, 'repeatPassword', FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[A-Za-z0-9].{8,32}/"]] );
+
 
             if($createPassword == $repeatPassword){
-
+           
                 $userManager = new UserManager();
 
                 $userExisting = $userManager->findOneByPseudo($username);
@@ -71,7 +72,7 @@
                    
             } else {
 
-                Session::addFlash('error', 'Passwords do not match');
+                Session::addFlash('error', 'Incorrect Password or Not Strong Enough');
                 return $this->redirectTo("security", "registerForm");    
             }     
         }
@@ -118,12 +119,16 @@
                 Session::addFlash('error', 'User not found');
                 return $this->redirectTo("security", "loginForm"); 
 
+            }
         }
 
-        // public function logout(){
+        public function logout(){
 
-        //     Session::unsetUser($userExisting);
-        // }
+            Session::unsetUser();
+            Session::addFlash('success', 'Log Out Successful');
+            return $this->redirectTo("home");
+
+        }
          
     }
 
@@ -145,9 +150,45 @@
 
 
     
-    //  registerform : 
-    //     username 
-    //     password repeat password
+  
+
+
+
+
+    // $hashedPassword = password_hash($createPassword, PASSWORD_DEFAULT);
+    // PASSWORD_DEFAULT :  use bcrypt algorithm (default), but the constant is designed to change over time
+    // --> use the stronger algorithm and use brcrypt or Argon2i  
+
+
+
+    
+    // Regex:(short for regular expression) a regex is a string of text that allows to create patterns that help match, locate, and manage text.
+        /* VOIR GLOSSAIRE
         
-    //     register function : 
-    //     récupérer input : username , password
+        Password conditions : 
+            -at least one digit [0-9]
+            -at least one lowercase [a-z]
+            -at least one uppercase [A-Z]
+            -at least one special character [*.!@#$%^&(){}[]:;<>,.?/~_+-=|\]
+            -at least 8 characters (not more than 32)
+            --> pattern : 
+            ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$
+        */
+        //  test1 : Motdepasse1
+        //  test2 : Motdepasse2
+        
+
+        // OK dans forum controller : get the id of the user in session 
+        // OK quand je poste, je récupère l'id en session : actuellement en dur (id user = 1) mais dois récupérer l'id_user en session 
+
+        // si user en session différent de celui qui a posté alors ne peut pas éditer ni supprimer le post / ni bloquer (closed) le topic : si topic bloqué : ne peux plus répondre au topic : pas de post
+        // créer compte admin : JSON [ADMIN_ROLE]
+
+
+        // ban un user 
+        // 
+
+
+
+       
+    

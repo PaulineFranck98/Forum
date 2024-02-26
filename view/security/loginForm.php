@@ -12,7 +12,7 @@
 
             <button type="submit" class="btn">Sign In</button>
 
-            <small>Don't have an account? <a href="#">Sign Up</a></small>
+            <small>Don't have an account? <a href="index.php?ctrl=security&action=registerForm">Sign Up</a></small>
 
         </form>
 

@@ -187,6 +187,7 @@
             $topics = $topicManager->findTopicsByCategoryId($id);
             $creationDate = new \DateTime('now');
             $creationDateFormated = $creationDate->format('Y-m-d');
+            $user_id = Session::getUser()->getId();
 
             if($title){
 
@@ -195,7 +196,7 @@
                     'category_id' => $id,
                     'creationdate' => $creationDateFormated,
                     'closed' => 0,
-                    'user_id' => 1
+                    'user_id' => $user_id
                 ];
 
             
@@ -204,7 +205,7 @@
                 $dataMessage = [
                     'textcontent' => $textContent,
                     'creationdate' => $creationDateFormated,
-                    'user_id' => 1,
+                    'user_id' => $user_id,
                     'topic_id' => $topicId,
                 ];
 
@@ -300,6 +301,7 @@
             $posts = $postManager->findAllPostsByTopicId($id);
             $creationDate = new \DateTime('now');
             $creationDateFormated = $creationDate->format('Y-m-d');
+            $user_id = Session::getUser()->getId();
 
             if($textContent){
 
@@ -307,7 +309,7 @@
                     'textcontent' => $textContent,
                     'topic_id' => $id,
                     'creationdate' => $creationDateFormated,
-                    'user_id' => 1
+                    'user_id' => $user_id
                 ];
 
                 // var_dump($data); die();
