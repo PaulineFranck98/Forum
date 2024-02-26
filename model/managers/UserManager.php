@@ -15,4 +15,21 @@
         public function __construct(){
             parent::connect();
         }
+
+
+        public function findOneByPseudo($username){
+
+            $sql = "SELECT *
+                    FROM ".$this->tableName." u
+                    WHERE u.username = :username
+                    ";
+
+            return $this->getOneOrNullResult(
+                DAO::select($sql, ['username' => $username], false), 
+                $this->className
+            );
+
+        }
+
+       
     }

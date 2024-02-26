@@ -4,11 +4,13 @@
 
         <h2>Sign Up</h2>
 
-        <form action="" method="POST">
+        <form action="index.php?ctrl=security&action=register" method="POST">
 
             <input type="text" name="username" placeholder="Username">
 
-            <input type="text" name="password" placeholder="Password">
+            <input type="password" name="createPassword" placeholder="Password">
+
+            <input type="password" name="repeatPassword" placeholder="Repeat Password">
 
             <button type="submit" class="btn">Sign Up</button>
 

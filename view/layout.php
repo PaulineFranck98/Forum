@@ -36,19 +36,19 @@
                     <div id="nav-right">
                     <?php
                         
-                        // if(App\Session::getUser()){
+                        if(App\Session::getUser()){
                             ?>
-                            <!-- <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a> -->
+                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
                             <a href="/security/logout.php">Log Out</a>
                             <?php
-                        // }
-                        // else{
+                        }
+                        else{
                             ?>
-                            <a href="./view/security/login.php">Sign In</a>
-                            <a href="/security/register.php">Sign Up</a>
+                            <a href="index.php?ctrl=security&action=loginForm">Sign In</a>
+                            <a href="index.php?ctrl=security&action=registerForm">Sign Up</a>
                             <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
                         <?php
-                        // }
+                        }
                    
                         
                     ?>
@@ -113,6 +113,7 @@
                 }
             )
         })*/
+
     </script>
 </body>
 </html>

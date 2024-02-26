@@ -4,11 +4,11 @@
 
         <h2>Sign In</h2>
 
-        <form action="" method="POST">
+        <form action="index.php?ctrl=security&action=login" method="POST">
 
             <input type="text" name="username" placeholder="Username">
 
-            <input type="text" name="password" placeholder="Password">
+            <input type="password" name="password" placeholder="Password">
 
             <button type="submit" class="btn">Sign In</button>
 

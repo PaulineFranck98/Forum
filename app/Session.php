@@ -44,4 +44,9 @@
             return false;
         }
 
+        // public static function unsetUser($user){
+        //     return (isset($_SESSION['user'])) ? session_unset() : false;
+        // }
+    
+
     }

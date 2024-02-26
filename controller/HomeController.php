@@ -57,4 +57,7 @@
             $nb++;
             include(VIEW_DIR."ajax.php");
         }*/
+
+
+    
     }
