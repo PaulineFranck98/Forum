@@ -34,5 +34,21 @@
             );
         
         }
+
+        public function update($postId, $textContent){
+            
+            $sql = "UPDATE ". $this->tableName . "p
+                    SET p.textcontent = :textcontent
+                    WHERE p.id_post = :id";
+
+            $data =[
+                'textcontent' => $textContent,
+                'id' => $postId
+            ];
+
+            DAO::update($sql, $data);
+
+
+        }
     }
 

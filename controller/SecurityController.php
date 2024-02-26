@@ -109,7 +109,8 @@
 
                     // set user in session
                     Session::setUser($userExisting);
-
+                    // var_dump($userExisting->getRole()); 
+                    // die();
                     return $this->redirectTo("home");
 
                 }
@@ -180,8 +181,14 @@
 
         // OK dans forum controller : get the id of the user in session 
         // OK quand je poste, je récupère l'id en session : actuellement en dur (id user = 1) mais dois récupérer l'id_user en session 
-        // ajouter heures + min dans forum et formatteeddate
-        // si user en session différent de celui qui a posté alors ne peut pas éditer ni supprimer le post / ni bloquer (closed) le topic : si topic bloqué : ne peux plus répondre au topic : pas de post
+        // OK ajouter heures + min dans forum et formatteeddate
+        // si user en session différent de celui qui a posté alors ne peut pas éditer ni supprimer le post 
+        //  si user en session différent de celui qui a posté le topic : pas bloquer (closed) le topic : si topic bloqué : ne peux plus répondre au topic : pas de post
+        /* if ((App\Session::getUser() == $topic->getUser()->getUsername())) affiche 'edit' button 
+            et affiche bouton à clicker pour clôturer sujet
+        */
+        
+        
         // créer compte admin : JSON [ADMIN_ROLE] : bouton à cliquer pour bloquer 
 
 

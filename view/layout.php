@@ -24,13 +24,14 @@
                     <div id="nav-left">
                         <a href="/forum/">Home</a>
                         <?php
-                        // if(App\Session::isAdmin()){
+                        var_dump(App\Session::isAdmin());
+                        if(App\Session::isAdmin()){
                             ?>
                             <a href="index.php?ctrl=home&action=users">Users</a>
                             <a href="index.php?ctrl=forum&action=addCategoryForm">Add Category</a>
                           
                             <?php
-                        // }
+                        }
                         ?>
                     </div>
                     <div id="nav-right">

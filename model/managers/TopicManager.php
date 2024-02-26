@@ -51,5 +51,19 @@
             
         }
 
+        public function closeTopic($topicId) {
+            
+            $sql = "UPDATE ".$this->tableName." t
+                    SET t.closed = 1
+                    WHERE t.id_topic = :id";
+
+            $data = [
+                'id' => $topicId
+            ];
+
+            DAO::update($sql, $data);
+    
+        }
+
 
     }

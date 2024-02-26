@@ -186,7 +186,7 @@
             $category = $categoryManager->findOneById($id);
             $topics = $topicManager->findTopicsByCategoryId($id);
             $creationDate = new \DateTime('now');
-            $creationDateFormated = $creationDate->format('Y-m-d');
+            $creationDateFormated = $creationDate->format('Y-m-d H:i:s');
             $user_id = Session::getUser()->getId();
 
             if($title){
@@ -253,8 +253,7 @@
 
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             
-            var_dump($title);
-            $topicManager = new topicManager();
+            $topicManager = new TopicManager();
                 $data = [
                 'title' => $title,
                 'id_topic' => $topicId
@@ -300,7 +299,7 @@
             $topic = $topicManager->findOneById($id);
             $posts = $postManager->findAllPostsByTopicId($id);
             $creationDate = new \DateTime('now');
-            $creationDateFormated = $creationDate->format('Y-m-d');
+            $creationDateFormated = $creationDate->format('Y-m-d H:i:s');
             $user_id = Session::getUser()->getId();
 
             if($textContent){
@@ -330,6 +329,63 @@
             ];
 
 
+        }
+
+        public function updatePostForm($postId){
+        
+            $postManager = new PostManager();
+
+            $post = $postManager->findOneById($postId);
+
+
+            return [
+
+                "view" => VIEW_DIR."form/updatePostForm.php",
+                "data" => [
+                    "post" => $post
+                ]
+    
+            ];
+
+
+        }
+
+        public function updatePost($postId){
+
+            $textContent = filter_input(INPUT_POST, 'textcontent', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // var_dump($textContent); die();
+            $postManager = new PostManager();
+            
+            $data = [
+                'textcontent' => $textContent,
+                'id_post' => $postId
+            ];
+
+            $postManager->update($postId, $textContent);
+
+            Session::addFlash('success', 'Post has been updated successfully');
+            
+            $this->redirectTo('home');
+
+        }
+
+        public function closeTopic($id){
+
+            $topicManager = new TopicManager();
+
+            $topic = $topicManager->findOneById($id);
+
+            if($topic && (Session::getUser() == $topic->getUser()->getUsername())){
+
+                $topicManager->closeTopic($id);
+
+                Session::addFlash('success', 'Topic has been closed successfully');
+
+            } else {
+
+                Session::addFlash('error', 'The Post has not been closed');
+            }
         }
 
         
