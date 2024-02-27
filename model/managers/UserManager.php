@@ -31,5 +31,33 @@
 
         }
 
+        public function banUser($userId) {
+            
+            $sql = "UPDATE ".$this->tableName." u
+                    SET u.banned = 1
+                    WHERE u.id_user = :id";
+
+            $data = [
+                'id' => $userId
+            ];
+
+            DAO::update($sql, $data);
+    
+        }
+
+        public function unBanUser($userId) {
+            
+            $sql = "UPDATE ".$this->tableName." u
+                    SET u.banned = 0
+                    WHERE u.id_user = :id";
+
+            $data = [
+                'id' => $userId
+            ];
+
+            DAO::update($sql, $data);
+    
+        }
+
        
     }

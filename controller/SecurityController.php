@@ -130,6 +130,64 @@
             return $this->redirectTo("home");
 
         }
+
+        public function banUser($id){
+
+            $userManager = new UserManager();
+
+            $user = $userManager->findOneById($id);
+
+            $users = $userManager->findAll(['username', 'DESC']);
+
+            if($user) {
+                $userManager->banUser($id);
+
+                Session::addFlash('success', 'User has been banned successfully');
+                
+                
+                return [
+                    "view" => VIEW_DIR."security/users.php",
+                    "data" => [
+                        "users" => $users
+                    ]
+                ];
+
+            } else {
+
+                Session::addFlash('error', 'User has not been banned');
+                
+                return $this->redirectTo("security", "users");
+            }
+        }
+
+
+        public function unBanUser($id){
+
+            $userManager = new UserManager();
+
+            $user = $userManager->findOneById($id);
+
+            $users = $userManager->findAll(['username', 'DESC']);
+
+            if($user) {
+                $userManager->unBanUser($id);
+
+                Session::addFlash('success', 'User has been unbanned successfully');
+                
+                return [
+                    "view" => VIEW_DIR."security/users.php",
+                    "data" => [
+                        "users" => $users
+                    ]
+                ];
+
+            } else {
+
+                Session::addFlash('error', 'User has not been unbanned');
+                
+                return $this->redirectTo("security", "users");
+            }
+        }
          
     }
 
@@ -196,6 +254,10 @@
         // 
 
 
-
+        // tout commenter
+        // page d'accueil : sign up (check box RGPD)
+        // page d'accueil : SEO 
+        // style
+        // accessibilité  
        
     

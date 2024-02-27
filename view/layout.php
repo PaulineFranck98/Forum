@@ -23,8 +23,9 @@
                 <nav>
                     <div id="nav-left">
                         <a href="/forum/">Home</a>
+                        <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
                         <?php
-                        var_dump(App\Session::isAdmin());
+                        
                         if(App\Session::isAdmin()){
                             ?>
                             <a href="index.php?ctrl=home&action=users">Users</a>
@@ -39,15 +40,16 @@
                         
                         if(App\Session::getUser()){
                             ?>
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()?></a>
+                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
                             <a href="index.php?ctrl=security&action=logout">Log Out</a>
+
                             <?php
                         }
                         else{
                             ?>
                             <a href="index.php?ctrl=security&action=loginForm">Sign In</a>
                             <a href="index.php?ctrl=security&action=registerForm">Sign Up</a>
-                            <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
+                            
                         <?php
                         }
                    

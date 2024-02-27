@@ -9,6 +9,7 @@
         private $username;
         private $password;
         private $role;
+        private $banned;
 
         public function __construct($data){
             $this->hydrate($data);
@@ -90,11 +91,29 @@
             
             return $result;
         }
+
         
-        public function __toString(){
-            
-            return $this->username;
+        // Get the value 
+        public function getBanned() {
+
+            return $this->banned;
         }
+
+        /** Set the value 
+        * 
+        * @return self
+        */
+        public function setBanned($banned) {
+
+            $this->banned = $banned;
+
+            return $this;
+        }
+        
+        // public function __toString(){
+            
+        //     return $this->username;
+        // }
 
     }
 

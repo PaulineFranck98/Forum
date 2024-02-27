@@ -12,13 +12,21 @@
     
     class ForumController extends AbstractController implements ControllerInterface{
 
+
+
+        // fonction qui permet de récupérer tous les topics
         public function findAllTopics(){
           
-
+            // je crée nouvelle instance de ma classe topicmager = création d'objet
            $topicManager = new TopicManager();
 
+        //    je crée une variable topics qui prendra la forme d'un tableau d'objet
+        //    je fais appel à la couche modèle pour récupérer des informations en bases de données
+        //    la couche modele renvoie au controlleur les résultats pour traitement
            $topics = $topicManager->findAll(["creationdate", "DESC"]);
 
+        //    je retourne une vue au format HTML 
+        //    j'envoie à la couche VUE un tableau de données ( variables) 
             return [
                 "view" => VIEW_DIR."forum/listTopics.php",
                 "data" => [
@@ -56,16 +64,20 @@
         {   
             $postManager = new PostManager();
             $topicManager = new TopicManager();
+            $userManager = new UserManager();
 
             $posts = $postManager->findAllPostsByTopicId($topicId);
 
             $topic = $topicManager->findOneById($topicId);
+
+            
 
             return [
                         "view" => VIEW_DIR."forum/detailTopic.php",
                         "data" => [
                             "posts" => $posts,
                             "topic" => $topic
+                            
                         ]
                     ];
 
@@ -375,16 +387,21 @@
             $topicManager = new TopicManager();
 
             $topic = $topicManager->findOneById($id);
-
-            if($topic && (Session::getUser() == $topic->getUser()->getUsername())){
+            
+            
+            if($topic && (Session::getUser() == $topic->getUser()) || (Session::isAdmin())){
 
                 $topicManager->closeTopic($id);
 
                 Session::addFlash('success', 'Topic has been closed successfully');
 
+                $this->redirectTo('forum', 'findAllPostsByTopicId', $id);
+
             } else {
 
                 Session::addFlash('error', 'The Post has not been closed');
+
+                $this->redirectTo('forum', 'findAllPostsByTopicId', $id);
             }
         }
 
