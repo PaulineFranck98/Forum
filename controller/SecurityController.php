@@ -254,10 +254,11 @@
         // 
 
 
-        // tout commenter
+        // tout commenter :GLOSSAIRE en parallèle 
         // page d'accueil : sign up (check box RGPD)
         // page d'accueil : SEO 
         // style
+        // barre recherche 
         // accessibilité  
        
     

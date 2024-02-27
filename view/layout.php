@@ -41,7 +41,7 @@
                         if(App\Session::getUser()){
                             ?>
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
-                            <a href="index.php?ctrl=security&action=logout">Log Out</a>
+                            <a href="index.php?ctrl=security&action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
 
                             <?php
                         }
@@ -73,6 +73,7 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous">
     </script>
+    <script src="https://kit.fontawesome.com/d004286c36.js" crossorigin="anonymous"></script>
     <script>
 
         $(document).ready(function(){

@@ -8,6 +8,15 @@ $categories = $result['data']['categories'];
 
 <p>Dive into discussions on art, wildlife, travel, science, music, and food. Share your passions, exchange ideas, and connect with fellow enthusiasts. Start exploring now!</p>
 
+<section class="search__bar">
+        <form action="" class="search__bar-container">
+            <div>
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="search" name="" placeholder="Search">
+            </div>
+            <button type="submit" class="btn">Go</button>
+        </form>
+</section>
 <h2>Categories</h2>
 
 <section class="category__buttons">
