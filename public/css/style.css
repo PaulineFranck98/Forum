@@ -5,8 +5,8 @@
 }
 
 :root {
-  --color-primary: #000000c7;
-  --color-primary-light: #ffefa3;
+  --color-primary: #db2a6b;
+  --color-primary-bg: #000000f8;
   --color-primary-variant: #c3b15c;
   --color-red: #da0f3f;
   --color-red-light: hsl(346, 87%, 46%, 15%);
@@ -17,16 +17,14 @@
   --color-gray-300: rgba(242, 242, 254, 0.3);
   --color-gray-200: rgba(242, 242, 254, 0.7);
   --color-white: #f2f2fe;
-  --color-bg: #0f0f3e;
+  --color-bg: #2b2d38;
 
   --transition: all 300ms ease;
 }
 
 body {
-  background: url(../images/background.jpg.jpg);
-  background-size: cover;
-  color: var(--color-primary-light);
-  backdrop-filter: blur(2px);
+  background: var(--color-bg);
+  color: var(--color-white);
 }
 
 #wrapper {
@@ -40,18 +38,54 @@ body {
   min-height: 100vh;
 }
 
-a {
+/* a {
   text-decoration: none;
+} */
+
+a {
+  position: relative;
+  color: var(--color-white);
+  text-decoration: none;
+ 
 }
 
+
+a:hover {
+  color: var(--color-white);
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+
+a:hover::before {
+  transform: scaleX(1);
+}
+
+
 h1 {
-  margin: 5rem 0 2rem;
+  margin: 6rem 0 2rem 11rem;
   text-align: center;
-  font-size: 2.8rem;
+  font-size: 3rem;
+  width: 80%;
+}
+
+h1 > strong{
+  color: var(--color-primary);
 }
 
 h2 {
-  margin: 5rem 0 1rem;
+  margin-top : 2rem;
   text-align: center;
 }
 
@@ -59,18 +93,21 @@ nav {
   padding: 1rem 2rem 1rem;
   display: flex;
   justify-content: space-between;
-  background: var(--color-primary);
+  background: var(--color-primary-bg);
 }
+
 
 nav a {
   padding: 0.7rem;
-  color: white;
+  
 }
 
 #mainpage h1 + p {
-  margin-top: 3rem;
+  margin: 3rem 0 0 13rem;
   text-align: center;
+  width: 70%;
 }
+
 
 /* ========================================================= 
 SEARCH
@@ -78,7 +115,7 @@ SEARCH
   */
 
 .search__bar {
-  margin-top: 9rem;
+  margin: 6rem 0 0 10rem;
   display: flex;
   justify-content: center;
 }
@@ -86,14 +123,14 @@ SEARCH
 .search__bar-container {
   position: relative;
   width: 30rem;
-  background: var(--color-primary);
+  background: var(--color-primary-bg);
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 0.6rem 1rem;
   border-radius: 1rem;
-  color: var(--color-primary-light);
+  color: var(--color-white);
 }
 
 .search__bar-container > div {
@@ -111,7 +148,7 @@ SEARCH
 }
 
 .search__bar input::placeholder {
-  color: var(--color-primary-light);
+  color: var(--color-white);
 }
 /* ========================================================= 
 CATEGORY BUTTONS
@@ -141,13 +178,13 @@ CATEGORY BUTTONS
 .category__button {
   width: 100%;
   background: var(--color-primary);
-  color: var(--color-primary-light);
+  color: var(--color-white);
   display: inline-block;
   padding: 0.8rem 1rem;
   border-radius: 0.5rem;
   font-weight: 600;
   text-align: center;
-  box-shadow: 0.2rem 0.2rem 2rem #0000006b;
+  /* box-shadow: 0.2rem 0.2rem 2rem #0000006b; */
 }
 
 .category__button:hover {
@@ -162,7 +199,7 @@ CATEGORY BUTTONS
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 300ms ease;
-  color: var(--color-primary-light);
+  color: var(--color-white);
   border: none;
 }
 
@@ -260,4 +297,36 @@ table td {
   padding: 0.8rem;
   border-bottom: 1px solid rgba(242, 242, 254, 0.7);
   color: white;
+}
+
+
+.top_container{
+  display: flex;
+  height:60vh;
+  width:90%;
+}
+
+.img_container{
+  position: relative;
+  height: 80vh;
+  width:30%;
+}
+
+img{
+ width: 100%;
+}
+
+.img_container figure{
+
+  width: 100%;
+  position: absolute;
+  right: 10%;
+  top: 10%;
+}
+
+.left_container{
+
+  width:60%;
+  margin-left: 9rem
+
 }

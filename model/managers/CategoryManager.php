@@ -31,6 +31,23 @@
             DAO::update($sql, $data);
             
         }
+
+        public function search($search){
+
+            $sql = "SELECT * FROM ".$this->tableName ." c
+                    WHERE c.title
+                    LIKE :search";
+            
+            $data = [
+                'search' => '%' . $search . '%'
+            ];
+
+            return $this->getMultipleResults(
+                DAO::select($sql, $data, true), 
+                $this->className
+            );
+
+        }
        
 
     }

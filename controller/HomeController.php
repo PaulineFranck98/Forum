@@ -58,6 +58,34 @@
             include(VIEW_DIR."ajax.php");
         }*/
 
+      
+        public function search(){
+
+            $search = filter_input(INPUT_GET, 'search' , FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            // var_dump($search);die();
+            $userManager = new UserManager();
+            $categoryManager = new CategoryManager();
+            $topicManager = new TopicManager();
+            $postManager = new PostManager();
+
+            $users = $userManager->search($search);
+            $categories = $categoryManager->search($search);
+            $topics = $topicManager->search($search);
+            $posts = $postManager->search($search);
+
+            return [
+                "view" => VIEW_DIR."forum/searchPage.php",
+                "data" => [
+                    "users" => $users,
+                    "categories" => $categories,
+                    "topics" => $topics,
+                    "posts" => $posts,
+                    "search" => $search
+                ]
+            ];
+
+        }
+
 
     
     }

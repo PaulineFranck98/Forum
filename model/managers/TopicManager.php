@@ -65,5 +65,22 @@
     
         }
 
+        public function search($search){
+
+            $sql = "SELECT * FROM ".$this->tableName ." t
+                    WHERE t.title
+                    LIKE :search";
+            
+            $data = [
+                'search' => '%' . $search . '%'
+            ];
+
+            return $this->getMultipleResults(
+                DAO::select($sql, $data, true), 
+                $this->className
+            );
+
+        }
+
 
     }
