@@ -12,8 +12,10 @@
     
     class SecurityController extends AbstractController implements ControllerInterface{
 
+        // method to display the form to register a new user
         public function registerForm(){
 
+            // return a view in HTML format
             return [
                 "view" => VIEW_DIR."security/registerForm.php"
             
@@ -21,43 +23,58 @@
 
         }
 
-        // function that allows to register as a user
+        // method to register as a new User
         public function register() {
 
+            // retrieves User username from the POST request, sanitize the input
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // retrieves User password created from the POST request, sanitize the input
             $createPassword = filter_input(INPUT_POST, 'createPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // retrieves User password repeated from the POST request
+            // FILTER_VALIDATE_REGEXP : validates password against a regular expression to enforce password strenght requirement (here : uppercase, lowercase, digit, min 8, max 32 characters)
             $repeatPassword = filter_input(INPUT_POST, 'repeatPassword', FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[A-Za-z0-9].{8,32}/"]] );
 
-            // check if user is already registered
+            // check if passwords match and meet regex criteria
             if($createPassword == $repeatPassword){
 
-                // creation of a new instance of the UserManager class => object creation
+                //creation of a new instance of the UserManager class => object creation
                 $userManager = new UserManager();
 
+                // creation of a $userExisting variable, and use model layer ($userManager) to retrieve informations from db
                 $userExisting = $userManager->findOneByPseudo($username);
 
-                // check if user is not already registered 
+                // check if user is not already registered before hashing password and  adding user's data to database
                 if(!$userExisting){
 
+                    // creation of $hashedPassword variable to store the password hashed with native function password_hash()
+                    // password_hash() : hashes the user password using secure algorithm (currently bcrypt) before it's stored in the database
+                    // PASSWORD_DEFAULT: means php will choose the best algorithm at the time of execution (brcrypt or Argon2i) : ensure user's password is not exposed if a problem occurs in db
                     $hashedPassword = password_hash($createPassword, PASSWORD_DEFAULT);
 
+                    // prepare User's data 
                     $data = [
                         'username' => $username,
+                        // store hashed password in database to secure the user's account 
                         'password' => $hashedPassword,
+                        // not banned by default
                         'is_banned' => 0,
+                        // role set to user by default 
+                        // (json_encode() returns a string containing the JSON representation of the supplied value)
                         'role' => json_encode(['ROLE_USER']) 
                     ];
-
+                       
+                    // add the data to the database
                     $result = $userManager->add($data);
-                    // var_dump($data);die();
-
+                    
+                    // check if user's data have been added to database
                     if($result){
                         // if the data has been added successfully to the db, a success message will be displayed
                         Session::addFlash('success', 'Registration Successful');
                         // redirect to the Home page 
                         $this->redirectTo("home");
 
-                        
                     } 
                         // if the data has not been added successfully to the db, an error message will be displayed
                         Session::addFlash('error', 'Something went wrong');
@@ -85,19 +102,24 @@
             }     
         }
 
-
+        // method to display the form to log in as a User or as an Admin
         public function loginForm(){
 
+            // Return a view in HTML format
             return [
                 "view" => VIEW_DIR."security/loginForm.php"
             
             ];
         }
 
-        // function that allows to login as a User or as an Admin
+
+        // method to login as a User or as an Admin
         public function login(){
 
+            // retrieves User username from the POST request, sanitize the input
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // retrieves User password from the POST request, sanitize the input
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
              // creation of a new instance of the UserManager class => object creation
@@ -113,9 +135,9 @@
                 // get user's password from db
                 $bddPassword = $userExisting->getPassword();
                 
-                // native function : verifies that the given hash matches the given password
+
+                // password_verify : compares the plaintext password provided by user during login against the hashed password stored in db (native function)
                 if(password_verify($password, $bddPassword )){
-                    // var_dump('super'); die();
 
                     // set user in session
                     Session::setUser($userExisting);
@@ -134,64 +156,81 @@
             }
         }
 
-        // function that allows a User or Admin to log out (unset the user/admin session)
+        // method to log out as a User or an Admin (unset the user/admin session)
         public function logout(){
 
             Session::unsetUser();
 
             // if the user has been successfully unset from the session / logged out 
             Session::addFlash('success', 'Log Out Successful');
-            
+
             // redirect to the Home page 
             return $this->redirectTo("home");
 
         }
 
+        // method to ban a User : the user will not be able to add/update a topic/post
         public function banUser($id){
 
+            // creation of a new instance of the UserManager class => object creation
             $userManager = new UserManager();
 
+            // creation of a variable "$user" 
             $user = $userManager->findOneById($id);
 
+            // create a variable '$users' which will take the form of an array of objects
             $users = $userManager->findAll(['username', 'DESC']);
+            // and use the model layer to retrieve informations from the database.
 
             if($user) {
+                // use model layer to change the user's status in the database
                 $userManager->banUser($id);
 
+                // if success : display a success message in the session
                 Session::addFlash('success', 'User has been banned successfully');
                 
-                
+                // return a view in HTML format
                 return [
                     "view" => VIEW_DIR."security/users.php",
+                    // send to the VIEW layer an array of data (variables)
                     "data" => [
                         "users" => $users
                     ]
                 ];
 
             } else {
-
+                // if error : display an error message in the session
                 Session::addFlash('error', 'User has not been banned');
-                
+
+                // redirect to the Users list (only accessible by Admin)
                 return $this->redirectTo("security", "users");
             }
         }
 
-
+        // method to unban a User : the user will again be able to add/update a topic/post
         public function unBanUser($id){
 
+            // creation of a new instance of the UserManager class => object creation
             $userManager = new UserManager();
 
+            // creation of a variable "$user"
             $user = $userManager->findOneById($id);
 
+             // create a variable '$users' which will take the form of an array of objects
             $users = $userManager->findAll(['username', 'DESC']);
 
             if($user) {
+
+                // use model layer to change the user's status in the database
                 $userManager->unBanUser($id);
 
+                // if success : display a success message in the session
                 Session::addFlash('success', 'User has been unbanned successfully');
                 
+                //return a view in HTML format
                 return [
                     "view" => VIEW_DIR."security/users.php",
+                      //send to the VIEW layer an array of data (variables)
                     "data" => [
                         "users" => $users
                     ]
@@ -199,8 +238,10 @@
 
             } else {
 
+                // if error : display an error message in the session
                 Session::addFlash('error', 'User has not been unbanned');
                 
+                // redirect to the Users list (only accessible by Admin)
                 return $this->redirectTo("security", "users");
             }
         }
@@ -209,72 +250,11 @@
 
 
     
-    //verifier si le pseudo n'est pas deja en bdd
-    //creer une methode qui récupère le user avec son username dans le userManager
-
-    //si different de user alors je hash le mdp avec fonction native php
-
-    //et je créée mes datas
-
-    //var_dump de datas avant d'envoyer en bdd
-
-    // à quoi sert password_hash: algo fort? algo faible ? password default il prend qui et pourquoi? quel algo est utilisé?
-    //  --> strong one-way
-    // Use the bcrypt algorithm : constant designed to change overtime : length can change over time (minimum 60 characters)
-
-
-
-    
-  
-
-
-
-
-    // $hashedPassword = password_hash($createPassword, PASSWORD_DEFAULT);
-    // PASSWORD_DEFAULT :  use bcrypt algorithm (default), but the constant is designed to change over time
-    // --> use the stronger algorithm and use brcrypt or Argon2i  
-
-
-
-    
-    // Regex:(short for regular expression) a regex is a string of text that allows to create patterns that help match, locate, and manage text.
-        /* VOIR GLOSSAIRE
-        
-        Password conditions : 
-            -at least one digit [0-9]
-            -at least one lowercase [a-z]
-            -at least one uppercase [A-Z]
-            -at least one special character [*.!@#$%^&(){}[]:;<>,.?/~_+-=|\]
-            -at least 8 characters (not more than 32)
-            --> pattern : 
-            ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$
-        */
-        //  test1 : Motdepasse1
-        //  test2 : Motdepasse2
-        
-
-        // OK dans forum controller : get the id of the user in session 
-        // OK quand je poste, je récupère l'id en session : actuellement en dur (id user = 1) mais dois récupérer l'id_user en session 
-        // OK ajouter heures + min dans forum et formatteeddate
-        // si user en session différent de celui qui a posté alors ne peut pas éditer ni supprimer le post 
-        //  si user en session différent de celui qui a posté le topic : pas bloquer (closed) le topic : si topic bloqué : ne peux plus répondre au topic : pas de post
-        /* if ((App\Session::getUser() == $topic->getUser()->getUsername())) affiche 'edit' button 
-            et affiche bouton à clicker pour clôturer sujet
-        */
-        
-        
-        // créer compte admin : JSON [ADMIN_ROLE] : bouton à cliquer pour bloquer 
-
-
-        // ban un user 
-        // 
 
 
         // tout commenter :GLOSSAIRE en parallèle 
-        // page d'accueil : sign up (check box RGPD)
-        // page d'accueil : SEO 
-        // style
-        // barre recherche 
+        // page d'accueil : sign up (checkbox RGPD)
+        // page d'accueil : SEO  
         // accessibilité  
        
     

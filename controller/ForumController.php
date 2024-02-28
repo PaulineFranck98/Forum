@@ -12,9 +12,9 @@
     
     class ForumController extends AbstractController implements ControllerInterface{
 
+        /* ============================ TOPIC =======================================*/
 
-
-        // function that allows to retrieve all topics
+        // method to retrieve all topics
         public function index(){
           
             // creation of a new instance of the TopicManager class = object creation
@@ -37,9 +37,8 @@
         }
 
 
-        /* ============================ TOPIC ====================================================*/
 
-        // function that allows to retrieve all the topics from a specific category
+        // method to retrieve all the topics from a category
         public function findTopicsByCategoryId($categoryId)
         {   
 
@@ -51,6 +50,8 @@
 
             $topics = $topicManager->findTopicsByCategoryId($categoryId);
 
+            // use the model layer to retrieve informations from the database
+            // fetches category by its ID using findOneById() (method from 'Manager.php') 
             $category = $categoryManager->findOneById($categoryId);
 
             // I return a view in HTML format
@@ -67,7 +68,7 @@
 
         /* ============================  POST ====================================================*/
 
-        // function that allows to retrieve all the posts from a specific topic
+        // method to retrieve all the posts from a topic
         public function findAllPostsByTopicId($topicId)
         {   
             // creation of a new instance of the PostManager class = object creation
@@ -80,7 +81,8 @@
             $userManager = new UserManager();
 
             $posts = $postManager->findAllPostsByTopicId($topicId);
-
+            // use the model layer ($postManager, $topicManager) to retrieve informations from the database
+            // fetches topic by its ID using findOneById() method from 'Manager.php' 
             $topic = $topicManager->findOneById($topicId);
 
             
@@ -100,6 +102,7 @@
 
         /* ==========  CATEGORY (ADD/ UPDATE) ======================================================================*/
 
+        // method to display the form to add a category
         public function addCategoryForm(){
 
             // I return a view in HTML format.
@@ -107,13 +110,13 @@
                 "view" => VIEW_DIR."form/addCategoryForm.php",
     
             ];
-
-
         }
 
-        // function that allows to add a category (title)
+
+        // method to add a category (title)
         public function addCategory(){
 
+            // retrieves category title from the POST request, sanitize the input
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             // creation of a new instance of the CategoryManager class = object creation
@@ -124,12 +127,15 @@
             // The model layer returns the results to the controller for processing.
             $categories = $categoryManager->findAll(["title", "DESC"]);
 
+            //check if title was provided
             if($title){
 
+                // prepares data for new category
                 $data = [
                     'title' => $title
                 ];
 
+                // add new category (data) to database using add() method from 'Manager.php'
                 $categoryManager->add($data);
 
                 // if the category has been added successfully, a success message will be displayed
@@ -151,16 +157,17 @@
 
         }
 
-        
+        // method to display the form to update an existing category
         public function updateCategoryForm($categoryId){
             
             // creation of a new instance of the CategoryManager class = object creation
             $categoryManager = new CategoryManager();
 
+            // fetches category by its ID using findOneById() method from 'Manager.php'
             $category = $categoryManager->findOneById($categoryId);
 
-            // I return a view in HTML format
-            // I send to the VIEW layer an array of data (variables)
+            // Return a view in HTML format
+            // Send to the VIEW layer an array of data (variables)
             return [
 
                 "view" => VIEW_DIR."form/updateCategoryForm.php",
@@ -172,19 +179,22 @@
 
         }
 
-        // function that allows to update the title of a category 
+        // method  to update the title of a category 
         public function updateCategory($categoryId){
 
+            // retrieves category title from the POST request, sanitize the input
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             
             // creation of a new instance of the CategoryManager class = object creation
             $categoryManager = new CategoryManager();
 
+            // prepares data 
             $data = [
                 'title' => $title,
                 'id_category' => $categoryId
             ];
 
+            // update category (data) in database using update() method from 'Manager.php'
             $categoryManager->update($categoryId, $title); 
 
             // if the category has been updated successfully, a success message will be displayed
@@ -197,12 +207,13 @@
 
         /* ==========  TOPIC (ADD/ UPDATE) ======================================================================*/
 
+        // method to display the form to add a topic to the category
         public function addTopicForm($categoryId){
 
            // creation of a new instance of the CategoryManager class = object creation
             $categoryManager = new CategoryManager();
 
-
+            // fetches category by its ID using findOneById() method from 'Manager.php' 
             $category = $categoryManager->findOneById($categoryId);
 
             // I return a view in HTML format
@@ -220,11 +231,13 @@
         }
 
 
-        // function that allows to add a topic (title) and its post (textcontent) in a category
+        // method to add a topic (title) and its post (textcontent) to a category
         public function addTopicByCategory($id){
 
+            // retrieves Topic title from the POST request, sanitize the input
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+            // retrieves Post textcontent from the POST request, sanitize the input
             $textContent = filter_input(INPUT_POST, 'textcontent', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             // creation of a new instance of the TopicManager class = object creation
@@ -233,14 +246,24 @@
             // creation of a new instance of the CategoryManager class = object creation
             $categoryManager = new CategoryManager();
 
+            // fetches category by its ID using findOneById() method from 'Manager.php' 
             $category = $categoryManager->findOneById($id);
+
             $topics = $topicManager->findTopicsByCategoryId($id);
+
+            // creation of a new instance of DateTime to get the current time when a topic is created
             $creationDate = new \DateTime('now');
+
+            //creation of a $creationDateFormated variable to store the new formatted date : year-month-day hours:minutes:seconds (only digits)
             $creationDateFormated = $creationDate->format('Y-m-d H:i:s');
+
+            //stores the user in session in the variable $user_id
             $user_id = Session::getUser()->getId();
 
+            // check if title was provided
             if($title){
 
+                // prepares data for the new Topic
                 $data = [
                     'title' => $title,
                     'category_id' => $id,
@@ -249,9 +272,10 @@
                     'user_id' => $user_id
                 ];
 
-            
+                // add new topic (data) to database using add() method from 'Manager.php'
                 $topicId = $topicManager->add($data);
 
+                // prepares data for the new Post
                 $dataMessage = [
                     'textcontent' => $textContent,
                     'creationdate' => $creationDateFormated,
@@ -262,6 +286,7 @@
                 // creation of a new instance of the PostManager class = object creation
                 $postManager = new PostManager();
 
+                // add new post (data) to database using add() method from 'Manager.php'
                 $postManager->add($dataMessage);
 
                 // if the topic and its post have been added successfully, a success message will be displayed
@@ -284,11 +309,13 @@
 
         }
 
+        // method to display the form to update an existing topic
         public function updateTopicForm($topicId){
             
             // creation of a new instance of the TopicManager class = object creation
             $topicManager = new TopicManager();
 
+            // fetches topic by its ID using findOneById() method from 'Manager.php' 
             $topic = $topicManager->findOneById($topicId);
 
             // I return a view in HTML format
@@ -305,20 +332,22 @@
 
         }
 
-        // function that allows to update the title of a topic 
+        // method  to update the title of a topic 
         public function updateTopic($topicId){
             
-
+            // retrieves Topic title from the POST request, sanitize the input
             $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             
             // creation of a new instance of the TopicManager class = object creation
             $topicManager = new TopicManager();
 
+            // prepares data
             $data = [
                 'title' => $title,
                 'id_topic' => $topicId
             ];
 
+            // update topic (data) in database using update() method from 'Manager.php'
             $topicManager->update($topicId, $title); 
 
             // if the topic has been updated successfully, a success message will be displayed
@@ -333,13 +362,13 @@
 
         /* ==========  POST (ADD/ UPDATE) ======================================================================*/
 
-         
+        // method to display the form to add a post to a topic
         public function addPostForm($topicId){
 
            // creation of a new instance of the TopicManager class = object creation
             $topicManager = new TopicManager();
 
-
+            // fetches topic by its ID using findOneById() method from 'Manager.php' 
             $topic = $topicManager->findOneById($topicId);
 
             // I return a view in HTML format
@@ -356,9 +385,10 @@
 
         }
 
-        // function that allows to add a post in a topic (textcontent)
+        // method to add a post to a topic (textcontent)
         public function addPostByTopic($id){
 
+            // retrieves Post textcontent from the POST request, sanitize the input
             $textContent = filter_input(INPUT_POST, 'textcontent', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             // creation of a new instance of the PostManager class = object creation
@@ -367,15 +397,23 @@
             // creation of a new instance of the TopicManager class = object creation
             $topicManager = new TopicManager();   
 
+            // fetches topic by its ID using findOneById() method from 'Manager.php' 
             $topic = $topicManager->findOneById($id);
+            // use the model layer to retrieve informations from the database ($topicManager, $postManager)
             $posts = $postManager->findAllPostsByTopicId($id);
+
+            // creation of a new instance of DateTime to get the current time when a post was created
             $creationDate = new \DateTime('now');
+
+            //changes date format to display $creationDate like this: year-month-day hours:minutes:seconds (only digits) 
             $creationDateFormated = $creationDate->format('Y-m-d H:i:s');
-            
+
+            // stores the user in session in the variable $user_id
             $user_id = Session::getUser()->getId();
 
             if($textContent){
 
+                // prepares data for the new post
                 $data = [
                     'textcontent' => $textContent,
                     'topic_id' => $id,
@@ -383,7 +421,7 @@
                     'user_id' => $user_id
                 ];
 
-                // var_dump($data); die();
+                // add new post (data) to database using add() method from 'Manager.php'
                 $postManager->add($data);
 
                 // if the post has been added successfully, a success message will be displayed
@@ -409,11 +447,13 @@
 
         }
 
+        // method to display the form to update an existing post
         public function updatePostForm($postId){
             
             // creation of a new instance of the PostManager class = object creation
             $postManager = new PostManager();
 
+            // creation of $post variable : user model layer ($postManager) to retrieve informations from database
             $post = $postManager->findOneById($postId);
 
             // I return a view in HTML format
@@ -430,19 +470,22 @@
         }
 
 
-        // function that allows to update the textcontent of a post
+        // method  to update the textcontent of a post
         public function updatePost($postId){
 
+            // retrieves Post textcontent from the POST request, sanitize the input
             $textContent = filter_input(INPUT_POST, 'textcontent', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             // creation of a new instance of the PostManager class = object creation
             $postManager = new PostManager();
             
+            // prepares data
             $data = [
                 'textcontent' => $textContent,
                 'id_post' => $postId
             ];
 
+            // update post (data) in database using update() method from 'Manager.php'
             $postManager->update($postId, $textContent);
 
             // if the post was successfully updated, a success message will be displayed
@@ -453,12 +496,13 @@
 
         }
 
-        // function that allows to close a topic (no post can be added)
+        // method to close a topic (no post can be added)
         public function closeTopic($id){
 
             // creation of a new instance of the TopicManager class = object creation
             $topicManager = new TopicManager();
 
+            // creation of $topic variable : user model layer ($postManager) to retrieve informations from database
             $topic = $topicManager->findOneById($id);
             
             // if user in session = the user who created the topic OR if is Admin then can close the topic

@@ -24,43 +24,44 @@
                     <div id="nav-left">
                         <a href="/forum/">Home</a>
                         <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
-                        <?php
                         
-                        if(App\Session::isAdmin()){
-                            ?>
+                        <!-- if an Admin is logged in / in Session, -->
+                        <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
+                        <?php if(App\Session::isAdmin()) : ?>
+
+                        <!-- then display "Users" and "Add Category" -->
                             <a href="index.php?ctrl=home&action=users">Users</a>
                             <a href="index.php?ctrl=forum&action=addCategoryForm">Add Category</a>
                           
-                            <?php
-                        }
-                        ?>
+                        <?php endif ?>  
                     </div>
+
                     <div id="nav-right">
-                    <?php
-                        
-                        if(App\Session::getUser()){
-                            ?>
+                   
+                        <!-- if a user is logged in / in Session -->
+                        <?php if(App\Session::getUser()) : ?>
+                            <!-- display username from the user in Session with a user icon -->
+                            <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
                             <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
+                            <!-- display Log Out anchor -->
                             <a href="index.php?ctrl=security&action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
 
-                            <?php
-                        }
-                        else{
-                            ?>
+                        <!-- if no user is logged in / in Session -->
+                        <?php else : ?>
+                            <!-- display Sign in and Sign Up -->
                             <a href="index.php?ctrl=security&action=loginForm">Sign In</a>
                             <a href="index.php?ctrl=security&action=registerForm">Sign Up</a>
                             
-                        <?php
-                        }
-                   
+                        <?php endif ?>
                         
-                    ?>
                     </div>
                 </nav>
             </header>
             
             <main id="forum">
+
                 <?= $page ?>
+                
             </main>
         </div>
         <footer>

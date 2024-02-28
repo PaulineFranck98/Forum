@@ -7,11 +7,12 @@ $topic = $result['data']['topic'];
 
 
 ?>
-
+<!-- display topic title  -->
 <h1><?=$topic->getTitle()?></h1>
 
-<!-- if topic is not closed -->
-<?php if ($topic->getClosed() == 0 && (App\Session::getUser()->getBanned() == 0 ) && (App\Session::isAdmin())): ?>
+<!-- if topic is not closed and if User in Session is not banned / or if is Admin, display "Add Post" and "Edit Post"  -->
+<!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
+<?php if ($topic->getClosed() == 0 && (App\Session::getUser()->getBanned() == 0 ) || (App\Session::isAdmin())): ?>
     
     <!-- show 'add post' -->
     <a href="index.php?ctrl=forum&action=addPostForm&id=<?=$topic->getId()?>">Add Post</a>
@@ -20,7 +21,8 @@ $topic = $result['data']['topic'];
 <?php endif ?>
 
 
-<!-- if user in session created the topic & if topic is not closed -->
+<!-- if topic is not closed and if user in session created the topic  -->
+<!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
 <?php if($topic->getClosed() == 0 && ((App\Session::getUser()->getBanned() == 0) == $topic->getUser())) : ?>
 
     <!-- show button to close the topic  -->
@@ -31,17 +33,19 @@ $topic = $result['data']['topic'];
 <section class="category__buttons">
 
     <div class="topic__post-container">
+        <!-- for each post retrieved from database -->
         <?php foreach ($posts as $post) :?>
             
             <div class="topic__post">
                 <div>
+                    <!-- display username, creationdate and textcontent of the post -->
                     <small><?=$post->getUser()->getUsername()?></small>
                     <small><?=$post->getCreationdate()?></small>
                 </div>
                 <p><?=$post->getTextcontent()?></p>
 
-                <!-- if user in session created the post -->
-    
+                <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
+                <!-- if user in session is not banned and created the post -->
                 <?php if((App\Session::getUser()->getBanned() == 0) == $post->getUser()) : ?>
 
                     <!-- show button to edit the post -->
@@ -49,10 +53,7 @@ $topic = $result['data']['topic'];
 
                 <?php endif ?>
             </div>
-
         <?php endforeach ?>
-
     </div>
-
 </section>
 

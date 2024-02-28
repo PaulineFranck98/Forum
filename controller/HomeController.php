@@ -12,7 +12,7 @@
     
     class HomeController extends AbstractController implements ControllerInterface{
 
-        // function that allows to retrieve all categories
+        // method to retrieve all categories
         public function index(){
 
             // creation of a new instance of the CategoryManager class => object creation
@@ -24,10 +24,10 @@
             $categories = $categoryManager->findAll(["title", "DESC"]);
             
         
-            // I return a view in HTML format
-            // I send to the VIEW layer an array of data (variables)
+            // return a view in HTML format
                 return [
                     "view" => VIEW_DIR."home.php",
+                    // send to the VIEW layer an array of data (variables)
                     "data" => [
                         'categories' =>$categories
                     ] 
@@ -35,10 +35,10 @@
             }
             
         
-        // function that allows to retrieve all categories
+        // method to retrieve all users
         public function users(){
-            // $this->restrictTo("ROLE_USER");
 
+            // $this->restrictTo("ROLE_USER");
             // creation of a new instance of the UserManager class => object creation
             $manager = new UserManager();
 
@@ -47,22 +47,17 @@
             // The model layer returns the results to the controller for processing.
             $users = $manager->findAll(['username', 'DESC']);
 
-            // I return a view in HTML format
-            // I send to the VIEW layer an array of data (variables)
+            // return a view in HTML format
             return [
                 "view" => VIEW_DIR."security/users.php",
+                // send to the VIEW layer an array of data (variables)
                 "data" => [
                     "users" => $users
                 ]
             ];
         }
 
-        // public function forumRules(){
-            
-        //     return [
-        //         "view" => VIEW_DIR."rules.php"
-        //     ];
-        // }
+      
 
         /*public function ajax(){
             $nb = $_GET['nb'];
@@ -71,11 +66,12 @@
         }*/
 
        
-        // function that allows to search for a category/topic/post/user 
+        // method to search for a category/topic/post/user 
         public function search($search){
 
+            // retrieves 'search' from the POST request, sanitize the input
             $search = filter_input(INPUT_POST, 'search' , FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            // var_dump($search);die();
+        
 
             // creation of a new instance of the UserManager class => object creation
             $userManager = new UserManager();
@@ -89,13 +85,20 @@
             // creation of a new instance of the PostManager class => object creation
             $postManager = new PostManager();
 
+            //creation of a variable '$users'
             $users = $userManager->searchUsers($search);
+            //creation of a variable '$categories'
             $categories = $categoryManager->searchCategories($search);
+            //creation of a variable '$topics'
             $topics = $topicManager->searchTopics($search);
+            //creation of a variable '$posts'
             $posts = $postManager->searchPosts($search);
+            //use model layer to retrieve information from the database
+            //model layer returns the results to the controller for processing.
 
+            // check if search vas provided
             if($search){
-
+                // prepare data
                 $data = [
 
                     "users" => $users,
@@ -106,10 +109,10 @@
                 
             }
 
-            // I return a view in HTML format
-            // I send to the VIEW layer an array of data (variables)
+            //Return a view in HTML format
             return [
                 "view" => VIEW_DIR."forum/searchPage.php",
+                //Send to the VIEW layer an array of data (variables)
                 "data" => [
                     "users" => $users,
                     "categories" => $categories,

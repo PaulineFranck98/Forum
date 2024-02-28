@@ -6,16 +6,6 @@
         public function index(){}
         
         public function redirectTo($ctrl = null, $action = null, $id = null){
-            // // $url = "index.php";
-            // if($ctrl != "home"){
-            //     $url = $ctrl ? "/".$ctrl : "";
-            //     $url.= $action ? "/".$action : "";
-            //     $url.= $id ? "/".$id : "";
-            //     // $url.= ".php";
-            // }
-            // else $url = "/forum/";
-            // header("Location: $url");
-            // die();
             
             $url = "index.php?";
             if($ctrl != "home"){
@@ -32,7 +22,7 @@
         public function restrictTo($role){
             
             if(!Session::getUser() || !Session::getUser()->hasRole($role)){
-                $this->redirectTo("security", "login");
+                $this->redirectTo("security", "loginForm");
             }
             return;
         }
