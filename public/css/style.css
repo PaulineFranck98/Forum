@@ -59,9 +59,32 @@ body {
   width: 70%;
 }
 
-.category__buttons h2 {
-  margin-bottom: 2rem;
-  text-align: center;
+.top_container {
+  display: flex;
+  height: 60vh;
+  width: 90%;
+}
+
+.left_container {
+  width: 60%;
+  margin-left: 9rem;
+}
+
+.img_container {
+  position: relative;
+  height: 80vh;
+  width: 30%;
+}
+
+.img_container figure {
+  width: 100%;
+  position: absolute;
+  right: 10%;
+  top: 10%;
+}
+
+img {
+  width: 100%;
 }
 
 /* ==========  NAV LINKS   ========================================================================================*/
@@ -155,10 +178,12 @@ a:hover::before {
   margin-top: 2rem;
 }
 
-/* ========================================================= 
-CATEGORY BUTTONS
-============================================================
-  */
+/* ==========  CATEGORIES   ========================================================================================*/
+
+.category__buttons h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
 
 .category__buttons {
   padding: 3rem 0;
@@ -212,6 +237,8 @@ CATEGORY BUTTONS
   background: #ff0000b8;
 }
 
+/* ==========  POSTS  ========================================================================================*/
+
 .topic__post-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -235,11 +262,7 @@ CATEGORY BUTTONS
   color: #6f6af8b9;
 }
 
-/* 
-========================================================= 
- FORM
-============================================================
-  */
+/* ==========  FORM  ========================================================================================*/
 
 .form__section {
   display: grid;
@@ -276,10 +299,6 @@ select {
   resize: none;
 }
 
-/* input::placeholder {
-  color: white;
-} */
-
 table {
   width: 100%;
   text-align: left;
@@ -299,30 +318,8 @@ table td {
   color: white;
 }
 
-.top_container {
-  display: flex;
-  height: 60vh;
-  width: 90%;
-}
+/* ==========  FOOTER ========================================================================================*/
 
-.img_container {
-  position: relative;
-  height: 80vh;
-  width: 30%;
-}
-
-img {
-  width: 100%;
-}
-
-.img_container figure {
-  width: 100%;
-  position: absolute;
-  right: 10%;
-  top: 10%;
-}
-
-.left_container {
-  width: 60%;
-  margin-left: 9rem;
+footer {
+  text-align: center;
 }

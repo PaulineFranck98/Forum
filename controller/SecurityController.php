@@ -21,20 +21,22 @@
 
         }
 
-
+        // function that allows to register as a user
         public function register() {
 
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $createPassword = filter_input(INPUT_POST, 'createPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $repeatPassword = filter_input(INPUT_POST, 'repeatPassword', FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[A-Za-z0-9].{8,32}/"]] );
 
-
+            // check if user is already registered
             if($createPassword == $repeatPassword){
-           
+
+                // creation of a new instance of the UserManager class => object creation
                 $userManager = new UserManager();
 
                 $userExisting = $userManager->findOneByPseudo($username);
 
+                // check if user is not already registered 
                 if(!$userExisting){
 
                     $hashedPassword = password_hash($createPassword, PASSWORD_DEFAULT);
@@ -43,36 +45,42 @@
                         'username' => $username,
                         'password' => $hashedPassword,
                         'is_banned' => 0,
-                        'role' => json_encode(['ROLE_USER'])
+                        'role' => json_encode(['ROLE_USER']) 
                     ];
 
                     $result = $userManager->add($data);
                     // var_dump($data);die();
 
                     if($result){
-                        
+                        // if the data has been added successfully to the db, a success message will be displayed
                         Session::addFlash('success', 'Registration Successful');
+                        // redirect to the Home page 
                         $this->redirectTo("home");
 
                         
                     } 
-
+                        // if the data has not been added successfully to the db, an error message will be displayed
                         Session::addFlash('error', 'Something went wrong');
-                
-                      return $this->redirectTo("security", "registerForm");
+                    
+                        // redirect to the Register form page
+                        return $this->redirectTo("security", "registerForm");
 
                   
 
                 } else {
 
+                    // If the username is the same as another username, an error message will be displayed
                     Session::addFlash('error', 'Username already taken');
 
+                    // redirect to the Register form page
                     return $this->redirectTo("security", "registerForm");
                 }  
                    
             } else {
-
+                // if the passwords are not the same or if the conditions are not respected
                 Session::addFlash('error', 'Incorrect Password or Not Strong Enough');
+
+                // redirect to the Register form page
                 return $this->redirectTo("security", "registerForm");    
             }     
         }
@@ -86,21 +94,23 @@
             ];
         }
 
-
+        // function that allows to login as a User or as an Admin
         public function login(){
 
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+             // creation of a new instance of the UserManager class => object creation
             $userManager = new UserManager();
 
             $userExisting = $userManager->findOneByPseudo($username);
 
             // var_dump($userExisting); die();
 
+            // if the user already exists in the database 
             if($userExisting){
 
-                // get user's password from bdd
+                // get user's password from db
                 $bddPassword = $userExisting->getPassword();
                 
                 // native function : verifies that the given hash matches the given password
@@ -109,24 +119,30 @@
 
                     // set user in session
                     Session::setUser($userExisting);
-                    // var_dump($userExisting->getRole()); 
-                    // die();
+                    
+                    // redirect to Home page
                     return $this->redirectTo("home");
 
                 }
 
             }  else {
 
+                // if the user is not found in the database, an error message will be displayed
                 Session::addFlash('error', 'User not found');
+                // redirect to the Login form page
                 return $this->redirectTo("security", "loginForm"); 
-
             }
         }
 
+        // function that allows a User or Admin to log out (unset the user/admin session)
         public function logout(){
 
             Session::unsetUser();
+
+            // if the user has been successfully unset from the session / logged out 
             Session::addFlash('success', 'Log Out Successful');
+            
+            // redirect to the Home page 
             return $this->redirectTo("home");
 
         }
