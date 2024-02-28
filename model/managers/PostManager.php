@@ -51,7 +51,7 @@
 
         }
 
-        public function search($search){
+        public function searchPosts($search){
 
             $sql = "SELECT * FROM ".$this->tableName ." p
                     WHERE p.textcontent

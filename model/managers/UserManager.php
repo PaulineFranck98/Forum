@@ -59,7 +59,7 @@
     
         }
 
-        public function search($search){
+        public function searchUsers($search){
 
             $sql = "SELECT * FROM ".$this->tableName ." u
                     WHERE u.username

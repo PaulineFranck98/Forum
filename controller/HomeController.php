@@ -58,31 +58,69 @@
             include(VIEW_DIR."ajax.php");
         }*/
 
-      
-        public function search(){
+        // public function searchPage($data){
 
-            $search = filter_input(INPUT_GET, 'search' , FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        //     $userManager = new UserManager();
+        //     $categoryManager = new CategoryManager();
+        //     $topicManager = new TopicManager();
+        //     $postManager = new PostManager();
+
+        //     $users = $userManager->searchUsers($data);
+        //     $categories = $categoryManager->searchCategories($data);
+        //     $topics = $topicManager->searchTopics($data);
+        //     $posts = $postManager->searchPosts($data);
+            
+    
+        //     return [
+        //         "view" => VIEW_DIR."forum/searchPage.php",
+        //         "data" => [
+        //             "users" => $users,
+        //             "categories" => $categories,
+        //             "topics" => $topics,
+        //             "posts" => $posts
+                    
+                
+        //         ]
+        //     ];
+        // }
+      
+        public function search($search){
+
+            $search = filter_input(INPUT_POST, 'search' , FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             // var_dump($search);die();
             $userManager = new UserManager();
             $categoryManager = new CategoryManager();
             $topicManager = new TopicManager();
             $postManager = new PostManager();
 
-            $users = $userManager->search($search);
-            $categories = $categoryManager->search($search);
-            $topics = $topicManager->search($search);
-            $posts = $postManager->search($search);
+            $users = $userManager->searchUsers($search);
+            $categories = $categoryManager->searchCategories($search);
+            $topics = $topicManager->searchTopics($search);
+            $posts = $postManager->searchPosts($search);
 
-            return [
-                "view" => VIEW_DIR."forum/searchPage.php",
-                "data" => [
+            if($search){
+
+                $data = [
+
                     "users" => $users,
                     "categories" => $categories,
                     "topics" => $topics,
                     "posts" => $posts,
-                    "search" => $search
-                ]
-            ];
+                ];  
+                
+            }
+
+            return [
+                    "view" => VIEW_DIR."forum/searchPage.php",
+                    "data" => [
+                        "users" => $users,
+                        "categories" => $categories,
+                        "topics" => $topics,
+                        "posts" => $posts
+                        
+                    
+                    ]
+                ];
 
         }
 

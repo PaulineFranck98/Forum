@@ -65,7 +65,7 @@
     
         }
 
-        public function search($search){
+        public function searchTopics($search){
 
             $sql = "SELECT * FROM ".$this->tableName ." t
                     WHERE t.title

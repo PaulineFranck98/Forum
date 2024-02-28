@@ -32,7 +32,7 @@
             
         }
 
-        public function search($search){
+        public function searchCategories($search){
 
             $sql = "SELECT * FROM ".$this->tableName ." c
                     WHERE c.title
