@@ -2,6 +2,7 @@
 
 $categories = $result['data']['categories'];
 
+$meta = "mais c'est super";
 ?>
 
 <section class="top_container">

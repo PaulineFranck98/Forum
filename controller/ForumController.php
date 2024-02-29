@@ -524,6 +524,13 @@
                 // redirect to the posts list of the closed topic 
                 $this->redirectTo('forum', 'findAllPostsByTopicId', $id);
             }
-        }   
+        } 
+        
+        public function userProfilePage(){
+            
+            return [
+                "view" => VIEW_DIR."forum/userProfilePage.php"
+            ];
+        }
 
     }

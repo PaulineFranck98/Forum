@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
+
+    <meta name="description" content="<?=$meta?>">
     <title>FORUM</title>
 </head>
 <body>
@@ -47,7 +49,7 @@
                                 <img src="./public/images/<?= App\Session::getUser()->getAvatar()?>" alt="Avatar">
                             </figure>
                             <ul>
-                                <li><a href="#">Contributions</a></li>
+                                <li><a href="index.php?ctrl=forum&action=userProfilePage">Dashboard</a></li>
                                 <!-- display Log Out anchor -->
                                 <li><a href="index.php?ctrl=security&action=logout">Log Out  &nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
                                 

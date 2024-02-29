@@ -2,15 +2,16 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 :root {
   /* --color-primary: #db2a6b; */
   --color-primary: #ab3bff;
+  --color-primary-variant: #d69eff;
   --color-primary-bg: #000000cf;
   --color-bg: #22132f;
   --color-white: #f2f2fe;
-  --color-bg-post: #c373ff7a;
   --color-red: #da0f3f;
   --color-red-light: hsl(346, 87%, 46%, 15%);
   --color-green: #00c476;
@@ -134,7 +135,7 @@ nav a {
 }
 
 #nav-right i {
-  margin-left: 0.8rem;
+  margin-left: 0.3rem;
 }
 #nav-right ul li a {
   display: block;
@@ -196,7 +197,7 @@ a:hover::before {
 }
 
 .avatar-author {
-  border: 0.2rem solid var(--color-bg);
+  border: 0.2rem solid var(--color-primary-bg);
 }
 
 /* ==========  SEARCH   ========================================================================================*/
@@ -223,6 +224,7 @@ a:hover::before {
   padding: 0.6rem 1rem;
   border-radius: 1rem;
   color: var(--color-white);
+  box-shadow: 0rem 1.5rem 115px 13px #ab3bff6b;
 }
 
 .search_bar-container > div {
@@ -268,6 +270,13 @@ h2 {
   min-width: 13%;
   margin: auto;
   width: fit-content;
+}
+
+.search_user-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 auto;
 }
 
 /* ==========  CATEGORIES   ========================================================================================*/
@@ -337,7 +346,8 @@ h2 {
   border: 1px solid var(--color-primary);
 }
 
-.category__button:hover::before {
+.category__button:hover::before,
+.btn-search:hover::before {
   transform: scaleX(0);
 }
 
@@ -346,14 +356,14 @@ h2 {
   border: 1px solid transparent;
 }
 
-.btn.sm {
+/* .btn.sm {
   padding: 0.3rem 0.7rem;
   font-size: 0.8rem;
 }
 
 .btn.danger {
   background: #ff0000b8;
-}
+} */
 
 /* ==========  POSTS  ========================================================================================*/
 
@@ -366,7 +376,7 @@ h2 {
 
 .topic__post {
   width: 100%;
-  background: var(--color-bg-post);
+  background: var(--color-bg);
   color: var(--color-white);
   padding: 0.8rem;
   border-radius: 0.5rem;
@@ -375,10 +385,15 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: 1px solid var(--color-primary);
 }
 
 .topic__post > p {
   margin: 1rem 0 1rem;
+}
+
+.topic__post a {
+  color: var(--color-primary-variant);
 }
 
 .post_author {
@@ -460,23 +475,115 @@ select {
   border: none;
 }
 
-table {
+/* table {
   width: 100%;
   text-align: left;
-  background-color: #1d0b8178;
+  background-color: var(--color-bg);
   border-radius: 9px;
 }
 
 table th {
-  background: #1e1e66;
+  background: var(--color-bg);
   padding: 0.8rem;
-  color: white;
+  color: var(--color-white);
 }
 
 table td {
   padding: 0.8rem;
   border-bottom: 1px solid rgba(242, 242, 254, 0.7);
-  color: white;
+  color: var(--color-white);
+} */
+/* ============================ DASHBOARD =============================================================
+  */
+
+.dashboard {
+  margin-top: 6rem;
+}
+
+.dashboard__container {
+  display: grid;
+  grid-template-columns: 14rem auto;
+  gap: 1rem;
+  background: var(--color-bg);
+  padding: 2rem;
+  margin-bottom: 5rem;
+  width: 60%;
+  margin: auto;
+  border: 1px solid var(--color-primary);
+  border-radius: 15px;
+  box-shadow: 0rem 3rem 9rem 4px #ab3bff63;
+}
+
+.dashboard aside a {
+  background: black;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.6rem;
+  border: 1px solid var(--color-primary);
+  transition: var(--transition);
+}
+
+.user-ban {
+  min-width: 8.5rem;
+}
+
+.dashboard aside a.active {
+  background: #ab3bffa3;
+}
+.dashboard aside i {
+  color: var(--color-primary-variant);
+}
+
+.dashboard aside ul a {
+  border-radius: 15px;
+  margin: 0.5rem 0;
+}
+
+.dashboard aside a:hover {
+  background: var(--color-primary);
+  border: 1px solid transparent;
+}
+
+.dashboard aside a:hover i {
+  color: var(--color-white);
+}
+/* avoids underline effect */
+.dashboard aside a:hover::before {
+  transform: scaleX(0);
+}
+
+.dashboard main {
+  margin-left: 1.5rem;
+}
+
+.dashboard main h2 {
+  margin: 0 0 2rem 0;
+  line-height: 1;
+}
+
+.dashboard main table {
+  width: 100%;
+  text-align: left;
+}
+
+.dashboard main table th {
+  background: black;
+  padding: 0.8rem;
+  color: var(--color-white);
+  /* border: 1px solid var(--color-primary); */
+}
+
+.dashboard main table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #ad3fff78;
+}
+
+.dashboard main table tr:hover td {
+  background: var(--color-bg);
+  color: var(--color-white);
+  cursor: default;
+  transition: var(--transition);
 }
 
 /* ==========  FOOTER ========================================================================================*/

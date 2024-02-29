@@ -28,7 +28,8 @@ $posts = $result['data']['posts'];
 
     <!-- If a user is found -->
     <?php if (!empty($users)): ?>
-        <h2>Users</h2>
+        <section class="search_user-container">
+            <h2>Users</h2>
             <!-- for each user retrieved from database -->
             <?php foreach ($users as $user): ?>
                 <!-- display the username of the user -->
@@ -39,7 +40,7 @@ $posts = $result['data']['posts'];
                     <?= $user->getUsername()?>
                 </div>
             <?php endforeach ?>
-        
+        </section>
     <?php endif ?>
 
     <!-- If a category is found -->
@@ -62,13 +63,13 @@ $posts = $result['data']['posts'];
     <!-- if a topic is found -->
     <?php if (!empty($topics)): ?>
         <section class="category__buttons">
-            <h2>Categories</h2>
+            <h2>Topics</h2>
             <div class="category__buttons-container">
             <!-- for each topic retrieved from database -->
                 <?php foreach ($topics as $topic): ?>
                     <!-- display the topic title within anchor tags-->
                     <!-- href leads to 'detailTopic' of the topic Id  -->
-                    <a class="category__button href="index.php?ctrl=forum&action=findAllPostsByTopicId&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a>
+                    <a class="category__button" href="index.php?ctrl=forum&action=findAllPostsByTopicId&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a>
                 <?php endforeach ?>
             </div>
         </section>
@@ -77,13 +78,35 @@ $posts = $result['data']['posts'];
     <!-- if a post is found -->
     <?php if (!empty($posts)): ?>
         <h2>Posts</h2>
-        <ul>
-            <!-- for each post retrieved from database -->
-            <?php foreach ($posts as $post): ?>
-                <!-- display the textcontent of the post -->
-                <li><?=$post->getTextcontent() ?></li>
-            <?php endforeach ?>
-        </ul>
+
+        <section class="category__buttons">
+
+            <div class="topic__post-container">
+                <!-- for each post retrieved from database -->
+                <?php foreach ($posts as $post) :?>
+                    
+                    <div class="topic__post">
+                        <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
+                        <!-- if user in session is not banned and created the post -->
+                        <?php if(App\Session::getUser() == $post->getUser() && App\Session::getUser()->getBanned() == 0) : ?>
+                            <!-- show button to edit the post -->
+                            <small><a href="index.php?ctrl=forum&action=updatePostForm&id=<?=$post->getId()?>">Edit <i class="fa-solid fa-pen-to-square"></i></a></small>
+                        <?php endif ?>
+                        <p><?=$post->getTextcontent()?></p>
+                        <div class="post_author">
+                            <!-- display username, creationdate and textcontent of the post -->
+                            <figure class="avatar-author">
+                                <img src="./public/images/<?=$post->getUser()->getAvatar()?>" alt="Avatar">
+                            </figure>
+                            <div class="post_author-info">
+                                <small><?=$post->getUser()->getUsername()?></small>
+                                <small><?=$post->getCreationdate()?></small>
+                            </div>
+                        </div>
+                        
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </section>
     <?php endif ?>
-</section>
 

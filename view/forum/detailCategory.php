@@ -8,7 +8,7 @@ $category = $result['data']['category'];
 <h1><?=$category->getTitle()?></h1>
 <div class="add-edit">
   <!-- if a User is in Session and if is not banned, display "Add Topic" -->
-  <?php if(App\Session::getUser()->getBanned() == 0 ) : ?>
+    <?php if(App\Session::getUser()->getBanned() == 0 ) : ?>
         <a href="index.php?ctrl=forum&action=addTopicForm&id=<?=$category->getId()?>">Add New Topic</a>
 
         <!-- if an Admin is in Session, display "Edit Category" -->
