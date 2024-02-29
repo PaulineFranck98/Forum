@@ -13,9 +13,9 @@
   --color-bg: #22132f;
   --color-white: #f2f2fe;
   --color-red: #da0f3f;
-  --color-red-light: hsl(346, 87%, 46%, 15%);
-  --color-green: #00c476;
-  --color-green-light: hsl(156, 100%, 38%, 15%);
+  --color-red-light : #db0f3f26;
+  --color-green :  #00c476;
+  --color-green-light : #00c27426;
   --color-gray-900: #1e1e66;
   --color-gray-700: #2d2b7c;
   --color-gray-300: rgba(242, 242, 254, 0.3);
@@ -48,10 +48,18 @@ h1 {
   font-size: 3rem;
 }
 
+/* ==========  ALERT MESSAGE   ========================================================================================*/
+
+.message{
+  border-radius: 0.5rem;
+  margin:0 auto;
+  width: fit-content;
+}
+
 /* ==========  HOME PAGE   ========================================================================================*/
 
 .top_container h1 {
-  margin: 6rem 11rem;
+  margin: 0rem 11rem;
   text-align: center;
   font-size: 3rem;
   width: 80%;
@@ -68,8 +76,9 @@ h1 {
 }
 
 .top_container {
+  margin-top: 6rem;
   display: flex;
-  height: 60vh;
+  height: 50vh;
   width: 90%;
 }
 

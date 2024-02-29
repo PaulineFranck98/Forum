@@ -1,15 +1,11 @@
-<?php 
-
-$topicCount = $result['data']['topicCount'];
-$postCount = $result['data']['postCount'];
-
+<?php
+$posts = $result['data']['posts'];
 ?>
 
-
-
 <section class="dashboard">
+    <!-- Dashboard Container -->
     <div class="dashboard__container">
-        <aside>
+    <aside>
             <ul>
                 <li>
                     <a href="index.php?ctrl=forum&action=userProfilePage"><i class="fa-regular fa-user"></i>
@@ -22,7 +18,7 @@ $postCount = $result['data']['postCount'];
                     </a>
                 </li>
                 <li>
-                    <a href="index.php?ctrl=forum&action=viewUserPosts"><i class="fa-regular fa-comments"></i>
+                    <a href="index.php?ctrl=forum&action=viewUserPosts" class="active"><i class="fa-regular fa-comments"></i>
                         <h5>Posts</h5>
                     </a>
                 </li>
@@ -42,13 +38,30 @@ $postCount = $result['data']['postCount'];
                 <!-- endif -->
             </ul>
         </aside>
+        <!-- Main Content -->
         <main>
-            <a href="index.php?ctrl=security&action=updatePasswordForm">Update Password</a>
-            <h2>Manage Categories</h2>
-            <div class="profile-stats">
-                <p>Number of Topics Created: <?=(isset($topicCount)) ? $topicCount : ''  ?></p>
-                <p>Number of Posts Created: <?= (isset($postCount)) ? $postCount : '' ?></p>
-            </div>
+            <h2>Your Posts</h2>
+            <?php if (!empty($posts)): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Content</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through posts and display them -->
+                        <?php foreach($posts as $post) : ?>
+                            <tr>
+                                <td><?= ($post->getTextcontent()) ?></td>
+                                <td><a href="index.php?ctrl=forum&action=updatePostForm&id=<?= $post->getId() ?>" class="btn-search">Edit</a></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>You have not created any posts yet.</p>
+            <?php endif ?>
         </main>
     </div>
 </section>

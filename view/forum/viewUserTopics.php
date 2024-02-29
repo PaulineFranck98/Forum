@@ -1,15 +1,11 @@
-<?php 
-
-$topicCount = $result['data']['topicCount'];
-$postCount = $result['data']['postCount'];
-
+<?php
+$topics = $result['data']['topics'];
 ?>
 
-
-
 <section class="dashboard">
+    <!-- Dashboard Container -->
     <div class="dashboard__container">
-        <aside>
+    <aside>
             <ul>
                 <li>
                     <a href="index.php?ctrl=forum&action=userProfilePage"><i class="fa-regular fa-user"></i>
@@ -17,7 +13,7 @@ $postCount = $result['data']['postCount'];
                     </a>
                 </li>
                 <li>
-                    <a href="index.php?ctrl=forum&action=viewUserTopics"><i class="fa-solid fa-envelopes-bulk"></i>
+                    <a href="index.php?ctrl=forum&action=viewUserTopics"class="active"><i class="fa-solid fa-envelopes-bulk"></i>
                         <h5>Topics</h5>
                     </a>
                 </li>
@@ -42,13 +38,30 @@ $postCount = $result['data']['postCount'];
                 <!-- endif -->
             </ul>
         </aside>
+        <!-- Main Content -->
         <main>
-            <a href="index.php?ctrl=security&action=updatePasswordForm">Update Password</a>
-            <h2>Manage Categories</h2>
-            <div class="profile-stats">
-                <p>Number of Topics Created: <?=(isset($topicCount)) ? $topicCount : ''  ?></p>
-                <p>Number of Posts Created: <?= (isset($postCount)) ? $postCount : '' ?></p>
-            </div>
+            <h2>Your Topics</h2>
+            <?php if (!empty($topics)): ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Loop through topics and display them -->
+                        <?php foreach($topics as $topic) : ?>
+                            <tr>
+                                <td><?= ($topic->getTitle()) ?></td>
+                                <td><a href="index.php?ctrl=forum&action=updateTopicForm&id=<?= $topic->getId() ?>" class="btn-search">Edit</a></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            <?php else: ?>
+                <p>You have not created any topics yet.</p>
+            <?php endif ?>
         </main>
     </div>
 </section>

@@ -487,7 +487,7 @@
 
             // update post (data) in database using update() method from 'Manager.php'
             $postManager->update($postId, $textContent);
-            var_dump($postManager);
+            // var_dump($postManager);
             // if the post was successfully updated, a success message will be displayed
             Session::addFlash('success', 'Post has been updated successfully');
 
@@ -532,5 +532,78 @@
                 "view" => VIEW_DIR."forum/userProfilePage.php"
             ];
         }
+
+        public function userProfile(){
+
+            $userId = Session::getUser()->getId();
+
+            $postManager = new PostManager();
+            $topicManager = new TopicManager();
+        
+            $postCount = $postManager->countPostsByUserId($userId);
+            $topicCount = $topicManager->countTopicsByUserId($userId);
+        
+            return [
+                "view" => VIEW_DIR . "forum/userProfilePage.php", 
+                "data" => [
+                    "postCount" => $postCount,
+                    "topicCount" => $topicCount
+                    
+                ]
+            ];
+        }
+
+        // method to display the manage categories page
+        public function manageCategoriesPage(){
+
+            $categoryManager = new CategoryManager();
+
+            $categories = $categoryManager->findAll(["title", "DESC"]);
+
+            return [
+                "view" => VIEW_DIR."forum/manageCategoriesPage.php",
+                "data" => [
+                    "categories" => $categories
+                ]
+            ];
+        }
+
+        public function viewUserTopics() {
+            // Assuming a user is always in session when accessing this method.
+            $currentUser = Session::getUser();
+        
+            // Instantiate TopicManager to access topics
+            $topicManager = new TopicManager();
+        
+            // Fetch topics created by the user
+            $userTopics = $topicManager->findTopicsByUserId($currentUser->getId());
+        
+            return [
+                "view" => VIEW_DIR . "forum/viewUserTopics.php",
+                "data" => [
+                    "topics" => $userTopics
+                ]
+            ];
+        }
+
+
+        public function viewUserPosts() {
+            // Assuming a user is always in session when accessing this method.
+            $currentUser = Session::getUser();
+        
+            // Instantiate PostManager to access posts
+            $postManager = new PostManager();
+        
+            // Fetch posts created by the user
+            $userPosts = $postManager->findPostsByUserId($currentUser->getId());
+        
+            return [
+                "view" => VIEW_DIR . "forum/viewUserPosts.php",
+                "data" => [
+                    "posts" => $userPosts
+                ]
+            ];
+        }
+        
 
     }

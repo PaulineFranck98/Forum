@@ -76,5 +76,37 @@
             );
 
         }
+
+        public function findPostsByUserId($userId) {
+            
+            $sql = "SELECT * FROM " . $this->tableName . " 
+                    WHERE user_id = :id 
+                    ORDER BY creationdate DESC";
+
+            $data = [
+                'id' => $userId
+            ];
+
+            return $this->getMultipleResults(
+                DAO::select($sql, $data, true),
+                $this->className
+            );
+        }
+
+        public function countPostsByUserId($userId){
+
+            $sql = "SELECT COUNT(*) FROM " . $this->tableName . "p
+                    WHERE p.user_id = :id";
+                    
+            $data = [
+                'id' => $userId
+            ];
+
+            return $this->getMultipleResults(
+                DAO::select($sql, $data, true),
+                $this->className
+            );
+
+        }
     }
 

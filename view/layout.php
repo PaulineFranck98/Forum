@@ -18,9 +18,7 @@
     <div id="wrapper"> 
        
         <div id="mainpage">
-            <!-- c'est ici que les messages (erreur ou succès) s'affichent-->
-            <h3 class="message" style="color: red"><?= App\Session::getFlash("error") ?></h3>
-            <h3 class="message" style="color: green"><?= App\Session::getFlash("success") ?></h3>
+            
             <header>
                 <nav>
                     <div id="nav-left">
@@ -65,6 +63,9 @@
                         
                     </div>
                 </nav>
+                <!-- success and error messages are displayed here -->
+            <h3 class="message" style="background:#db0f3f26; color: #da0f3f;"><?= App\Session::getFlash("error") ?></h3>
+            <h3 class="message" style="background:#00c27426; color: #00c476;"><?= App\Session::getFlash("success") ?></h3>
             </header>
             
             <main id="forum">

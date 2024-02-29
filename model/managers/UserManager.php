@@ -95,5 +95,24 @@
             );
 
         }
+
+        public function updatePassword($userId, $hashedNewPassword){ 
+
+            // var_dump($hashedNewPassword, $userId);die();
+            $sql = "UPDATE ".$this->tableName . " u 
+                    SET u.password = :password
+                    WHERE u.id_user = :id";
+
+            // prepare data
+            $data = [
+                'password' => $hashedNewPassword,
+                'id' => $userId
+            ];
+
+            $result = DAO::update($sql, $data);
+
+            // var_dump($result); die();
+
+        }
        
     }

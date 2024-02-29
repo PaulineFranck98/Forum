@@ -90,5 +90,37 @@
 
         }
 
+        public function findTopicsByUserId($userId) {
+            
+            $sql = "SELECT * FROM " . $this->tableName . " 
+                    WHERE user_id = :id 
+                    ORDER BY creationdate DESC";
+
+            $data = [
+                'id' => $userId
+            ];
+
+            return $this->getMultipleResults(
+                DAO::select($sql, $data, true),
+                $this->className
+            );
+        }
+
+        public function countTopicsByUserId($userId){
+
+            $sql = "SELECT COUNT(*) FROM " . $this->tableName . "t
+            WHERE t.user_id = :id";
+            
+            $data = [
+                'id' => $userId
+            ];
+
+            return $this->getMultipleResults(
+                DAO::select($sql, $data, true),
+                $this->className
+            );
+        }
+        
+
 
     }

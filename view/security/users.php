@@ -9,28 +9,28 @@ $users = $result['data']['users'];
         <aside>
             <ul>
                 <li>
-                    <a href="#"><i class="fa-regular fa-user"></i>
+                    <a href="index.php?ctrl=forum&action=userProfilePage"><i class="fa-regular fa-user"></i>
                         <h5>Profile</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa-solid fa-envelopes-bulk"></i>
+                    <a href="index.php?ctrl=forum&action=viewUserTopics"><i class="fa-solid fa-envelopes-bulk"></i>
                         <h5>Topics</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa-regular fa-comments"></i>
+                    <a href="index.php?ctrl=forum&action=viewUserPosts"><i class="fa-regular fa-comments"></i>
                         <h5>Posts</h5>
                     </a>
                 </li>
                 <!-- if admin session is set, then display add/manage user/category -->
                 <li>
-                    <a href="#" class="active"><i class="fa-solid fa-users"></i></i>
+                    <a href="index.php?ctrl=home&action=users" class="active"><i class="fa-solid fa-users"></i></i>
                         <h5>Manage Users</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa-solid fa-list"></i>
+                    <a href="index.php?ctrl=forum&action=manageCategoriesPage"><i class="fa-solid fa-list"></i>
                         <h5>Manage Categories</h5>
                     </a>
                 </li>

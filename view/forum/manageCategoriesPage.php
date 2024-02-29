@@ -1,15 +1,11 @@
-<?php 
-
-$topicCount = $result['data']['topicCount'];
-$postCount = $result['data']['postCount'];
-
+<?php
+$categories = $result['data']['categories'];
 ?>
 
-
-
 <section class="dashboard">
+    <!-- Dashboard Container -->
     <div class="dashboard__container">
-        <aside>
+    <aside>
             <ul>
                 <li>
                     <a href="index.php?ctrl=forum&action=userProfilePage"><i class="fa-regular fa-user"></i>
@@ -34,7 +30,7 @@ $postCount = $result['data']['postCount'];
                         </a>
                     </li>
                     <li>
-                        <a href="index.php?ctrl=forum&action=manageCategoriesPage"><i class="fa-solid fa-list"></i>
+                        <a href="index.php?ctrl=forum&action=manageCategoriesPage" class="active"><i class="fa-solid fa-list"></i>
                             <h5>Manage Categories</h5>
                         </a>
                     </li>
@@ -42,13 +38,28 @@ $postCount = $result['data']['postCount'];
                 <!-- endif -->
             </ul>
         </aside>
+        <!-- Main Content -->
         <main>
-            <a href="index.php?ctrl=security&action=updatePasswordForm">Update Password</a>
             <h2>Manage Categories</h2>
-            <div class="profile-stats">
-                <p>Number of Topics Created: <?=(isset($topicCount)) ? $topicCount : ''  ?></p>
-                <p>Number of Posts Created: <?= (isset($postCount)) ? $postCount : '' ?></p>
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Loop through categories and display them -->
+                    <?php foreach($categories as $category) : ?>
+                        <tr>
+                            <td><?=$category->getTitle()?></td>
+                            <td><a href="index.php?ctrl=forum&action=updateCategoryForm&id=<?= $category->getId() ?>" class="btn-search">Edit</a></td>
+                            <td><a href="index.php?ctrl=forum&action=deleteCategory&id=<?= $category->getId() ?>" class="btn-search" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
         </main>
     </div>
 </section>

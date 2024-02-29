@@ -196,6 +196,12 @@
                     // redirect to Home page
                     return $this->redirectTo("home");
 
+                } else{
+                // if the user is found in the database, but the password is incorrect, an error message will be displayed
+                Session::addFlash('error', 'Incorrect password');
+                // redirect to the Login form page
+                return $this->redirectTo("security", "loginForm"); 
+
                 }
 
             }  else {
@@ -296,6 +302,77 @@
                 return $this->redirectTo("security", "users");
             }
         }
+
+
+        // Method to display the form for changing password
+        public function updatePasswordForm() {
+
+            return [
+
+                "view" => VIEW_DIR . "security/updatePasswordForm.php",
+            ];
+        }
+
+
+        // Method to change the user's password
+        public function updatePassword() {
+
+            // creation of a variable that stores the user currently in the session
+            $userId = Session::getUser()->getId();
+
+            
+            // retrieves User's current password from the POST request, sanitize the input
+            $currentPassword = filter_input(INPUT_POST, 'currentPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // retrieves User's new password from the POST request, sanitize the input
+            $newPassword = filter_input(INPUT_POST, 'newPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            // retrieves User username from the POST request, sanitize the input
+            $repeatNewPassword = filter_input(INPUT_POST, 'repeatNewPassword', FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[A-Za-z0-9].{8,32}/"]] );
+
+            // Validate new password
+
+            if ($newPassword !== $repeatNewPassword) {
+                Session::addFlash('error', 'New passwords do not match.');
+                return $this->redirectTo("security", "updatePasswordForm");
+            }
+
+            //creation of a new instance of the UserManager class => object creation
+            $userManager = new UserManager();
+
+            $userExisting = $userManager->findOneById($userId);
+
+            if (!password_verify($currentPassword, $userExisting->getPassword())) {
+                Session::addFlash('error', 'Current password is incorrect.');
+                return $this->redirectTo("security", "updatePasswordForm");
+            }
+
+            // Hash new password
+            $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+            // prepare data
+            $data = [
+                // store new hashed password in database to secure the user's account 
+                'password' => $hashedNewPassword,
+                'id_user' => $userId
+            ];
+
+            
+            // Update password in database
+            $result = $userManager->updatePassword($userId, $hashedNewPassword);
+            
+            // var_dump($result); die();
+            
+            if ($result) {
+
+                Session::addFlash('success', 'Password changed successfully.');
+                return $this->redirectTo("home");
+            } else {
+                Session::addFlash('error', 'An error occurred while changing your password.');
+                return $this->redirectTo("security", "updatePasswordForm");
+            }
+        }
+
          
     }
 
