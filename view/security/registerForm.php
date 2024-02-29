@@ -4,13 +4,18 @@
 
         <h2>Sign Up</h2>
 
-        <form action="index.php?ctrl=security&action=register" method="POST">
+        <form action="index.php?ctrl=security&action=register" enctype="multipart/form-data" method="POST">
 
             <input type="text" name="username" placeholder="Username">
 
             <input type="password" name="createPassword" placeholder="Password">
 
             <input type="password" name="repeatPassword" placeholder="Repeat Password">
+
+            <div class="form_control">
+                <label for="avatar">User Avatar</label>
+                <input type="file"name="avatar" id="avatar">
+            </div>
 
             <button type="submit" class="btn">Sign Up</button>
 

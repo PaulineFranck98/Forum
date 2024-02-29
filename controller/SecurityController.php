@@ -35,6 +35,54 @@
             // retrieves User password repeated from the POST request
             // FILTER_VALIDATE_REGEXP : validates password against a regular expression to enforce password strenght requirement (here : uppercase, lowercase, digit, min 8, max 32 characters)
             $repeatPassword = filter_input(INPUT_POST, 'repeatPassword', FILTER_VALIDATE_REGEXP, ["options" => ["regexp" => "/[A-Za-z0-9].{8,32}/"]] );
+            
+            // Initialize $avatar to an empty string
+            
+
+            // check if a file was uploaded and there are no errors
+            if(isset($_FILES['avatar']) && $_FILES['avatar']['error'] == 0) {
+                $avatar = $_FILES['avatar'];
+                // rename avatar
+                $time = time();
+                // make each name unique with the current timestamp time()
+                $avatar_name = $time . $avatar['name'];
+                $avatar_tmp_name = $avatar['tmp_name'];
+                $avatar_destination_path = 'public/images/' . $avatar_name;
+
+                // make sure file is an image
+                $allowed_files = ['png', 'jpg', 'jpeg'];
+
+                // explode returns an array
+                // $extension = explode('.', $avatar_name);
+                // $extension = end($extension);
+                $extension = strtolower(pathinfo($avatar_name, PATHINFO_EXTENSION)); // Get file extension
+
+                // check if extension is inside the array $allowed_files
+                if(in_array($extension, $allowed_files)){
+
+                    // controle image size (max 1mb)
+                    if($avatar['size'] < 3000000){
+
+                        // upload avatar
+                        move_uploaded_file($avatar_tmp_name, $avatar_destination_path);
+
+                    } else {
+                        // if the file uploaded is too big, an error message will be displayed
+                        Session::addFlash('error', 'File size too big. Should be less than 1mb');
+                    
+                        // redirect to the Register form page
+                        return $this->redirectTo("security", "registerForm");
+                    }
+
+                } else {
+                    // if the extension is not allowed, an error message will be displayed
+                    Session::addFlash('error', 'File should be png, jpg or jpeg');
+                    
+                    // redirect to the Register form page
+                    return $this->redirectTo("security", "registerForm");
+                }
+                
+            }
 
             // check if passwords match and meet regex criteria
             if($createPassword == $repeatPassword){
@@ -59,15 +107,18 @@
                         // store hashed password in database to secure the user's account 
                         'password' => $hashedPassword,
                         // not banned by default
-                        'is_banned' => 0,
+                        'banned' => 0,
                         // role set to user by default 
                         // (json_encode() returns a string containing the JSON representation of the supplied value)
-                        'role' => json_encode(['ROLE_USER']) 
+                        'role' => json_encode(['ROLE_USER']),
+                        'avatar' => $avatar_name 
                     ];
                        
+                    // var_dump($data);die();
                     // add the data to the database
                     $result = $userManager->add($data);
                     
+                    // var_dump($result);die();
                     // check if user's data have been added to database
                     if($result){
                         // if the data has been added successfully to the db, a success message will be displayed

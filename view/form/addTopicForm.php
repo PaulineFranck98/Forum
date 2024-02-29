@@ -5,9 +5,9 @@ $category = $result['data']['category'];
 ?>
 
 
-<section class="form__section">
+<section class="form_section">
 
-    <div class="container form__section-container">
+    <div class="form_section-container">
 
         <h2>Add Topic</h2>
 

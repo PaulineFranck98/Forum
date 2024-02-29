@@ -6,20 +6,19 @@ $category = $result['data']['category'];
 ?>
 <!-- display category Title  -->
 <h1><?=$category->getTitle()?></h1>
+<div class="add-edit">
+  <!-- if a User is in Session and if is not banned, display "Add Topic" -->
+  <?php if(App\Session::getUser()->getBanned() == 0 ) : ?>
+        <a href="index.php?ctrl=forum&action=addTopicForm&id=<?=$category->getId()?>">Add New Topic</a>
 
-<!-- if a User is in Session and if is not banned, display "Add Topic" -->
-<?php if(App\Session::getUser()->getBanned() == 0 ) : ?>
-    <a href="index.php?ctrl=forum&action=addTopicForm&id=<?=$category->getId()?>">Add Topic</a>
-
-    <!-- if an Admin is in Session, display "Edit Category" -->
-    <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
-    <?php if(App\Session::isAdmin()) : ?>
+        <!-- if an Admin is in Session, display "Edit Category" -->
+        <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
+        <?php if(App\Session::isAdmin()) : ?>
         <a href="index.php?ctrl=forum&action=updateCategoryForm&id=<?=$category->getId()?>">Edit Category</a>
+        <?php endif ?>
+        
     <?php endif ?>
-    
-<?php endif ?>
-
-
+</div>
 <section class="category__buttons">
 
     <div class="category__buttons-container">
@@ -33,6 +32,7 @@ $category = $result['data']['category'];
         <?php endforeach ?>
 
     </div>
+      
     
 </section>
 

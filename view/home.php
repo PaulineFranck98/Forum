@@ -22,7 +22,7 @@ $categories = $result['data']['categories'];
     </div>
     <aside class="img_container">
         <figure>
-            <img src="./public/images/aside-forum1.png" alt="Forum illustrations">
+            <img src="./public/images/aside.jpeg" alt="Forum illustrations">
         </figure>
     </aside>
 </section>

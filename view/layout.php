@@ -42,9 +42,16 @@
                         <?php if(App\Session::getUser()) : ?>
                             <!-- display username from the user in Session with a user icon -->
                             <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
-                            <a href="/security/viewProfile.html"><span class="fas fa-user"></span>&nbsp;<?= App\Session::getUser()->getUsername()?></a>
-                            <!-- display Log Out anchor -->
-                            <a href="index.php?ctrl=security&action=logout"><i class="fa-solid fa-right-from-bracket"></i></a>
+                            <a href="/security/viewProfile.html"><?= App\Session::getUser()->getUsername()?></a>
+                            <figure class="avatar">
+                                <img src="./public/images/<?= App\Session::getUser()->getAvatar()?>" alt="Avatar">
+                            </figure>
+                            <ul>
+                                <li><a href="#">Contributions</a></li>
+                                <!-- display Log Out anchor -->
+                                <li><a href="index.php?ctrl=security&action=logout">Log Out  &nbsp;<i class="fa-solid fa-right-from-bracket"></i></a></li>
+                                
+                            </ul>
 
                         <!-- if no user is logged in / in Session -->
                         <?php else : ?>
