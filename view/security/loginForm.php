@@ -2,7 +2,7 @@
 
     <div class="form_section-container">
 
-        <h2>Sign In</h2>
+        <h1>Sign In</h1>
 
         <form action="index.php?ctrl=security&action=login" method="POST">
 

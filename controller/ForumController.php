@@ -353,7 +353,7 @@
             // if the topic has been updated successfully, a success message will be displayed
             Session::addFlash('success', 'Topic has been updated successfully');
             
-            // redirect to posts list if the updated topic
+            // redirect to posts list if updated topic
             $this->redirectTo('forum', 'findAllPostsByTopicId', $topicId);
 
 
@@ -487,7 +487,7 @@
 
             // update post (data) in database using update() method from 'Manager.php'
             $postManager->update($postId, $textContent);
-
+            var_dump($postManager);
             // if the post was successfully updated, a success message will be displayed
             Session::addFlash('success', 'Post has been updated successfully');
 

@@ -16,15 +16,15 @@ $categories = $result['data']['categories'];
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="search" name="search" placeholder="Search">
                 </div>
-                <button type="submit"  class="btn">Go</button>
+                <button type="submit"  class="btn-search">Go</button>
             </form>
         </section>
     </div>
-    <aside class="img_container">
+    <!-- <aside class="img_container">
         <figure>
-            <img src="./public/images/aside.jpeg" alt="Forum illustrations">
+            <img src="./public/images/aside-forum.png" alt="Forum illustrations">
         </figure>
-    </aside>
+    </aside> -->
 </section>
 <section class="category__buttons">
     <h2>Categories</h2>

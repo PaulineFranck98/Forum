@@ -2,7 +2,7 @@
 
     <div class="form_section-container">
 
-        <h2>Sign Up</h2>
+        <h1>Sign Up</h1>
 
         <form action="index.php?ctrl=security&action=register" enctype="multipart/form-data" method="POST">
 
@@ -26,3 +26,4 @@
     </div>
 
 </section>
+

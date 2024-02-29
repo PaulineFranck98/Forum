@@ -50,6 +50,7 @@
                 'textcontent' => $textContent,
                 'id' => $postId
             ];
+            // var_dump($data); die();
             // Use resolution operator(`::`)to access static properties and methods of DAO class
             DAO::update($sql, $data);
 

@@ -29,41 +29,49 @@ $posts = $result['data']['posts'];
     <!-- If a user is found -->
     <?php if (!empty($users)): ?>
         <h2>Users</h2>
-        <ul>
             <!-- for each user retrieved from database -->
             <?php foreach ($users as $user): ?>
                 <!-- display the username of the user -->
-                <li><?= $user->getUsername()?></li>
-                
+                <div class="search-user">
+                    <figure class="avatar">
+                            <img src="./public/images/<?=$user->getAvatar()?>" alt="Avatar">
+                    </figure>
+                    <?= $user->getUsername()?>
+                </div>
             <?php endforeach ?>
-        </ul>
+        
     <?php endif ?>
 
     <!-- If a category is found -->
     <?php if (!empty($categories)): ?>
-        <h2>Categories</h2>
-        <ul>
-            <!-- for each category retrieved from database -->
-            <?php foreach ($categories as $category): ?>
-                <!-- display the category title within anchor tags-->
-                <!-- href leads to 'detailCategory' of the category Id  -->
-                <li><a href="index.php?ctrl=forum&action=findTopicsByCategoryId&id=<?=$category->getId()?>"><?=$category->getTitle()?></a></li>
-
-            <?php endforeach ?>
-        </ul>
+        <section class="category__buttons">
+            <h2>Categories</h2>
+            <div class="category__buttons-container">
+            
+                <!-- for each category retrieved from database -->
+                <?php foreach ($categories as $category): ?>
+                    <!-- display the category title within anchor tags-->
+                    <!-- href leads to 'detailCategory' of the category Id  -->
+                    <a class="category__button" href="index.php?ctrl=forum&action=findTopicsByCategoryId&id=<?=$category->getId()?>"><?=$category->getTitle()?></a>
+                <?php endforeach ?>
+            </div>
+        </section>
+        
     <?php endif ?>
 
     <!-- if a topic is found -->
     <?php if (!empty($topics)): ?>
-        <h2>Topics</h2>
-        <ul>
+        <section class="category__buttons">
+            <h2>Categories</h2>
+            <div class="category__buttons-container">
             <!-- for each topic retrieved from database -->
-            <?php foreach ($topics as $topic): ?>
-                <!-- display the topic title within anchor tags-->
-                <!-- href leads to 'detailTopic' of the topic Id  -->
-                <li><a href="index.php?ctrl=forum&action=findAllPostsByTopicId&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a></li> 
-            <?php endforeach ?>
-        </ul>
+                <?php foreach ($topics as $topic): ?>
+                    <!-- display the topic title within anchor tags-->
+                    <!-- href leads to 'detailTopic' of the topic Id  -->
+                    <a class="category__button href="index.php?ctrl=forum&action=findAllPostsByTopicId&id=<?=$topic->getId()?>"><?=$topic->getTitle()?></a>
+                <?php endforeach ?>
+            </div>
+        </section>
     <?php endif ?>
 
     <!-- if a post is found -->
