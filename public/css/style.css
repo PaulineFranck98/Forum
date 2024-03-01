@@ -673,8 +673,80 @@ p {
   box-shadow: 0rem 0rem 7rem 11px #ab3bff63;
 }
 
-/* ==========  FOOTER ========================================================================================*/
+/* =========================  FOOTER =========================================================================*/
 
 footer {
   text-align: center;
+}
+
+/* ========================== MEDIA QUERIES (SMALL DEVICES) ===================================================*/
+
+@media screen and (max-width: 600px) {
+  #mainpage {
+    width: 100%;
+  }
+
+  nav {
+    justify-content: flex-end;
+    padding: 0.2rem 0.5rem;
+  }
+
+  #nav-left {
+    display: none;
+  }
+
+  .top_container {
+    margin-top: 3rem;
+    height: 85vh;
+    width: 100%;
+  }
+
+  .top_container h1 {
+    margin: 0rem auto;
+    font-size: 1.9rem;
+  }
+
+  .left_container {
+    width: 100%;
+  }
+
+  .top_container h1 + p {
+    margin: 2rem auto;
+    width: 93%;
+  }
+
+  .search_bar {
+    margin: 0;
+  }
+
+  .search_bar-container {
+    width: 27rem;
+    height: 3rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 1rem;
+  }
+
+  .search_bar input {
+    font-size: 0.9rem;
+  }
+
+  .search_bar-container .btn-search {
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 0.8rem;
+  }
+
+  .category__buttons {
+    width: 100%;
+  }
+
+  .category__buttons-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    width: 90%;
+  }
+
+  footer {
+    font-size: 0.7rem;
+  }
 }
