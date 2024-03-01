@@ -39,8 +39,11 @@ $categories = $result['data']['categories'];
             </ul>
         </aside>
         <!-- Main Content -->
-        <main>
-            <h2>Manage Categories</h2>
+        <section>
+            <div class="manage-categories">
+                <h2>Manage Categories</h2>
+                <a href="index.php?ctrl=forum&action=addCategoryForm"><i class="fa-solid fa-plus"></i> Add Category</a>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -54,12 +57,12 @@ $categories = $result['data']['categories'];
                     <?php foreach($categories as $category) : ?>
                         <tr>
                             <td><?=$category->getTitle()?></td>
-                            <td><a href="index.php?ctrl=forum&action=updateCategoryForm&id=<?= $category->getId() ?>" class="btn-search">Edit</a></td>
-                            <td><a href="index.php?ctrl=forum&action=deleteCategory&id=<?= $category->getId() ?>" class="btn-search" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a></td>
+                            <td><a href="index.php?ctrl=forum&action=updateCategoryForm&id=<?= $category->getId() ?>" class="btn-search small">Edit</a></td>
+                            <td><a href="index.php?ctrl=forum&action=deleteCategory&id=<?= $category->getId() ?>" class="btn-search small">Delete</a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
-        </main>
+        </section>
     </div>
 </section>

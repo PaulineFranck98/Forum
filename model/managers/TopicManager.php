@@ -115,8 +115,9 @@
                 'id' => $userId
             ];
 
-            return $this->getMultipleResults(
-                DAO::select($sql, $data, true),
+            return $this->getOneOrNullResult(
+                // Use resolution operator(`::`)to access static properties and methods of DAO class
+                DAO::select($sql, $data, false), 
                 $this->className
             );
         }

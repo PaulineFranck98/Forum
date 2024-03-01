@@ -37,14 +37,14 @@ $users = $result['data']['users'];
                 <!-- endif -->
             </ul>
         </aside>
-        <main>
+        <section>
             <h2>Manage Users</h2>
             <table>
                 <thead>
                     <tr>
                         <!-- <th>Avatar</th> -->
                         <th>Username</th>
-                        <th>Edit</th>
+                        <th>User Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,11 +62,11 @@ $users = $result['data']['users'];
                             <!-- if user is not banned  -->
                             <?php if($user->getBanned() == 0) : ?>
                                 <!-- display "Ban User" -->
-                                <td><a href="index.php?ctrl=security&action=banUser&id=<?=$user->getId()?>" class="btn-search user-ban">Ban User</td>
+                                <td><a href="index.php?ctrl=security&action=banUser&id=<?=$user->getId()?>" class="btn-search user-ban small">Ban User</td>
                             <!-- if user is already banned -->
                             <?php else : ?>
                                 <!-- display "Unban User" -->
-                                <td><a href="index.php?ctrl=security&action=unBanUser&id=<?=$user->getId()?>" class="btn user-ban ">Unban User</td>
+                                <td><a href="index.php?ctrl=security&action=unBanUser&id=<?=$user->getId()?>" class="btn user-ban small ">Unban User</td>
                             <?php endif ?>
                         </tr>
                     <?php endforeach ?>
@@ -74,6 +74,6 @@ $users = $result['data']['users'];
                 </tbody>
             </table>
 
-        </main>
+        </section>
     </div>
 </section>

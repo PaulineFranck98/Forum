@@ -31,9 +31,9 @@ $meta = "mais c'est super";
     <h2>Categories</h2>
     <div class="category__buttons-container">
         <?php foreach($categories as $category) : ?>
-            <p>
+            
                 <a class="category__button" href="index.php?ctrl=forum&action=findTopicsByCategoryId&id=<?=$category->getId()?>"><?=$category->getTitle()?></a>
-            </p>
+            
         <?php endforeach ?>     
     </div>
 </section>

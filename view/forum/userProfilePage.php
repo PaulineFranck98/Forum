@@ -1,7 +1,7 @@
 <?php 
 
-$topicCount = $result['data']['topicCount'];
-$postCount = $result['data']['postCount'];
+// $topicCount = $result['data']['topicCount'];
+// $postCount = $result['data']['postCount'];
 
 ?>
 
@@ -12,7 +12,7 @@ $postCount = $result['data']['postCount'];
         <aside>
             <ul>
                 <li>
-                    <a href="index.php?ctrl=forum&action=userProfilePage"><i class="fa-regular fa-user"></i>
+                    <a href="index.php?ctrl=forum&action=userProfilePage" class="active"><i class="fa-regular fa-user"></i>
                         <h5>Profile</h5>
                     </a>
                 </li>
@@ -42,13 +42,22 @@ $postCount = $result['data']['postCount'];
                 <!-- endif -->
             </ul>
         </aside>
-        <main>
-            <a href="index.php?ctrl=security&action=updatePasswordForm">Update Password</a>
-            <h2>Manage Categories</h2>
-            <div class="profile-stats">
-                <p>Number of Topics Created: <?=(isset($topicCount)) ? $topicCount : ''  ?></p>
-                <p>Number of Posts Created: <?= (isset($postCount)) ? $postCount : '' ?></p>
+        <section class="general-profile">
+            <h2>Profile</h2>
+            <div class="profile-infos">
+                <div class="profile">
+                    <figure class="avatar-profile">
+                        <img src="./public/images/<?= App\Session::getUser()->getAvatar()?>" alt="Avatar">
+                    </figure>
+                    <p><?= App\Session::getUser()->getUsername()?></p>
+                    <a class="btn-search" href="index.php?ctrl=security&action=updatePasswordForm">Update Password</a>
+                </div>
+                <div class="profile-count">
+                    <h3>Your contributions</h3>
+                    <p>Topics : </p>
+                    <p>Posts : </p>
+                </div>
             </div>
-        </main>
+        </section>
     </div>
 </section>

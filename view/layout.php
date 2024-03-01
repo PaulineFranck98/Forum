@@ -24,16 +24,7 @@
                     <div id="nav-left">
                         <a href="/forum/">Home</a>
                         <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
-                        
-                        <!-- if an Admin is logged in / in Session, -->
-                        <!-- Use resolution operator(`::`)to access static properties and methods of Session class -->
-                        <?php if(App\Session::isAdmin()) : ?>
-
-                        <!-- then display "Users" and "Add Category" -->
-                            <a href="index.php?ctrl=home&action=users">Users</a>
-                            <a href="index.php?ctrl=forum&action=addCategoryForm">Add Category</a>
-                          
-                        <?php endif ?>  
+                         
                     </div>
 
                     <div id="nav-right">

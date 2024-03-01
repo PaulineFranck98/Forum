@@ -38,8 +38,7 @@ $posts = $result['data']['posts'];
                 <!-- endif -->
             </ul>
         </aside>
-        <!-- Main Content -->
-        <main>
+        <section>
             <h2>Your Posts</h2>
             <?php if (!empty($posts)): ?>
                 <table>
@@ -54,7 +53,7 @@ $posts = $result['data']['posts'];
                         <?php foreach($posts as $post) : ?>
                             <tr>
                                 <td><?= ($post->getTextcontent()) ?></td>
-                                <td><a href="index.php?ctrl=forum&action=updatePostForm&id=<?= $post->getId() ?>" class="btn-search">Edit</a></td>
+                                <td><a href="index.php?ctrl=forum&action=updatePostForm&id=<?= $post->getId() ?>" class="btn-search small">Edit</a></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -62,6 +61,6 @@ $posts = $result['data']['posts'];
             <?php else: ?>
                 <p>You have not created any posts yet.</p>
             <?php endif ?>
-        </main>
+        </section>
     </div>
 </section>

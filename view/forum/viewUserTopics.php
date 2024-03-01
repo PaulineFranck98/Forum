@@ -38,8 +38,7 @@ $topics = $result['data']['topics'];
                 <!-- endif -->
             </ul>
         </aside>
-        <!-- Main Content -->
-        <main>
+        <section>
             <h2>Your Topics</h2>
             <?php if (!empty($topics)): ?>
                 <table>
@@ -54,7 +53,7 @@ $topics = $result['data']['topics'];
                         <?php foreach($topics as $topic) : ?>
                             <tr>
                                 <td><?= ($topic->getTitle()) ?></td>
-                                <td><a href="index.php?ctrl=forum&action=updateTopicForm&id=<?= $topic->getId() ?>" class="btn-search">Edit</a></td>
+                                <td><a href="index.php?ctrl=forum&action=updateTopicForm&id=<?= $topic->getId() ?>" class="btn-search small">Edit</a></td>
                             </tr>
                         <?php endforeach ?>
                     </tbody>
@@ -62,6 +61,6 @@ $topics = $result['data']['topics'];
             <?php else: ?>
                 <p>You have not created any topics yet.</p>
             <?php endif ?>
-        </main>
+        </section>
     </div>
 </section>
