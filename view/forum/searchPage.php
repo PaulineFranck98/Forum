@@ -109,4 +109,5 @@ $posts = $result['data']['posts'];
             </div>
         </section>
     <?php endif ?>
+</section>
 

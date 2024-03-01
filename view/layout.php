@@ -22,11 +22,11 @@
             <header>
                 <nav>
                     <div id="nav-left">
+                        <a href="/forum/"><i class="fa-solid fa-house"></i></a>
                         <a href="/forum/">Home</a>
-                        <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>
-                         
+                        <a href="index.php?ctrl=forum&action=findAllTopics">Topics</a>  
                     </div>
-
+                    
                     <div id="nav-right">
                    
                         <!-- if a user is logged in / in Session -->

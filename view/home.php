@@ -21,25 +21,22 @@ $meta = "mais c'est super";
             </form>
         </section>
     </div>
-    <!-- <aside class="img_container">
-        <figure>
-            <img src="./public/images/aside-forum.png" alt="Forum illustrations">
-        </figure>
-    </aside> -->
 </section>
-<section class="category__buttons">
+<div class="explore">
+    <a href="#categories" class="down">Let's explore<i class="fa-solid fa-chevron-down"></i></a>
+</div>
+<section id="categories" class="category__buttons">
     <h2>Categories</h2>
-    <div class="category__buttons-container">
+    <div  class="category__buttons-container">
         <?php foreach($categories as $category) : ?>
             
                 <a class="category__button" href="index.php?ctrl=forum&action=findTopicsByCategoryId&id=<?=$category->getId()?>"><?=$category->getTitle()?></a>
             
         <?php endforeach ?>     
     </div>
-</section>
 
-<!-- <p>
-    <a href="index.php?ctrl=security&action=loginForm">Sign In</a>
-    <span>&nbsp;-&nbsp;</span>
-    <a href="index.php?ctrl=security&action=registerForm">Sign Up</a>
-</p> -->
+    <div id="up">
+        <a href="#"><i class="fa-solid fa-chevron-up"></i></a>
+    </div>
+    
+</section>

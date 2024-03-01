@@ -26,6 +26,10 @@
 
 /* ==========  GENERAL   ========================================================================================*/
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-white);
@@ -87,7 +91,7 @@ h1 {
   margin: 0 auto;
 }
 
-.img_container {
+/* .img_container {
   position: relative;
   height: 80vh;
   width: 30%;
@@ -102,7 +106,7 @@ h1 {
 
 .img_container figure img {
   border-radius: 30px;
-}
+} */
 
 img {
   width: 100%;
@@ -122,6 +126,10 @@ nav {
 nav a {
   /* padding: 0.3rem; */
   margin: 0.5rem;
+}
+
+#nav-left a:first-child {
+  display: none;
 }
 
 #nav-right {
@@ -290,6 +298,10 @@ h2 {
 
 /* ==========  CATEGORIES   ========================================================================================*/
 
+.explore,
+#up {
+  display: none;
+}
 .category__buttons h2 {
   margin-bottom: 2rem;
   text-align: center;
@@ -654,8 +666,7 @@ table td {
   padding-bottom: 1rem;
 }
 
-.profile-count h3,
-p {
+.profile-count h3 {
   margin-bottom: 2rem;
 }
 
@@ -682,22 +693,36 @@ footer {
 /* ========================== MEDIA QUERIES (SMALL DEVICES) ===================================================*/
 
 @media screen and (max-width: 600px) {
+  /* ====================== HOME PAGE ========================================*/
+
   #mainpage {
     width: 100%;
   }
 
   nav {
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 0.2rem 0.5rem;
   }
 
-  #nav-left {
+  #nav-right a:first-child,
+  #nav-left a:nth-child(2),
+  #nav-left a:nth-child(3) {
     display: none;
   }
 
+  #nav-left a:first-child {
+    display: flex;
+  }
+
+  .avatar {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--color-primary);
+  }
+
   .top_container {
-    margin-top: 3rem;
-    height: 85vh;
+    margin-top: 1rem;
+    height: 78vh;
     width: 100%;
   }
 
@@ -713,6 +738,7 @@ footer {
   .top_container h1 + p {
     margin: 2rem auto;
     width: 93%;
+    font-size: 0.8rem;
   }
 
   .search_bar {
@@ -734,19 +760,212 @@ footer {
     font-size: 1rem;
     padding: 0.5rem 0.8rem;
     border-radius: 0.8rem;
+    background-color: var(--color-primary);
   }
 
+  .explore {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    align-items: center;
+  }
+
+  .down,
+  #up {
+    width: fit-content;
+    padding: 0.2rem 1.5rem;
+    border-radius: 0.9rem;
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-primary);
+  }
+
+  .down {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #up {
+    margin: 3rem auto;
+    display: flex;
+  }
   .category__buttons {
     width: 100%;
+    min-height: 100vh;
+  }
+
+  .category__buttons h2 {
+    margin: 0 auto 2rem;
   }
 
   .category__buttons-container {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 0.7rem;
-    width: 90%;
+    width: 85%;
   }
 
   footer {
     font-size: 0.7rem;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.637);
   }
+
+  /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
+
+  #detail-category h1,
+  #detail-topic h1 {
+    margin-top: 2rem;
+    font-size: 2.2rem;
+  }
+
+  #detail-category .add-edit {
+    margin-bottom: 1.5rem;
+  }
+
+  #detail-category .add-edit a {
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
+
+  /* =======================  DETAIL TOPIC PAGE  ===================================================*/
+  #detail-topic h1 i {
+    font-size: 1.8rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .topic__post-container {
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .empty-page {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  #detail-topic .btn {
+    padding: 0.5rem 1rem;
+  }
+
+  #detail-topic .add-edit a:first-child {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-primary);
+  }
+
+  /* =======================  SEARCH RESULTS PAGE  ===================================================*/
+
+  .search_results h1 {
+    font-size: 2.1rem;
+  }
+
+  .search_results h2 {
+    margin: 2rem auto;
+  }
+
+  .search_results .search_bar-container {
+    width: 95%;
+    margin: 0 auto;
+  }
+  .search-user {
+    min-width: 60%;
+  }
+
+  .category__buttons {
+    max-height: 100vh;
+  }
+}
+
+/* =======================   MEDIA QUERIES (MEDIUM DEVICES) ===================================================*/
+
+@media only screen and (min-width: 601px) and (max-width: 1025px) {
+  /* ============================ HOME PAGE =============================== */
+
+  .left_container {
+    width: 90%;
+  }
+
+  .top_container {
+    margin: 6rem auto;
+  }
+
+  .top_container h1 {
+    margin: 0 auto;
+    font-size: 3.5rem;
+    width: 90%;
+  }
+
+  .top_container h1 + p {
+    margin: 3rem auto;
+    width: 90%;
+  }
+
+  .search_bar {
+    margin: 8rem auto;
+  }
+
+  .search_bar input {
+    padding: 0.8rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  .search_bar-container {
+    font-size: 1.4rem;
+  }
+
+  .btn-search {
+    font-size: 1.1rem;
+    border-radius: 0.8rem;
+  }
+
+  .category__buttons {
+    width: 80%;
+  }
+
+  /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
+
+  /* #detail-category h1,
+  #detail-topic h1 {
+    margin-top: 2rem;
+    font-size: 2.2rem;
+  }
+
+  #detail-category .add-edit {
+    margin-bottom: 1.5rem;
+  }
+
+  #detail-category .add-edit a {
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  } */
+
+  /* =======================  DETAIL TOPIC PAGE  ===================================================*/
+  /* #detail-topic h1 i {
+    font-size: 1.8rem;
+    padding-bottom: 0.2rem;
+  }
+
+  .topic__post-container {
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .empty-page {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  #detail-topic .btn {
+    padding: 0.5rem 1rem;
+  }
+
+  #detail-topic .add-edit a:first-child {
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-primary);
+  } */
 }
