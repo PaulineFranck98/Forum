@@ -2,13 +2,14 @@
 
 // $topicCount = $result['data']['topicCount'];
 // $postCount = $result['data']['postCount'];
-
+$meta = "View your profile on DiveIn Design. Track your contributions, update your password, and personalize your forum experience.";
+$title = "Your Profile and Contributions | DiveIn Design";
 ?>
 
 
 
 <section class="dashboard">
-    <div class="dashboard__container">
+    <div class="dashboard_container">
         <aside>
             <ul>
                 <li>
@@ -61,3 +62,4 @@
         </section>
     </div>
 </section>
+

@@ -4,7 +4,8 @@ $users = $result['data']['users'];
 $categories = $result['data']['categories'];
 $topics = $result['data']['topics'];
 $posts = $result['data']['posts'];
-
+$meta = "Find results for your searches on DiveIn Design. Explore relevant users, topics, and posts in this comprehensive web design forum";
+$title = "Search Results in Web Design Forum | DiveIn Design";
 ?>
 
 
@@ -12,7 +13,7 @@ $posts = $result['data']['posts'];
 
     <h1>Search Results</h1>
     <!-- section that contains the form to search for users, categories, topics and posts -->
-    <section class="search_bar-results">
+    <section class="search_bar">
         <!-- form with the action=search  -->
         <form  class="search_bar-container" action="index.php?ctrl=home&action=search" method="POST">
             <div>

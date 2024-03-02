@@ -1,3 +1,6 @@
+<?php
+$title = "Update Password | DiveIn Design - Your Web Design Forum";
+?>
 <section class="form_section">
 
     <div class="form_section-container">

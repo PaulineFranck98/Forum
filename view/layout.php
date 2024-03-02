@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon"  href="favicon.ico" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tiny.cloud/1/zg3mwraazn1b2ezih16je1tc6z7gwp5yd4pod06ae5uai8pa/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,7 +14,7 @@
     <link rel="stylesheet" href="<?= PUBLIC_DIR ?>/css/style.css">
 
     <meta name="description" content="<?=$meta?>">
-    <title>FORUM</title>
+    <title><?=$title?></title>
 </head>
 <body>
     <div id="wrapper"> 
@@ -66,6 +68,11 @@
             </main>
         </div>
         <footer>
+            <div class="socials">  
+                <a href=""><i class="fa-brands fa-facebook-f"></i></a>
+                <a href=""><i class="fa-brands fa-instagram"></i></a>
+                <a href=""><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
             <p>&copy; 2020 - Forum CDA - <a href="/home/forumRules.html">Forum Rules</a> - <a href="">Legal Notice</a></p>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>

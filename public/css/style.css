@@ -24,6 +24,12 @@
   --transition: all 300ms ease;
 }
 
+/* =========== HONEYPOT ======================================================================================== */
+
+input[type="email"]{
+  display:none; /* set display : none to only be visible by robot -> can't read style */
+}
+
 /* ==========  GENERAL   ========================================================================================*/
 
 html {
@@ -62,9 +68,17 @@ h1 {
 
 /* ==========  HOME PAGE   ========================================================================================*/
 
-.top_container h1 {
-  margin: 0rem 11rem;
+.top_container {
+  display: flex;
+  flex-direction: column;
+  margin: 6rem auto;
+  height: 50vh;
+  width: 60%;
   text-align: center;
+}
+
+.top_container h1 {
+  margin: 0 auto;
   font-size: 3rem;
   width: 80%;
 }
@@ -74,39 +88,16 @@ h1 {
 }
 
 .top_container h1 + p {
-  margin: 3rem 0 3rem 15rem;
-  text-align: center;
-  width: 70%;
-}
-
-.top_container {
-  margin-top: 6rem;
-  display: flex;
-  height: 50vh;
-  width: 90%;
-}
-
-.left_container {
-  width: 70%;
   margin: 0 auto;
+  width: 70%;
 }
 
-/* .img_container {
-  position: relative;
-  height: 80vh;
-  width: 30%;
+.top_container .search_bar{
+  margin-top: 6rem;
 }
 
-.img_container figure {
-  width: 62%;
-  position: absolute;
-  right: 38%;
-  top: 15%;
-}
 
-.img_container figure img {
-  border-radius: 30px;
-} */
+
 
 img {
   width: 100%;
@@ -219,15 +210,10 @@ a:hover::before {
 
 /* ==========  SEARCH   ========================================================================================*/
 
-.search_bar,
-.search_bar-results {
-  margin: 6rem 0 0 10rem;
+.search_bar {
+  margin-top: 4rem ;
   display: flex;
   justify-content: center;
-}
-
-.search_bar-results {
-  margin: 5rem auto 1rem;
 }
 
 .search_bar-container {
@@ -250,8 +236,7 @@ a:hover::before {
   align-items: center;
 }
 
-.search_bar input,
-.search_bar-results input {
+.search_bar input {
   background: transparent;
   margin-left: 0.7rem;
   padding: 0.5rem 0;
@@ -261,18 +246,19 @@ a:hover::before {
 
 .search_bar input::placeholder {
   color: var(--color-white);
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
 }
 
 .search_results {
   text-align: center;
 }
 
-.search_results h1,
-h2 {
+.search_results h1 {
   margin-top: 2rem;
 }
 .search_results h2 {
-  margin-bottom: 2rem;
+  margin: 2rem 0 2rem;
 }
 
 .search-user {
@@ -295,6 +281,7 @@ h2 {
   gap: 1rem;
   margin: 0 auto;
 }
+
 
 /* ==========  CATEGORIES   ========================================================================================*/
 
@@ -380,11 +367,12 @@ h2 {
 
 .category__button:hover::before,
 .btn-search:hover::before,
-.btn:hover::before {
+.btn:hover::before,
+footer .socials a::before {
   transform: scaleX(0);
 }
 
-.btn-search:hover {
+.btn-search:hover{
   background-color: var(--color-primary);
   border: 1px solid transparent;
 }
@@ -508,24 +496,9 @@ select {
   border: none;
 }
 
-/* table {
-  width: 100%;
-  text-align: left;
-  background-color: var(--color-bg);
-  border-radius: 9px;
-}
 
-table th {
-  background: var(--color-bg);
-  padding: 0.8rem;
-  color: var(--color-white);
-}
 
-table td {
-  padding: 0.8rem;
-  border-bottom: 1px solid rgba(242, 242, 254, 0.7);
-  color: var(--color-white);
-} */
+
 /* ============================ DASHBOARD =============================================================
   */
 
@@ -533,7 +506,7 @@ table td {
   margin-top: 6rem;
 }
 
-.dashboard__container {
+.dashboard_container {
   display: grid;
   grid-template-columns: 14rem auto;
   gap: 1rem;
@@ -564,6 +537,9 @@ table td {
 
 .dashboard aside a.active {
   background: var(--color-primary);
+}
+.dashboard aside a.active i{
+  color: var(--color-white);
 }
 .dashboard aside i {
   color: var(--color-primary-variant);
@@ -690,6 +666,30 @@ footer {
   text-align: center;
 }
 
+footer .socials{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0 3rem;
+}
+
+footer .socials a {
+  font-size: 1.5rem;
+  border: 1px solid var(--color-primary);
+  color: var(--color-white);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--color-bg);
+  transition: var(--transition);
+}
+
+footer .socials a:hover{
+  transform:scale(0.95);
+}
+
+
+
 /* ========================== MEDIA QUERIES (SMALL DEVICES) ===================================================*/
 
 @media screen and (max-width: 600px) {
@@ -731,9 +731,6 @@ footer {
     font-size: 1.9rem;
   }
 
-  .left_container {
-    width: 100%;
-  }
 
   .top_container h1 + p {
     margin: 2rem auto;
@@ -875,18 +872,141 @@ footer {
   }
 
   .category__buttons {
-    max-height: 100vh;
+    min-height: 100vh;
   }
+
+/* ==========  FORM  ========================================================================================*/
+ 
+  form{
+    gap: 3rem;
+  }
+
+  .form_section-container h2{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .form_section-container{
+    width:100%;
+    margin-top:3rem;
+  }
+
+  .form_section-container input{
+    width:80%;
+  }
+
+  .form_section-container textarea {
+    border: 1px solid var(--color-primary);
+    width:80%;
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.6;
+
+  }
+
+/* ========== DASHBOARD ========================================================================================*/
+  
+.dashboard{
+  width:100%;
+  margin:0;
+  margin-top:2rem;
 }
+
+.dashboard h2{
+  text-align: start ;
+  margin-top: 0.5rem;
+}
+
+.dashboard_container{
+  width: 90%;
+  min-height: 85vh;
+  grid-template-columns: 1fr;
+  gap:0;
+  padding:1rem 0;
+  background: transparent;
+}
+
+
+.dashboard section table thead{
+  display: none;
+}
+
+.manage-categories{
+  justify-content: flex-start;
+}
+
+.general-profile h2{
+  display: none;
+}
+
+.dashboard aside{
+  position: fixed;
+  /* box-shadow: 2rem 0 4rem rgba(0,0,0,0.4); */
+  left:-100%;
+  height:100vh;
+  transition: var(--transition);
+  z-index: 1;
+}
+
+.dashboard .sidebar__toggle {
+  display: inline-block;
+  background: var(--color-bg);
+  color: var(--color-white);
+  position: fixed;
+  right:0;
+  bottom:4rem;
+  z-index: 1;
+  width: 2.5rem;
+  height:2.5rem;
+  border-radius: 50% 0 0 50%;
+  font-size: 1.3rem;
+  cursor:pointer;
+  border: 1px solid var(--color-primary);
+  border-right: none;
+  /* box-shadow: -1rem 0 2rem rgba(0,0,0,0.4); */
+
+}
+
+#hide__sidebar-btn{
+  display: none;
+}
+
+.dashboard aside a h5{
+  display: inline-block;
+}
+
+.profile-infos {
+  
+  flex-direction: column;
+  /* justify-content: space-around; */
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.profile {
+  border-right: none;
+  padding-right: 0;
+}
+
+.dashboard section{
+  margin-left:0;
+}
+
+.profile-count {
+  margin: 1.5rem auto;
+}
+
+
+}
+
+
 
 /* =======================   MEDIA QUERIES (MEDIUM DEVICES) ===================================================*/
 
 @media only screen and (min-width: 601px) and (max-width: 1025px) {
   /* ============================ HOME PAGE =============================== */
 
-  .left_container {
-    width: 90%;
-  }
+
 
   .top_container {
     margin: 6rem auto;
@@ -927,11 +1047,6 @@ footer {
 
   /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
 
-  /* #detail-category h1,
-  #detail-topic h1 {
-    margin-top: 2rem;
-    font-size: 2.2rem;
-  }
 
   #detail-category .add-edit {
     margin-bottom: 1.5rem;
@@ -941,13 +1056,14 @@ footer {
     border: 1px solid var(--color-primary);
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
-  } */
+  }
 
   /* =======================  DETAIL TOPIC PAGE  ===================================================*/
+  
   /* #detail-topic h1 i {
     font-size: 1.8rem;
     padding-bottom: 0.2rem;
-  }
+  } */
 
   .topic__post-container {
     grid-template-columns: 1fr;
@@ -967,5 +1083,98 @@ footer {
   #detail-topic .add-edit a:first-child {
     background-color: var(--color-bg);
     border: 1px solid var(--color-primary);
-  } */
+  } 
+
+  /* ==========  FORM  ========================================================================================*/
+ 
+  form{
+    gap: 3rem;
+  }
+
+  .form_section-container h2{
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .form_section-container{
+    width:100%;
+  
+  }
+
+  .form_section-container input{
+    width:60%;
+  }
+
+  .form_section-container textarea {
+    border: 1px solid var(--color-primary);
+    width:60%;
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.6;
+
+  }
+
+
+/* ========== DASHBOARD ========================================================================================*/
+
+  .dashboard{
+    width:100%;
+  }
+
+  .dashboard h2{
+    text-align: start ;
+    margin-top: 0.5rem;
+  }
+
+  .dashboard_container{
+    width: 90%;
+    grid-template-columns: 4.3rem auto;
+    padding:1rem;
+    background: transparent;
+  }
+
+  .dashboard aside h5{
+    display: none;
+  }
+
+  .dashboard section table thead{
+    display: none;
+  }
+
+  .manage-categories{
+    justify-content: flex-start;
+  }
+
+  .general-profile h2{
+    display: none;
+  }
+
+
 }
+
+/*
+- OK honeypot
+- OK meta description
+- OK title head
+- OK robots.txt
+- .htaccess
+- OK backlink ? -> liens réseaux
+- maillage interne : liens internes en dehors de la nav
+- checkbox RGPD
+- OK favicon 
+- OK search bar 
+- manifest
+- images en WEBP ?
+- changer page accueil user
+---------------
+- ré-organisation CSS : medium avant small, revoir avant queries
+- changer topic, ajouter 'web design' : SEO : mots clés
+- titre néon 
+- utilisateur : ajouter date création pour topics et posts
+---------------
+- régler problème updatePost
+- régler problème count
+
+
+
+*/

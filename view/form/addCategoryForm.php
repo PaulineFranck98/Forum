@@ -1,8 +1,10 @@
+<?php
+$title = "Add Category| DiveIn Design - Your Web Design Forum";
+?>
 
+<section class="form_section">
 
-<section class="form__section">
-
-    <div class="container form__section-container">
+    <div class="form_section-container">
 
         <h2>Add Category</h2>
         

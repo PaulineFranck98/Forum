@@ -1,10 +1,12 @@
 <?php
 $categories = $result['data']['categories'];
+$meta = "Admin categories on DiveIn Design. Oversee, edit, or delete to maintain a structured and relevant web design forum";
+$title = "Administrate Web Design Forum Categories | DiveIn Design";
 ?>
 
 <section class="dashboard">
     <!-- Dashboard Container -->
-    <div class="dashboard__container">
+    <div class="dashboard_container">
     <aside>
             <ul>
                 <li>

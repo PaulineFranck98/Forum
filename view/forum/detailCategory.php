@@ -2,9 +2,23 @@
 
 $topics = $result['data']['topics'];
 $category = $result['data']['category'];
-
+$meta = "Explore various topics within a specific category on DiveIn Design, the go-to forum for web design enthusiasts and professionals."; 
+$title = "Explore Web Design Topics in Specific Categories | DiveIn Design";
 ?>
 <section id="detail-category">
+    
+    <!------------ SEARCH BAR ------------>
+    <section class="search_bar">
+            <form  class="search_bar-container" action="index.php?ctrl=home&action=search" method="POST">
+                <div>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" name="search" placeholder="Search">
+                </div>
+                <button type="submit"  class="btn-search">Go</button>
+            </form>
+    </section>
+    <!------------ END SEARCH BAR -------->
+    
     <!-- display category Title  -->
     <h1><?=$category->getTitle()?></h1>
     <div class="add-edit">

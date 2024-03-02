@@ -1,7 +1,7 @@
 <?php
 
 $category = $result['data']['category'];
-
+$title = "Add Topic | DiveIn Design - Your Web Design Forum";
 ?>
 
 
@@ -15,7 +15,7 @@ $category = $result['data']['category'];
 
             <input type="text" name="title" placeholder="Title">
 
-            <textarea  rows="10" name="textcontent" placeholder="Text">Text Content</textarea>
+            <textarea  rows="10" name="textcontent" placeholder="Content"></textarea>
             
             <button type="submit" class="btn">Add Topic</button>
             

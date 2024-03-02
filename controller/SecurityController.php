@@ -26,6 +26,19 @@
         // method to register as a new User
         public function register() {
 
+            /*----------- HONEYPOT CHECK ---------------------------------------*/
+
+            // Creation of a variable to store the email from the POST request, sanitize it
+            $honeypot = filter_input(INPUT_POST, 'email_honeypot', FILTER_SANITIZE_EMAIL);
+
+            // Check if the honeypot input contains any value. --> if yes, don't proceed with registration.
+            if (!empty($honeypot)) {
+
+                // Possibly a bot, stop processing : no registration 
+                return;
+            }
+            /*----------- END HONEYPOT CHECK -----------------------------------*/
+
             // retrieves User username from the POST request, sanitize the input
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
@@ -122,7 +135,7 @@
                     // check if user's data have been added to database
                     if($result){
                         // if the data has been added successfully to the db, a success message will be displayed
-                        Session::addFlash('success', 'Registration Successful');
+                        Session::addFlash('success', 'Registration Successful! Please Sign In');
                         // redirect to the Home page 
                         $this->redirectTo("home");
 

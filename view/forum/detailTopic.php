@@ -2,10 +2,22 @@
 
 $posts = $result['data']['posts'];
 $topic = $result['data']['topic'];
-
+$meta = "Dive deep into discussions and insights on web design topics. Engage, learn, and contribute to the forum on DiveIn Design";
+$title = "Dive Deeper into Web Design Topics | DiveIn Design";
 ?>
 
 <section id="detail-topic">
+    <!------------ SEARCH BAR ------------>
+    <section class="search_bar">
+            <form  class="search_bar-container" action="index.php?ctrl=home&action=search" method="POST">
+                <div>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" name="search" placeholder="Search">
+                </div>
+                <button type="submit"  class="btn-search">Go</button>
+            </form>
+    </section>
+    <!------------ END SEARCH BAR -------->
     <!-- display topic title  -->
     <h1><?=$topic->getTitle()?><?php if ($topic->getClosed() == 1):?> <i class="fa-solid fa-lock"></i><?php endif?></h1>
 

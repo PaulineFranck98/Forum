@@ -1,12 +1,13 @@
 <?php
 
 $category = $result['data']['category'];
+$title = "Edit Category | DiveIn Design - Your Web Design Forum";
 
 ?>
 
-<section class="form__section">
+<section class="form_section">
 
-    <div class="container form__section-container">
+    <div class="container form_section-container">
 
         <h2>Edit Category</h2>
 
@@ -15,7 +16,7 @@ $category = $result['data']['category'];
             <input type="text" name="title" value="<?= $category->getTitle()?>" placeholder="Title">
 
             
-            <button type="submit" class="btn">Update Category</button>
+            <button type="submit" class="btn">Update</button>
             
         </form>
 

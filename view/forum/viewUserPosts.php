@@ -1,10 +1,12 @@
 <?php
 $posts = $result['data']['posts'];
+$meta ="Access all your posts on DiveIn Design. Reflect on your contributions and continue the dialogue in the web design community.";
+$title = "Your Created Posts on Web Design Forum | DiveIn Design";
 ?>
 
 <section class="dashboard">
     <!-- Dashboard Container -->
-    <div class="dashboard__container">
+    <div class="dashboard_container">
     <aside>
             <ul>
                 <li>

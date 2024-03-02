@@ -1,10 +1,14 @@
 <?php
 $topics = $result['data']['topics'];
+$meta = "Review all the topics you've created on DiveIn Design. Revisit your discussions and continue engaging with the design community forum.";
+$title = "Your Created Topics on Web Design Forum | DiveIn Design";
 ?>
 
 <section class="dashboard">
+<button class="sidebar__toggle" id="show__sidebar-btn"><i class="fa-solid fa-angle-right"></i></button>
+<button class="sidebar__toggle" id="hide__sidebar-btn"><i class="fa-solid fa-angle-left"></i></button>
     <!-- Dashboard Container -->
-    <div class="dashboard__container">
+    <div class="dashboard_container">
     <aside>
             <ul>
                 <li>

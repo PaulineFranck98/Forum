@@ -1,3 +1,7 @@
+<?php
+$title = "Sign In | DiveIn Design - Your Web Design Forum";
+?>
+
 <section class="form_section">
 
     <div class="form_section-container">

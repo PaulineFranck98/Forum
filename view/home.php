@@ -2,16 +2,17 @@
 
 $categories = $result['data']['categories'];
 
-$meta = "mais c'est super";
+$meta = "Join DiveIn Design, a vibrant forum for web design enthusiasts. Share, learn, and connect through topics and posts about web design.";
+$title = "Welcome to DiveIn Design - Your Web Design Forum";
 ?>
 
 <section class="top_container">
-    <div class="left_container">
-        <h1>Welcome to our vibrant community <strong>forum</strong></h1>
-        <p>
-            Dive into discussions on art, wildlife, travel, science, music, and food. Share your passions, exchange ideas, and connect with fellow enthusiasts. Start exploring now!
-        </p>
-        <section class="search_bar">
+    <h1>Welcome to our vibrant community <strong>forum</strong></h1>
+    <p>
+        Dive into discussions on art, wildlife, travel, science, music, and food. Share your passions, exchange ideas, and connect with fellow enthusiasts. Start exploring now!
+    </p>
+    <!------------ SEARCH BAR ------------>
+    <section class="search_bar">
             <form  class="search_bar-container" action="index.php?ctrl=home&action=search" method="POST">
                 <div>
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -19,8 +20,8 @@ $meta = "mais c'est super";
                 </div>
                 <button type="submit"  class="btn-search">Go</button>
             </form>
-        </section>
-    </div>
+    </section>
+    <!------------ END SEARCH BAR -------->
 </section>
 <div class="explore">
     <a href="#categories" class="down">Let's explore<i class="fa-solid fa-chevron-down"></i></a>

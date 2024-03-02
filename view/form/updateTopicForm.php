@@ -1,12 +1,13 @@
 <?php
 
 $topic = $result['data']['topic'];
+$title = "Edit Topic | DiveIn Design - Your Web Design Forum";
 
 ?>
 
-<section class="form__section">
+<section class="form_section">
 
-    <div class="container form__section-container">
+    <div class="form_section-container">
 
         <h2>Edit Topic</h2>
 
@@ -14,7 +15,7 @@ $topic = $result['data']['topic'];
 
             <input type="text" name="title" value="<?=$topic->getTitle()?>"placeholder="Title">
         
-            <button type="submit" class="btn">Update Topic</button>
+            <button type="submit" class="btn">Update</button>
         </form>
     </div>
 </section>

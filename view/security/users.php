@@ -1,11 +1,12 @@
 <?php
 
 $users = $result['data']['users'];
-   
+$meta = "Manage and view all users on DiveIn Design. As an admin, ensure a vibrant and respectful community by moderating user activity";
+$title = "Manage Users on Web Design Forum | DiveIn Design";
 ?>
 
 <section class="dashboard">
-    <div class="dashboard__container">
+    <div class="dashboard_container">
         <aside>
             <ul>
                 <li>
