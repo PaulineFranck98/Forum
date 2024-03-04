@@ -9,7 +9,7 @@ $title = "Add Post | DiveIn Design - Your Web Design Forum";
 
     <div class="form_section-container">
 
-        <h2>Add Post</h2>
+        <h1>Add Post</h1>
 
         <form action="index.php?ctrl=forum&action=addPostByTopic&id=<?=$topic->getId()?>" method="POST">
 

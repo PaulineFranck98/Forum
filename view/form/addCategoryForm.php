@@ -6,7 +6,7 @@ $title = "Add Category| DiveIn Design - Your Web Design Forum";
 
     <div class="form_section-container">
 
-        <h2>Add Category</h2>
+        <h1>Add Category</h1>
         
         <form action="index.php?ctrl=forum&action=addCategory" method="POST">
 

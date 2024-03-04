@@ -8,9 +8,13 @@ $title = "Welcome to DiveIn Design - Your Web Design Forum";
 
 <section class="top_container">
     <h1>Welcome to our vibrant community <strong>forum</strong></h1>
+    <figure>
+        <img src="/public/images/diveinDesign.png" alt="">
+    </figure>
     <p>
         Dive into discussions on art, wildlife, travel, science, music, and food. Share your passions, exchange ideas, and connect with fellow enthusiasts. Start exploring now!
     </p>
+    <?php if(App\Session::getUser()) : ?>
     <!------------ SEARCH BAR ------------>
     <section class="search_bar">
             <form  class="search_bar-container" action="index.php?ctrl=home&action=search" method="POST">
@@ -39,5 +43,21 @@ $title = "Welcome to DiveIn Design - Your Web Design Forum";
     <div id="up">
         <a href="#"><i class="fa-solid fa-chevron-up"></i></a>
     </div>
-    
 </section>
+ <!-- if no user is logged in / in Session -->
+ <?php else : ?>
+    <!-- display Sign in and Sign Up -->
+    
+<div class="wrapper">
+    <div class="box">
+        <div class="box-content">
+            <a href="index.php?ctrl=security&action=loginForm">Sign In</a>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-content">
+            <a href="index.php?ctrl=security&action=registerForm">Sign Up</a>
+        </div>
+    </div>
+</div>
+<?php endif ?>

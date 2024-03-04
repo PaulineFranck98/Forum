@@ -6,7 +6,6 @@
 }
 
 :root {
-  /* --color-primary: #db2a6b; */
   --color-primary: #ab3bff;
   --color-primary-variant: #d69eff;
   --color-primary-bg: #000000cf;
@@ -16,13 +15,105 @@
   --color-red-light: #db0f3f26;
   --color-green: #00c476;
   --color-green-light: #00c27426;
-  --color-gray-900: #1e1e66;
-  --color-gray-700: #2d2b7c;
-  --color-gray-300: rgba(242, 242, 254, 0.3);
-  --color-gray-200: rgba(242, 242, 254, 0.7);
-
   --transition: all 300ms ease;
 }
+/* =========== SIGN IN / SIGN UP BUTTON HOME ======================================================================================== */
+
+
+:root {
+  --animation-duration: 3s;
+  --dark-gray: #0a0a0a;
+  --text: #aaaaaa;
+}
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var( --dark-gray );
+  font-family: sans-serif;
+  color: var( --text );
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  min-height: 30vh;
+  margin: 0 auto;
+  gap:3rem;
+}
+
+.box {
+  position: relative;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.box:before {
+  content: "";
+  width: 210px;
+  height: 75px;
+  display: block;
+  background: linear-gradient(20deg, #180625, #420371, #c281f3);
+  background-size: 150% 200%;
+  background-position-y: top;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba( 0 0 0 / 0.5 );
+  filter: saturate(1.5);
+  transition: all 0.3s;
+  opacity: 0.9;
+}
+
+.box:after {
+  content: "";
+  width: 210px;
+  height: 115px;
+  display: block;
+  background: linear-gradient(20deg, #ab3bff, #ab3bff, #ab3bff);
+  position: absolute;
+  filter: blur(50px) saturate(1.4);
+  z-index: -2;
+  top: -18px;
+  left: 0;
+  opacity: 0.2;
+  transition: all 0.3s;
+}
+
+.box:hover:after {
+  opacity: 0.6;
+  filter: blur(120px) saturate(1.2);
+}
+
+.box:hover:before {
+  filter: saturate(2.7);
+  opacity: 1;
+}
+
+.box-content {
+  background-color: var( --dark-gray );
+  width: 200px;
+  height: 65px;
+  display: block;
+  border-radius: 30px;
+  padding: 20px;
+}
+
+.box-content a{
+  font-weight: 500;
+}
+.box-content a:hover::before {
+  /* Prevent the underline effect on hover by keeping the scaleX at 0 */
+  transform: scaleX(0);
+}
+
 
 /* =========== HONEYPOT ======================================================================================== */
 
@@ -49,7 +140,7 @@ body {
 }
 
 #mainpage {
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 h1 {
@@ -71,8 +162,8 @@ h1 {
 .top_container {
   display: flex;
   flex-direction: column;
-  margin: 6rem auto;
-  height: 50vh;
+  margin: 5rem auto;
+  height: 40vh;
   width: 60%;
   text-align: center;
 }
@@ -96,13 +187,16 @@ h1 {
   margin-top: 6rem;
 }
 
-
-
-
 img {
   width: 100%;
 }
 
+.home-btn a{
+  padding:1rem;
+  font-size:2rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 15px;
+}
 /* ==========  NAV LINKS   ========================================================================================*/
 
 nav {
@@ -435,21 +529,40 @@ footer .socials a::before {
 
 /* ==========  FORM  ========================================================================================*/
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+
 .form_section {
   display: grid;
   place-items: center;
-  height: 100vh;
+
+  
 }
 
 .form_section-container {
-  width: 40%;
+  width: 27%;
   height: 100%;
-  margin-top: 6rem;
 }
 
+.form_section-container h1{
+  margin:4rem;
+}
+
+
 .form_section-container input {
-  border: 1px solid var(--color-primary);
-  width: 40%;
+  width: 100%;
+}
+
+.form_section-container textarea {
+  width:100%;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.6;
+
 }
 
 input[type="file"]::file-selector-button {
@@ -461,12 +574,6 @@ input[type="file"]::file-selector-button {
   margin-right: 1rem;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
 
 .form_section small {
   margin-top: 1rem;
@@ -493,8 +600,24 @@ select {
   border-radius: 0.5rem;
   color: var(--color-white);
   resize: none;
-  border: none;
+  /* font-size:1.4rem; */
+  border: 1px solid var(--color-primary);
 }
+
+  /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
+
+  #detail-category h1{
+    margin-top:4rem;
+  }
+  #detail-category .add-edit {
+    margin-bottom: 2.5rem;
+  }
+
+  #detail-category .add-edit a {
+    border: 1px solid var(--color-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+  }
 
 
 
@@ -690,9 +813,121 @@ footer .socials a:hover{
 
 
 
+/* =======================   MEDIA QUERIES (MEDIUM DEVICES) ===================================================*/
+
+@media screen and (max-width: 1024px) {
+  /* ============================ HOME PAGE =============================== */
+
+  .top_container {
+    width:90%;
+    height:50vh;
+    margin:3rem;
+  }
+
+
+  .top_container h1 {
+    font-size: 3.5rem;
+    width: 90%;
+  }
+
+  .top_container h1 + p {
+    margin: 3rem auto;
+    width: 80%;
+    font-size: 1.2rem;
+  }
+
+  .top_container .search_bar {
+    margin: 1.5rem auto;
+  }
+
+  .search_bar input {
+    padding: 0.8rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  .search_bar-container {
+    font-size: 1.4rem;
+  }
+
+  .btn-search {
+    font-size: 1.1rem;
+    border-radius: 0.8rem;
+  }
+
+  .category__buttons {
+    width: 80%;
+  }
+
+  /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
+
+
+
+  /* =======================  DETAIL TOPIC PAGE  ===================================================*/
+
+
+  .topic__post-container {
+    grid-template-columns: 1fr;
+  }
+
+ 
+  .empty-page {
+    width: 80%;
+  }
+
+  #detail-topic .btn {
+    padding: 0.5rem 1rem;
+  }
+
+
+  /* ==========  FORM  ========================================================================================*/
+ 
+
+  .form_section-container{
+    width:70%;
+  
+  }
+
+
+/* ========== DASHBOARD ========================================================================================*/
+
+  .dashboard{
+    width:100%;
+  }
+
+  .dashboard h2{
+    text-align: start ;
+    margin-top: 0.5rem;
+  }
+
+  .dashboard_container{
+    width: 90%;
+    grid-template-columns: 4.3rem auto;
+    padding:1rem;
+    background: transparent;
+  }
+
+  .dashboard aside h5{
+    display: none;
+  }
+
+  .dashboard section table thead{
+    display: none;
+  }
+
+  .manage-categories{
+    justify-content: flex-start;
+  }
+
+  .general-profile h2{
+    display: none;
+  }
+
+
+}
+
 /* ========================== MEDIA QUERIES (SMALL DEVICES) ===================================================*/
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width:600px) {
   /* ====================== HOME PAGE ========================================*/
 
   #mainpage {
@@ -700,7 +935,7 @@ footer .socials a:hover{
   }
 
   nav {
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 0.2rem 0.5rem;
   }
 
@@ -721,7 +956,7 @@ footer .socials a:hover{
   }
 
   .top_container {
-    margin-top: 1rem;
+    margin: 1rem auto 0;
     height: 78vh;
     width: 100%;
   }
@@ -739,11 +974,11 @@ footer .socials a:hover{
   }
 
   .search_bar {
-    margin: 0;
+    margin-top : 0;
   }
 
   .search_bar-container {
-    width: 27rem;
+    width: 19rem;
     height: 3rem;
     padding: 0.2rem 0.8rem;
     border-radius: 1rem;
@@ -790,7 +1025,7 @@ footer .socials a:hover{
   }
   .category__buttons {
     width: 100%;
-    min-height: 100vh;
+    min-height: 90vh;
   }
 
   .category__buttons h2 {
@@ -817,15 +1052,15 @@ footer .socials a:hover{
     font-size: 2.2rem;
   }
 
+  #detail-category .search_bar{
+    margin:2rem auto;
+    width:90%;
+  }
+
   #detail-category .add-edit {
     margin-bottom: 1.5rem;
   }
 
-  #detail-category .add-edit a {
-    border: 1px solid var(--color-primary);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-  }
 
   /* =======================  DETAIL TOPIC PAGE  ===================================================*/
   #detail-topic h1 i {
@@ -848,6 +1083,9 @@ footer .socials a:hover{
     padding: 0.5rem 1rem;
   }
 
+  #detail-topic .search_bar{
+    margin-top: 2.5rem;
+  }
   #detail-topic .add-edit a:first-child {
     background-color: var(--color-bg);
     border: 1px solid var(--color-primary);
@@ -881,55 +1119,39 @@ footer .socials a:hover{
     gap: 3rem;
   }
 
-  .form_section-container h2{
+  .form_section-container h1{
     text-align: center;
-    margin-top: 0;
-    margin-bottom: 2rem;
+    font-size:2rem;
+    margin: 0 0 2rem 0;
   }
 
   .form_section-container{
-    width:100%;
+    width:90%;
     margin-top:3rem;
   }
 
+  .form_section-container textarea,
   .form_section-container input{
-    width:80%;
+    font-size:1rem;
   }
 
-  .form_section-container textarea {
-    border: 1px solid var(--color-primary);
-    width:80%;
-    font-family: "Montserrat", sans-serif;
-    line-height: 1.6;
 
-  }
+
 
 /* ========== DASHBOARD ========================================================================================*/
   
 .dashboard{
-  width:100%;
-  margin:0;
   margin-top:2rem;
 }
 
-.dashboard h2{
-  text-align: start ;
-  margin-top: 0.5rem;
-}
-
 .dashboard_container{
-  width: 90%;
   min-height: 85vh;
   grid-template-columns: 1fr;
   gap:0;
-  padding:1rem 0;
+  padding:1rem;
   background: transparent;
 }
 
-
-.dashboard section table thead{
-  display: none;
-}
 
 .manage-categories{
   justify-content: flex-start;
@@ -941,7 +1163,6 @@ footer .socials a:hover{
 
 .dashboard aside{
   position: fixed;
-  /* box-shadow: 2rem 0 4rem rgba(0,0,0,0.4); */
   left:-100%;
   height:100vh;
   transition: var(--transition);
@@ -963,7 +1184,6 @@ footer .socials a:hover{
   cursor:pointer;
   border: 1px solid var(--color-primary);
   border-right: none;
-  /* box-shadow: -1rem 0 2rem rgba(0,0,0,0.4); */
 
 }
 
@@ -976,11 +1196,13 @@ footer .socials a:hover{
 }
 
 .profile-infos {
-  
   flex-direction: column;
-  /* justify-content: space-around; */
   align-items: center;
   margin-top: 1rem;
+}
+
+.profile-infos .btn-search{
+  width:12.5rem;
 }
 
 .profile {
@@ -1001,173 +1223,22 @@ footer .socials a:hover{
 
 
 
-/* =======================   MEDIA QUERIES (MEDIUM DEVICES) ===================================================*/
-
-@media only screen and (min-width: 601px) and (max-width: 1025px) {
-  /* ============================ HOME PAGE =============================== */
-
-
-
-  .top_container {
-    margin: 6rem auto;
-  }
-
-  .top_container h1 {
-    margin: 0 auto;
-    font-size: 3.5rem;
-    width: 90%;
-  }
-
-  .top_container h1 + p {
-    margin: 3rem auto;
-    width: 90%;
-  }
-
-  .search_bar {
-    margin: 8rem auto;
-  }
-
-  .search_bar input {
-    padding: 0.8rem 1rem;
-    font-size: 1.2rem;
-  }
-
-  .search_bar-container {
-    font-size: 1.4rem;
-  }
-
-  .btn-search {
-    font-size: 1.1rem;
-    border-radius: 0.8rem;
-  }
-
-  .category__buttons {
-    width: 80%;
-  }
-
-  /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
-
-
-  #detail-category .add-edit {
-    margin-bottom: 1.5rem;
-  }
-
-  #detail-category .add-edit a {
-    border: 1px solid var(--color-primary);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-  }
-
-  /* =======================  DETAIL TOPIC PAGE  ===================================================*/
-  
-  /* #detail-topic h1 i {
-    font-size: 1.8rem;
-    padding-bottom: 0.2rem;
-  } */
-
-  .topic__post-container {
-    grid-template-columns: 1fr;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .empty-page {
-    width: 90%;
-    font-size: 1rem;
-  }
-
-  #detail-topic .btn {
-    padding: 0.5rem 1rem;
-  }
-
-  #detail-topic .add-edit a:first-child {
-    background-color: var(--color-bg);
-    border: 1px solid var(--color-primary);
-  } 
-
-  /* ==========  FORM  ========================================================================================*/
- 
-  form{
-    gap: 3rem;
-  }
-
-  .form_section-container h2{
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 2rem;
-  }
-
-  .form_section-container{
-    width:100%;
-  
-  }
-
-  .form_section-container input{
-    width:60%;
-  }
-
-  .form_section-container textarea {
-    border: 1px solid var(--color-primary);
-    width:60%;
-    font-family: "Montserrat", sans-serif;
-    line-height: 1.6;
-
-  }
-
-
-/* ========== DASHBOARD ========================================================================================*/
-
-  .dashboard{
-    width:100%;
-  }
-
-  .dashboard h2{
-    text-align: start ;
-    margin-top: 0.5rem;
-  }
-
-  .dashboard_container{
-    width: 90%;
-    grid-template-columns: 4.3rem auto;
-    padding:1rem;
-    background: transparent;
-  }
-
-  .dashboard aside h5{
-    display: none;
-  }
-
-  .dashboard section table thead{
-    display: none;
-  }
-
-  .manage-categories{
-    justify-content: flex-start;
-  }
-
-  .general-profile h2{
-    display: none;
-  }
-
-
-}
-
 /*
 - OK honeypot
 - OK meta description
 - OK title head
 - OK robots.txt
 - .htaccess
-- OK backlink ? -> liens réseaux
+- OK back link -> liens réseaux
 - maillage interne : liens internes en dehors de la nav
 - checkbox RGPD
 - OK favicon 
 - OK search bar 
 - manifest
 - images en WEBP ?
-- changer page accueil user
+- OK changer page accueil user in session
 ---------------
-- ré-organisation CSS : medium avant small, revoir avant queries
+- OK ré-organisation CSS : medium avant small, revoir avant queries
 - changer topic, ajouter 'web design' : SEO : mots clés
 - titre néon 
 - utilisateur : ajouter date création pour topics et posts

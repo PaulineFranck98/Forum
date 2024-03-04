@@ -9,7 +9,7 @@ $title = "Edit Category | DiveIn Design - Your Web Design Forum";
 
     <div class="container form_section-container">
 
-        <h2>Edit Category</h2>
+        <h1>Edit Category</h1>
 
         <form action="index.php?ctrl=forum&action=updateCategory&id=<?=$category->getId()?>" method="POST">
 

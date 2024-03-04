@@ -9,7 +9,7 @@ $title = "Edit Topic | DiveIn Design - Your Web Design Forum";
 
     <div class="form_section-container">
 
-        <h2>Edit Topic</h2>
+        <h1>Edit Topic</h1>
 
         <form action="index.php?ctrl=forum&action=updateTopic&id=<?=$topic->getId()?>" method="POST">
 
