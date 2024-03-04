@@ -23,6 +23,10 @@ $title = "Sign Up | DiveIn Design - Your Web Design Forum";
                 <label for="avatar">User Avatar</label>
                 <input type="file"name="avatar" id="avatar">
             </div>
+            <div class="cgu_input">
+                <input type="checkbox" id="cgu" name="cgu"/>
+                <label for="cgu">I acknowledge having read and understood the <a href="public/CGU_DiveInDesign.pdf" style="color:#ab3bff" target="_blank">GTCU</a> and I accept them</label>
+            </div>
 
             <button type="submit" class="btn">Sign Up</button>
 

@@ -73,7 +73,7 @@
                 <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://www.twitter.com"><i class="fa-brands fa-x-twitter"></i></a>
             </div>
-            <p>&copy; 2020 - Forum CDA - <a href="/home/forumRules.html">Forum Rules</a> - <a href="">Legal Notice</a></p>
+            <p>&copy; 2020 - Forum CDA - <a href="public/Privacy_Policy_DiveInDesign.pdf">Privacy Policy</a> - <a href="public/Legal_Notice_DiveInDesign.pdf" target="_blank">Legal Notice</a></p>
             <!--<button id="ajaxbtn">Surprise en Ajax !</button> -> cliqué <span id="nbajax">0</span> fois-->
         </footer>
     </div>

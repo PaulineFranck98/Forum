@@ -8,9 +8,9 @@ $title = "Welcome to DiveIn Design - Your Web Design Forum";
 
 <section class="top_container">
     <h1>Welcome to our vibrant community <strong>forum</strong></h1>
-    <figure>
-        <img src="/public/images/diveinDesign.png" alt="">
-    </figure>
+    <!-- <figure>
+        <img src="/public/images/diveinDesign.png" alt="DiveIn Design Logo">
+    </figure> -->
     <p>
         Dive into discussions on art, wildlife, travel, science, music, and food. Share your passions, exchange ideas, and connect with fellow enthusiasts. Start exploring now!
     </p>

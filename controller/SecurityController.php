@@ -37,6 +37,8 @@
                 // Possibly a bot, stop processing : no registration 
                 return;
             }
+
+
             /*----------- END HONEYPOT CHECK -----------------------------------*/
 
             // retrieves User username from the POST request, sanitize the input
@@ -97,73 +99,84 @@
                 
             }
 
-            // check if passwords match and meet regex criteria
-            if($createPassword == $repeatPassword){
+            if(isset($_POST['cgu'])){
+         
+                // check if passwords match and meet regex criteria
+                if($createPassword == $repeatPassword){
 
-                //creation of a new instance of the UserManager class => object creation
-                $userManager = new UserManager();
+                    //creation of a new instance of the UserManager class => object creation
+                    $userManager = new UserManager();
 
-                // creation of a $userExisting variable, and use model layer ($userManager) to retrieve informations from db
-                $userExisting = $userManager->findOneByPseudo($username);
+                    // creation of a $userExisting variable, and use model layer ($userManager) to retrieve informations from db
+                    $userExisting = $userManager->findOneByPseudo($username);
 
-                // check if user is not already registered before hashing password and  adding user's data to database
-                if(!$userExisting){
+                    // check if user is not already registered before hashing password and  adding user's data to database
+                    if(!$userExisting){
 
-                    // creation of $hashedPassword variable to store the password hashed with native function password_hash()
-                    // password_hash() : hashes the user password using secure algorithm (currently bcrypt) before it's stored in the database
-                    // PASSWORD_DEFAULT: means php will choose the best algorithm at the time of execution (brcrypt or Argon2i) : ensure user's password is not exposed if a problem occurs in db
-                    $hashedPassword = password_hash($createPassword, PASSWORD_DEFAULT);
+                        // creation of $hashedPassword variable to store the password hashed with native function password_hash()
+                        // password_hash() : hashes the user password using secure algorithm (currently bcrypt) before it's stored in the database
+                        // PASSWORD_DEFAULT: means php will choose the best algorithm at the time of execution (brcrypt or Argon2i) : ensure user's password is not exposed if a problem occurs in db
+                        $hashedPassword = password_hash($createPassword, PASSWORD_DEFAULT);
 
-                    // prepare User's data 
-                    $data = [
-                        'username' => $username,
-                        // store hashed password in database to secure the user's account 
-                        'password' => $hashedPassword,
-                        // not banned by default
-                        'banned' => 0,
-                        // role set to user by default 
-                        // (json_encode() returns a string containing the JSON representation of the supplied value)
-                        'role' => json_encode(['ROLE_USER']),
-                        'avatar' => $avatar_name 
-                    ];
-                       
-                    // var_dump($data);die();
-                    // add the data to the database
-                    $result = $userManager->add($data);
+                        // prepare User's data 
+                        $data = [
+                            'username' => $username,
+                            // store hashed password in database to secure the user's account 
+                            'password' => $hashedPassword,
+                            // not banned by default
+                            'banned' => 0,
+                            // role set to user by default 
+                            // (json_encode() returns a string containing the JSON representation of the supplied value)
+                            'role' => json_encode(['ROLE_USER']),
+                            'avatar' => $avatar_name 
+                        ];
+                        
+                        // var_dump($data);die();
+                        // add the data to the database
+                        $result = $userManager->add($data);
+                        
+                        // var_dump($result);die();
+                        // check if user's data have been added to database
+                        if($result){
+                            // if the data has been added successfully to the db, a success message will be displayed
+                            Session::addFlash('success', 'Registration Successful! Please Sign In');
+                            // redirect to the Home page 
+                            $this->redirectTo("home");
+
+                        } 
+                            // if the data has not been added successfully to the db, an error message will be displayed
+                            Session::addFlash('error', 'Something went wrong');
+                        
+                            // redirect to the Register form page
+                            return $this->redirectTo("security", "registerForm");
+
                     
-                    // var_dump($result);die();
-                    // check if user's data have been added to database
-                    if($result){
-                        // if the data has been added successfully to the db, a success message will be displayed
-                        Session::addFlash('success', 'Registration Successful! Please Sign In');
-                        // redirect to the Home page 
-                        $this->redirectTo("home");
 
-                    } 
-                        // if the data has not been added successfully to the db, an error message will be displayed
-                        Session::addFlash('error', 'Something went wrong');
-                    
+                    } else {
+
+                        // If the username is the same as another username, an error message will be displayed
+                        Session::addFlash('error', 'Username already taken');
+
                         // redirect to the Register form page
                         return $this->redirectTo("security", "registerForm");
-
-                  
-
+                    }  
+                    
                 } else {
-
-                    // If the username is the same as another username, an error message will be displayed
-                    Session::addFlash('error', 'Username already taken');
+                    // if the passwords are not the same or if the conditions are not respected
+                    Session::addFlash('error', 'Incorrect Password or Not Strong Enough');
 
                     // redirect to the Register form page
-                    return $this->redirectTo("security", "registerForm");
+                    return $this->redirectTo("security", "registerForm");    
                 }  
-                   
-            } else {
-                // if the passwords are not the same or if the conditions are not respected
-                Session::addFlash('error', 'Incorrect Password or Not Strong Enough');
-
+            } else {        
+    
+                // if checkbox isn't checked, an error message will be displayed
+                Session::addFlash('error', 'You must accept the GTCU');
+        
                 // redirect to the Register form page
-                return $this->redirectTo("security", "registerForm");    
-            }     
+                return $this->redirectTo("security", "registerForm");
+            
+            }
         }
 
         // method to display the form to log in as a User or as an Admin

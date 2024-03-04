@@ -19,13 +19,11 @@
 }
 /* =========== SIGN IN / SIGN UP BUTTON HOME ======================================================================================== */
 
-
 :root {
   --animation-duration: 3s;
   --dark-gray: #0a0a0a;
   --text: #aaaaaa;
 }
-
 
 * {
   padding: 0;
@@ -34,9 +32,9 @@
 }
 
 body {
-  background-color: var( --dark-gray );
+  background-color: var(--dark-gray);
   font-family: sans-serif;
-  color: var( --text );
+  color: var(--text);
 }
 
 .wrapper {
@@ -44,7 +42,7 @@ body {
   align-items: center;
   min-height: 30vh;
   margin: 0 auto;
-  gap:3rem;
+  gap: 3rem;
 }
 
 .box {
@@ -66,7 +64,7 @@ body {
   top: 0;
   left: 0;
   border-radius: 30px;
-  box-shadow: 0 0 40px rgba( 0 0 0 / 0.5 );
+  box-shadow: 0 0 40px rgba(0 0 0 / 0.5);
   filter: saturate(1.5);
   transition: all 0.3s;
   opacity: 0.9;
@@ -98,7 +96,7 @@ body {
 }
 
 .box-content {
-  background-color: var( --dark-gray );
+  background-color: var(--dark-gray);
   width: 200px;
   height: 65px;
   display: block;
@@ -106,7 +104,7 @@ body {
   padding: 20px;
 }
 
-.box-content a{
+.box-content a {
   font-weight: 500;
 }
 .box-content a:hover::before {
@@ -114,11 +112,10 @@ body {
   transform: scaleX(0);
 }
 
-
 /* =========== HONEYPOT ======================================================================================== */
 
-input[type="email"]{
-  display:none; /* set display : none to only be visible by robot -> can't read style */
+input[type="email"] {
+  display: none; /* set display : none to only be visible by robot -> can't read style */
 }
 
 /* ==========  GENERAL   ========================================================================================*/
@@ -183,7 +180,7 @@ h1 {
   width: 70%;
 }
 
-.top_container .search_bar{
+.top_container .search_bar {
   margin-top: 6rem;
 }
 
@@ -191,9 +188,9 @@ img {
   width: 100%;
 }
 
-.home-btn a{
-  padding:1rem;
-  font-size:2rem;
+.home-btn a {
+  padding: 1rem;
+  font-size: 2rem;
   border: 1px solid var(--color-primary);
   border-radius: 15px;
 }
@@ -305,7 +302,7 @@ a:hover::before {
 /* ==========  SEARCH   ========================================================================================*/
 
 .search_bar {
-  margin-top: 4rem ;
+  margin-top: 4rem;
   display: flex;
   justify-content: center;
 }
@@ -375,7 +372,6 @@ a:hover::before {
   gap: 1rem;
   margin: 0 auto;
 }
-
 
 /* ==========  CATEGORIES   ========================================================================================*/
 
@@ -466,7 +462,7 @@ footer .socials a::before {
   transform: scaleX(0);
 }
 
-.btn-search:hover{
+.btn-search:hover {
   background-color: var(--color-primary);
   border: 1px solid transparent;
 }
@@ -536,12 +532,9 @@ form {
   gap: 3rem;
 }
 
-
 .form_section {
   display: grid;
   place-items: center;
-
-  
 }
 
 .form_section-container {
@@ -549,20 +542,18 @@ form {
   height: 100%;
 }
 
-.form_section-container h1{
-  margin:4rem;
+.form_section-container h1 {
+  margin: 4rem;
 }
-
 
 .form_section-container input {
   width: 100%;
 }
 
 .form_section-container textarea {
-  width:100%;
+  width: 100%;
   font-family: "Montserrat", sans-serif;
   line-height: 1.6;
-
 }
 
 input[type="file"]::file-selector-button {
@@ -573,7 +564,6 @@ input[type="file"]::file-selector-button {
   border-radius: 0.5rem;
   margin-right: 1rem;
 }
-
 
 .form_section small {
   margin-top: 1rem;
@@ -604,23 +594,30 @@ select {
   border: 1px solid var(--color-primary);
 }
 
-  /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
+.cgu_input {
+  display: flex;
+  font-size: 0.8rem;
+}
 
-  #detail-category h1{
-    margin-top:4rem;
-  }
-  #detail-category .add-edit {
-    margin-bottom: 2.5rem;
-  }
+input#cgu {
+  width: 15px;
+  margin-right: 10px;
+}
 
-  #detail-category .add-edit a {
-    border: 1px solid var(--color-primary);
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-  }
+/* =======================  DETAIL CATEGORY PAGE  ===================================================*/
 
+#detail-category h1 {
+  margin-top: 4rem;
+}
+#detail-category .add-edit {
+  margin-bottom: 2.5rem;
+}
 
-
+#detail-category .add-edit a {
+  border: 1px solid var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
 
 /* ============================ DASHBOARD =============================================================
   */
@@ -661,7 +658,7 @@ select {
 .dashboard aside a.active {
   background: var(--color-primary);
 }
-.dashboard aside a.active i{
+.dashboard aside a.active i {
   color: var(--color-white);
 }
 .dashboard aside i {
@@ -789,7 +786,7 @@ footer {
   text-align: center;
 }
 
-footer .socials{
+footer .socials {
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -807,11 +804,9 @@ footer .socials a {
   transition: var(--transition);
 }
 
-footer .socials a:hover{
-  transform:scale(0.95);
+footer .socials a:hover {
+  transform: scale(0.95);
 }
-
-
 
 /* =======================   MEDIA QUERIES (MEDIUM DEVICES) ===================================================*/
 
@@ -819,11 +814,10 @@ footer .socials a:hover{
   /* ============================ HOME PAGE =============================== */
 
   .top_container {
-    width:90%;
-    height:50vh;
-    margin:3rem;
+    width: 90%;
+    height: 50vh;
+    margin: 3rem;
   }
-
 
   .top_container h1 {
     font-size: 3.5rem;
@@ -860,16 +854,12 @@ footer .socials a:hover{
 
   /* =======================  DETAIL CATEGORY PAGE  ===================================================*/
 
-
-
   /* =======================  DETAIL TOPIC PAGE  ===================================================*/
-
 
   .topic__post-container {
     grid-template-columns: 1fr;
   }
 
- 
   .empty-page {
     width: 80%;
   }
@@ -878,56 +868,50 @@ footer .socials a:hover{
     padding: 0.5rem 1rem;
   }
 
-
   /* ==========  FORM  ========================================================================================*/
- 
 
-  .form_section-container{
-    width:70%;
-  
+  .form_section-container {
+    width: 70%;
   }
 
+  /* ========== DASHBOARD ========================================================================================*/
 
-/* ========== DASHBOARD ========================================================================================*/
-
-  .dashboard{
-    width:100%;
+  .dashboard {
+    width: 100%;
   }
 
-  .dashboard h2{
-    text-align: start ;
+  .dashboard h2 {
+    text-align: start;
     margin-top: 0.5rem;
   }
 
-  .dashboard_container{
+  .dashboard_container {
     width: 90%;
     grid-template-columns: 4.3rem auto;
-    padding:1rem;
+    padding: 1rem;
     background: transparent;
   }
 
-  .dashboard aside h5{
+  .dashboard aside h5 {
     display: none;
   }
 
-  .dashboard section table thead{
+  .dashboard section table thead {
     display: none;
   }
 
-  .manage-categories{
+  .manage-categories {
     justify-content: flex-start;
   }
 
-  .general-profile h2{
+  .general-profile h2 {
     display: none;
   }
-
-
 }
 
 /* ========================== MEDIA QUERIES (SMALL DEVICES) ===================================================*/
 
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
   /* ====================== HOME PAGE ========================================*/
 
   #mainpage {
@@ -966,7 +950,6 @@ footer .socials a:hover{
     font-size: 1.9rem;
   }
 
-
   .top_container h1 + p {
     margin: 2rem auto;
     width: 93%;
@@ -974,7 +957,7 @@ footer .socials a:hover{
   }
 
   .search_bar {
-    margin-top : 0;
+    margin-top: 0;
   }
 
   .search_bar-container {
@@ -1052,15 +1035,14 @@ footer .socials a:hover{
     font-size: 2.2rem;
   }
 
-  #detail-category .search_bar{
-    margin:2rem auto;
-    width:90%;
+  #detail-category .search_bar {
+    margin: 2rem auto;
+    width: 90%;
   }
 
   #detail-category .add-edit {
     margin-bottom: 1.5rem;
   }
-
 
   /* =======================  DETAIL TOPIC PAGE  ===================================================*/
   #detail-topic h1 i {
@@ -1083,7 +1065,7 @@ footer .socials a:hover{
     padding: 0.5rem 1rem;
   }
 
-  #detail-topic .search_bar{
+  #detail-topic .search_bar {
     margin-top: 2.5rem;
   }
   #detail-topic .add-edit a:first-child {
@@ -1113,135 +1095,123 @@ footer .socials a:hover{
     min-height: 100vh;
   }
 
-/* ==========  FORM  ========================================================================================*/
- 
-  form{
+  /* ==========  FORM  ========================================================================================*/
+
+  form {
     gap: 3rem;
   }
 
-  .form_section-container h1{
+  .form_section-container h1 {
     text-align: center;
-    font-size:2rem;
+    font-size: 2rem;
     margin: 0 0 2rem 0;
   }
 
-  .form_section-container{
-    width:90%;
-    margin-top:3rem;
+  .form_section-container {
+    width: 90%;
+    margin-top: 3rem;
   }
 
   .form_section-container textarea,
-  .form_section-container input{
-    font-size:1rem;
+  .form_section-container input {
+    font-size: 1rem;
   }
 
+  /* ========== DASHBOARD ========================================================================================*/
 
+  .dashboard {
+    margin-top: 2rem;
+  }
 
+  .dashboard_container {
+    min-height: 85vh;
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 1rem;
+    background: transparent;
+  }
 
-/* ========== DASHBOARD ========================================================================================*/
-  
-.dashboard{
-  margin-top:2rem;
+  .manage-categories {
+    justify-content: flex-start;
+  }
+
+  .general-profile h2 {
+    display: none;
+  }
+
+  .dashboard aside {
+    position: fixed;
+    left: -100%;
+    height: 100vh;
+    transition: var(--transition);
+    z-index: 1;
+  }
+
+  .dashboard .sidebar__toggle {
+    display: inline-block;
+    background: var(--color-bg);
+    color: var(--color-white);
+    position: fixed;
+    right: 0;
+    bottom: 4rem;
+    z-index: 1;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50% 0 0 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border: 1px solid var(--color-primary);
+    border-right: none;
+  }
+
+  #hide__sidebar-btn {
+    display: none;
+  }
+
+  .dashboard aside a h5 {
+    display: inline-block;
+  }
+
+  .profile-infos {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .profile-infos .btn-search {
+    width: 12.5rem;
+  }
+
+  .profile {
+    border-right: none;
+    padding-right: 0;
+  }
+
+  .dashboard section {
+    margin-left: 0;
+  }
+
+  .profile-count {
+    margin: 1.5rem auto;
+  }
 }
-
-.dashboard_container{
-  min-height: 85vh;
-  grid-template-columns: 1fr;
-  gap:0;
-  padding:1rem;
-  background: transparent;
-}
-
-
-.manage-categories{
-  justify-content: flex-start;
-}
-
-.general-profile h2{
-  display: none;
-}
-
-.dashboard aside{
-  position: fixed;
-  left:-100%;
-  height:100vh;
-  transition: var(--transition);
-  z-index: 1;
-}
-
-.dashboard .sidebar__toggle {
-  display: inline-block;
-  background: var(--color-bg);
-  color: var(--color-white);
-  position: fixed;
-  right:0;
-  bottom:4rem;
-  z-index: 1;
-  width: 2.5rem;
-  height:2.5rem;
-  border-radius: 50% 0 0 50%;
-  font-size: 1.3rem;
-  cursor:pointer;
-  border: 1px solid var(--color-primary);
-  border-right: none;
-
-}
-
-#hide__sidebar-btn{
-  display: none;
-}
-
-.dashboard aside a h5{
-  display: inline-block;
-}
-
-.profile-infos {
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.profile-infos .btn-search{
-  width:12.5rem;
-}
-
-.profile {
-  border-right: none;
-  padding-right: 0;
-}
-
-.dashboard section{
-  margin-left:0;
-}
-
-.profile-count {
-  margin: 1.5rem auto;
-}
-
-
-}
-
-
 
 /*
-- OK honeypot
-- OK meta description
-- OK title head
-- OK robots.txt
+
 - .htaccess
-- OK back link -> liens réseaux
-- maillage interne : liens internes en dehors de la nav
-- checkbox RGPD
-- OK favicon 
-- OK search bar 
+- sitemap
 - manifest
 - images en WEBP ?
-- OK changer page accueil user in session
+- docker
+- nosql
+- maillage interne : liens internes en dehors de la nav
+
 ---------------
-- OK ré-organisation CSS : medium avant small, revoir avant queries
+
 - changer topic, ajouter 'web design' : SEO : mots clés
 - titre néon 
 - utilisateur : ajouter date création pour topics et posts
+- remember me? cookies
 ---------------
 - régler problème updatePost
 - régler problème count
