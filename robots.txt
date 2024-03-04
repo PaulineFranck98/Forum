@@ -4,3 +4,5 @@ Disallow: /view/forum/userProfilePage.php
 Disallow: /view/forum/viewUserPosts.php
 Disallow: /view/forum/viewUserTopics.php
 Disallow: /view/security/users.php
+
+Sitemap: http://localhost/forum/sitemap.xml
