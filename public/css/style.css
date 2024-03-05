@@ -166,13 +166,16 @@ h1 {
 }
 
 .top_container h1 {
-  margin: 0 auto;
+  margin: 0 auto 2rem;
   font-size: 3rem;
   width: 80%;
 }
 
 .top_container h1 > strong {
-  color: var(--color-primary);
+  color: #be66ff;
+}
+
+.top_container h1 > strong:last-child {
 }
 
 .top_container h1 + p {

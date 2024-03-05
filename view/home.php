@@ -7,12 +7,9 @@ $title = "Welcome to DiveIn Design - Your Web Design Forum";
 ?>
 
 <section class="top_container">
-    <h1>Welcome to our vibrant community <strong>forum</strong></h1>
-    <!-- <figure>
-        <img src="/public/images/diveinDesign.png" alt="DiveIn Design Logo">
-    </figure> -->
+    <h1>Welcome to our vibrant community <strong>forum</strong><br><strong>DiveIn Design</strong></h1>
     <p>
-        Dive into discussions on art, wildlife, travel, science, music, and food. Share your passions, exchange ideas, and connect with fellow enthusiasts. Start exploring now!
+        Join the conversation on web design, UX/UI, coding, graphic design, SEO, and more. Share your expertise, brainstorm ideas, and network with like-minded professionals. Let's dive into the world of web design together – start exploring now
     </p>
     <?php if(App\Session::getUser()) : ?>
     <!------------ SEARCH BAR ------------>
