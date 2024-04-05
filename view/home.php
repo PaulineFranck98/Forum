@@ -7,7 +7,7 @@ $title = "Welcome to DiveIn Design - Your Web Design Forum";
 ?>
 
 <section class="top_container">
-    <h1>Welcome to our vibrant community <strong>forum</strong><br><strong>DiveIn Design</strong></h1>
+    <h1>Welcome to our vibrant community <strong>forum</strong></h1>
     <p>
         Join the conversation on web design, UX/UI, coding, graphic design, SEO, and more. Share your expertise, brainstorm ideas, and network with like-minded professionals. Let's dive into the world of web design together – start exploring now
     </p>
