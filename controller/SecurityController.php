@@ -150,8 +150,6 @@
                             // redirect to the Register form page
                             return $this->redirectTo("security", "registerForm");
 
-                    
-
                     } else {
 
                         // If the username is the same as another username, an error message will be displayed
