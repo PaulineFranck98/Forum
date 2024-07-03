@@ -53,11 +53,11 @@ $title = "Your Profile and Contributions | DiveIn Design";
                     <p><?= App\Session::getUser()->getUsername()?></p>
                     <a class="btn-search" href="index.php?ctrl=security&action=updatePasswordForm">Update Password</a>
                 </div>
-                <div class="profile-count">
+                <!-- <div class="profile-count">
                     <h3>Your contributions</h3>
                     <p>Topics : </p>
                     <p>Posts : </p>
-                </div>
+                </div> -->
             </div>
         </section>
     </div>

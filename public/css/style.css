@@ -744,8 +744,8 @@ input#cgu {
   gap: 1rem;
   flex-direction: column;
   width: 45%;
-  border-right: 1px solid #ab3bff82;
-  padding-right: 3rem;
+  /* border-right: 1px solid #ab3bff82; */
+  /* padding-right: 3rem; */
 }
 
 .profile-infos {
@@ -774,8 +774,8 @@ input#cgu {
 }
 
 .avatar-profile {
-  width: 7rem;
-  height: 7rem;
+  width: 11rem;
+  height: 11rem;
   border-radius: 50%;
   overflow: hidden;
   margin-top: 0.3rem;
