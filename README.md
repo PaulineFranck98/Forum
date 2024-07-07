@@ -36,13 +36,15 @@ Le projet contient notamment :
 🟣<strong> MySQL :</strong> Système de gestion de base de données relationnelle **(SGBDR)** pour stocker et gérer les données.<br/><br/>
 🟣<strong> HeidiSQL :</strong> Outil d'administration de base de données utilisé pour gérer et administrer **MySQL**.<br/><br/>
 🟣<strong> Laragon :</strong> Environnement de développement utilisé pour héberger l'application en local.<br/><br/>
-🟣<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer le **Modèle Conceptuel de Données** (MCD) et le **Modèle Logique de Données** (MLD).<br/><br/>
+🟣<strong> Looping :</strong> Outil de modélisation conceptuelle de données utilisé pour créer  : <br/>
+                              - le **Modèle Conceptuel de Données** (MCD)<br/>
+                              - le **Modèle Logique de Données** (MLD).<br/><br/>
 
 <br/>
 <h3>🛠️ Détails Techniques</h3><br/>
 
 <h4>☑️ MCD - MLD</h4>
-<p style="text-align: justify;">Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.</p>
+Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.
 
 <br/><br/>
 
