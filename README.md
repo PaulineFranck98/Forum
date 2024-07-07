@@ -52,6 +52,7 @@ L'interface utilisateur contenant des champs d'entrée, des mesures de sécurit�
 // retrieves username from the POST request, sanitize the input
 $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 ```
+<br/>
 
 <h5>☑️ Regex</h5>
 Une regex a été mise en place avec FILTER_VALIDATE_REGEXP pour s'assurer que les mots de passe respectent les recommandations de la CNIL. <br/><br/>
@@ -97,9 +98,18 @@ public function searchPosts($search){
     );
 }
 ```
+<br/>
+Puis dans le contrôleur : 
+<br/><br/>
+
+ ```PHP
+//use model layer to retrieve information from the database
+$posts = $postManager->searchPosts($search);
+```
 
 , avec un <strong>routeur frontal (index) </strong> dirigeant les requêtes vers les contrôleurs appropriés.
 <br/>
 
-☑️Ces contrôleurs permettent de gérer la logique de récupération des données et les interactions avec la base de données MySQL, paramétrée avec PDO (PHP Data Objects) : création d'une instance de PDO, qui est une couche d‘accès, pour se connecter à la base de données.
+<h5>☑️ PDO - PHP Data Object</h5>
+Ces contrôleurs permettent de gérer la logique de récupération des données et les interactions avec la base de données MySQL, paramétrée avec PDO (PHP Data Objects) : création d'une instance de PDO, qui est une couche d‘accès, pour se connecter à la base de données.
 
