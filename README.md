@@ -43,13 +43,16 @@ Le projet contient notamment :
 <br/>
 
 Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.
-
 <br/>
 
-L'interface utilisateur contenant des champs d'entrée, des mesures de sécurité contre les attaques XSS ont été implémentées en utilisant les fonctions PHP d'assainissement et de validation des données, telles que filter_input() avec FILTER_SANITIZE_FULL_SPECIAL_CHARS. Une regex a été mise en place avec FILTER_VALIDATE_REGEXP pour s'assurer que les mots de passe respectent les recommandations de la CNIL.
-
+L'interface utilisateur contenant des champs d'entrée, des mesures de sécurité contre les attaques XSS ont été implémentées en utilisant les fonctions PHP d'assainissement et de validation des données, telles que filter_input() avec FILTER_SANITIZE_FULL_SPECIAL_CHARS. 
 <br/>
 
+Une regex a été mise en place avec FILTER_VALIDATE_REGEXP pour s'assurer que les mots de passe respectent les recommandations de la CNIL. 
+<br/>
+ 
 Pour la gestion des données, des requêtes préparées ont été utilisées pour sécuriser les interactions avec la base de données, minimisant ainsi les risques d'injection SQL. Ces requêtes ont été définies dans la couche Modèle de l'application, structurée selon le design pattern MVP (Modèle-Vue-Présentateur), avec un routeur frontal (index) dirigeant les requêtes vers les contrôleurs appropriés.
-
 <br/>
+
+Ces contrôleurs permettent de gérer la logique de récupération des données et les interactions avec la base de données MySQL, paramétrée avec PDO (PHP Data Objects) : création d'une instance de PDO, qui est une couche d‘accès, pour se connecter à la base de données.
+
