@@ -46,15 +46,59 @@ Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de
 <br/>
 <h5>☑️ Faille XSS</h5>
 L'interface utilisateur contenant des champs d'entrée, des mesures de sécurité contre les attaques XSS ont été implémentées en utilisant les fonctions PHP d'assainissement et de validation des données, telles que filter_input() avec FILTER_SANITIZE_FULL_SPECIAL_CHARS. 
-<br/>
+<br/><br/>
+
+```PHP
+// retrieves username from the POST request, sanitize the input
+$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+```
 
 <h5>☑️ Regex</h5>
-Une regex a été mise en place avec FILTER_VALIDATE_REGEXP pour s'assurer que les mots de passe respectent les recommandations de la CNIL. 
+Une regex a été mise en place avec FILTER_VALIDATE_REGEXP pour s'assurer que les mots de passe respectent les recommandations de la CNIL. <br/><br/>
+
+```PHP
+// retrieves user's password created from the POST request, sanitizes the input
+$createPassword = filter_input(INPUT_POST, 'createPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+// retrieves user's password repeated from the POST request
+// FILTER_VALIDATE_REGEXP : validates password against a regular expression to enforce password strenght requirement
+$repeatPassword = filter_input(
+    INPUT_POST,
+    'repeatPassword',
+    FILTER_VALIDATE_REGEXP,
+    ["options" => ["regexp" => "/[A-Za-z0-9].{8,32}/"]] //required : uppercase, lowercase, digit, min 8, max 32 characters
+);
+
+```
 <br/>
  
 <h5>☑️ Injection SQL</h5>
 Pour la gestion des données, des <strong>requêtes préparées</strong> ont été utilisées pour sécuriser les interactions avec la base de données, minimisant ainsi les risques d'injection SQL.<br/>
-Ces requêtes ont été définies dans la <strong>couche Modèle</strong> de l'application, structurée selon le <strong>design pattern MVP</strong> (Modèle-Vue-Présentateur), avec un <strong>routeur frontal (index) </strong> dirigeant les requêtes vers les contrôleurs appropriés.
+Ces requêtes ont été définies dans la <strong>couche Modèle</strong> de l'application, structurée selon le <strong>design pattern MVP</strong> (Modèle-Vue-Présentateur).
+Exemple ici dans 'PostManager.php' pour récupérer les posts correspondant à la recherche de l'utilisateur : <br/><br/>
+ 
+ ```PHP
+// method to retrieve posts when searched in search bar
+public function searchPosts($search){
+
+    // creation of variable $sql to store the SQL query
+    $sql = "SELECT * FROM ".$this->tableName ." p
+            WHERE p.textcontent
+            LIKE :search";
+    // prepare data
+    $data = [
+        'search' => '%' . $search . '%'
+    ];
+   
+    return $this->getMultipleResults(
+        // Use resolution operator(`::`)to access static properties and methods of DAO class
+        DAO::select($sql, $data, true), 
+        $this->className
+    );
+}
+```
+
+, avec un <strong>routeur frontal (index) </strong> dirigeant les requêtes vers les contrôleurs appropriés.
 <br/>
 
 ☑️Ces contrôleurs permettent de gérer la logique de récupération des données et les interactions avec la base de données MySQL, paramétrée avec PDO (PHP Data Objects) : création d'une instance de PDO, qui est une couche d‘accès, pour se connecter à la base de données.
