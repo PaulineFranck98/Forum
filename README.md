@@ -41,12 +41,12 @@ Le projet contient notamment :
 <br/>
 <h3>🛠️ Détails Techniques</h3><br/>
 
-<h5>☑️ MCD - MLD</h5>
+<h4>☑️ MCD - MLD</h4>
 Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.
 
 <br/><br/>
 
-<h5>☑️ Faille XSS</h5>
+<h4>☑️ Faille XSS</h4>
 L'interface utilisateur contenant des champs d'entrée, des mesures de sécurité contre les attaques XSS ont été implémentées en utilisant les fonctions PHP d'assainissement et de validation des données, telles que filter_input() avec FILTER_SANITIZE_FULL_SPECIAL_CHARS. 
 <br/><br/>
 
@@ -56,7 +56,7 @@ $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CH
 ```
 <br/>
 
-<h5>☑️ Regex</h5>
+<h4>☑️ Regex</h4>
 Une regex a été mise en place avec FILTER_VALIDATE_REGEXP pour s'assurer que les mots de passe respectent les recommandations de la CNIL. <br/><br/>
 
 ```PHP
@@ -75,9 +75,9 @@ $repeatPassword = filter_input(
 ```
 <br/>
  
-<h5>☑️ Injection SQL</h5>
-Pour la gestion des données, des <strong>requêtes préparées</strong> ont été utilisées pour sécuriser les interactions avec la base de données, minimisant ainsi les risques d'injection SQL.<br/>
-Ces requêtes ont été définies dans la <strong>couche Modèle</strong> de l'application, structurée selon le <strong>design pattern MVP</strong> (Modèle-Vue-Présentateur), avec un <strong>routeur frontal (index) </strong> dirigeant les requêtes vers les contrôleurs appropriés.
+<h4>☑️ Injection SQL</h4>
+Pour la gestion des données, des <strong>requêtes préparées</strong> ont été utilisées pour sécuriser les interactions avec la base de données, minimisant ainsi les risques d'injection SQL.<br/><br/>
+Ces requêtes ont été définies dans la <strong>couche Modèle</strong> de l'application, structurée selon le <strong>design pattern MVP</strong> (Modèle-Vue-Présentateur), avec un <strong>routeur frontal (index) </strong> dirigeant les requêtes vers les contrôleurs appropriés.<br/>
 Exemple ici dans 'PostManager.php' pour récupérer les posts correspondant à la recherche de l'utilisateur : <br/><br/>
  
  ```PHP
@@ -112,7 +112,7 @@ $posts = $postManager->searchPosts($search);
 
 <br/>
 
-<h5>☑️ PDO - PHP Data Object</h5>
+<h4>☑️ PDO - PHP Data Object</h4>
 Les contrôleurs permettent de gérer la logique de récupération des données et les interactions avec la base de données MySQL, paramétrée avec PDO (PHP Data Objects) : création d'une instance de PDO, qui est une couche d‘accès, pour se connecter à la base de données.<br/><br/>
 
  ```PHP
