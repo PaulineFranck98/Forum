@@ -68,13 +68,12 @@
             $data = [
                 'search' => '%' . $search . '%'
             ];
-
+            
             return $this->getMultipleResults(
                 // Use resolution operator(`::`)to access static properties and methods of DAO class
                 DAO::select($sql, $data, true), 
                 $this->className
             );
-
         }
 
         public function findPostsByUserId($userId) {
