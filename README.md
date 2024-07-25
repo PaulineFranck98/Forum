@@ -35,7 +35,7 @@ L'administrateur peut créer des catégories et bannir des utilisateurs, les emp
                               - le **Modèle Logique de Données** (MLD).<br/><br/>
 
 <br/>
-<br/>
+
 
 <div align="center">
   <h4>👤 Espace profil utilisateur permettant de voir et de gérer les publications</h4>
@@ -48,6 +48,8 @@ L'administrateur peut créer des catégories et bannir des utilisateurs, les emp
   
   <img src="/admin-profile0.png" width=700 />
 </div>
+
+<br/>
 
 <h3 align="center">🛠️ Détails Techniques</h3>
 
