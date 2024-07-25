@@ -19,7 +19,7 @@ L'administrateur peut créer des catégories et bannir des utilisateurs, les emp
 
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=html,css,js,php,mysql,vscode,github,git,figma" />
+    <img src="https://skillicons.dev/icons?i=html,css,php,mysql,vscode,github,git,figma" />
   </a
 </p>
 <br/>
