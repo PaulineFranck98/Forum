@@ -11,18 +11,7 @@
 L'administrateur peut créer des catégories et bannir des utilisateurs, les empêchant de créer des posts et de répondre aux posts des autres.
 <br/>
 <br/>
-Le projet contient notamment :
-<br/>
 
-<h4>👤 Un espace profil utilisateur permettant de voir et de gérer les publications</h4>
-
-<img src="/user-profile0.png" width=700 />
-
-<br/>
-
-<h4>👨‍💼 Un espace profil administrateur permettant de gérer les utilisateurs et les catégories</h4>
-
-<img src="/admin-profile0.png" width=700 />
 
 <br/></br>
 
@@ -47,6 +36,18 @@ Le projet contient notamment :
 
 <br/>
 <br/>
+
+<div align="center">
+  <h4>👤 Espace profil utilisateur permettant de voir et de gérer les publications</h4>
+  
+  <img src="/user-profile0.png" width=700 />
+  
+  <br/>
+  
+  <h4>👨‍💼 Espace profil administrateur permettant de gérer les utilisateurs et les catégories</h4>
+  
+  <img src="/admin-profile0.png" width=700 />
+</div>
 
 <h3 align="center">🛠️ Détails Techniques</h3>
 
