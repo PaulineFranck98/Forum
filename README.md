@@ -11,24 +11,19 @@
 L'administrateur peut créer des catégories et bannir des utilisateurs, les empêchant de créer des posts et de répondre aux posts des autres.
 <br/>
 <br/>
-Le projet contient notamment :
-<br/>
 
-<h4>👤 Un espace profil utilisateur permettant de voir et de gérer les publications</h4>
 
-<img src="/user-profile0.png" width=700 />
+<br/></br>
 
-<br/>
+<h3 align="center">⚙️ Technologies utilisées</h3>
 
-<h4>👨‍💼 Un espace profil administrateur permettant de gérer les utilisateurs et les catégories</h4>
-
-<img src="/admin-profile0.png" width=700 />
-
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=html,css,php,mysql,vscode,github,git,figma" />
+  </a
+</p>
 <br/>
 <br/>
-
-<h3>⚙️ Technologies utilisées</h3>
-
 <br/>
 
 🟣<strong> PHP :</strong> Langage de programmation utilisé pour le développement du backend.<br/><br/>
@@ -40,7 +35,24 @@ Le projet contient notamment :
                               - le **Modèle Logique de Données** (MLD).<br/><br/>
 
 <br/>
-<h3>🛠️ Détails Techniques</h3><br/>
+
+
+<div align="center">
+  <h4>👤 Espace profil utilisateur permettant de voir et de gérer les publications</h4>
+  
+  <img src="/user-profile0.png" width=700 />
+  
+  <br/>
+  <br/>
+  
+  <h4>👨‍💼 Espace profil administrateur permettant de gérer les utilisateurs et les catégories</h4>
+  
+  <img src="/admin-profile0.png" width=700 />
+</div>
+
+<br/>
+
+<h3 align="center">🛠️ Détails Techniques</h3>
 
 <h4>☑️ MCD - MLD</h4>
 Pour ce projet, un Modèle Conceptuel de Données (MCD) et un Modèle Logique de Données (MLD) ont été créés afin de définir la structure de la base de données et les relations entre les entités. L’outil Looping a été utilisé pour cette modélisation.
