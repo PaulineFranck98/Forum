@@ -43,6 +43,7 @@ L'administrateur peut créer des catégories et bannir des utilisateurs, les emp
   <img src="/user-profile0.png" width=700 />
   
   <br/>
+  <br/>
   
   <h4>👨‍💼 Espace profil administrateur permettant de gérer les utilisateurs et les catégories</h4>
   
