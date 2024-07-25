@@ -42,6 +42,7 @@
             /*----------- END HONEYPOT CHECK -----------------------------------*/
 
             // retrieves User username from the POST request, sanitize the input
+            
             $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             // retrieves User password created from the POST request, sanitize the input
